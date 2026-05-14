@@ -3,1090 +3,497 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cruz Verde — Dashboard Operacional BI</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<title>Cruz Verde — BI Operacional</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-  :root {
-    --cv-green: #00843D;
-    --cv-green-dark: #006830;
-    --cv-green-light: #E8F5EE;
-    --cv-yellow: #FFD100;
-    --cv-yellow-dark: #E6B800;
-    --cv-white: #FFFFFF;
-    --cv-gray-50: #F7F8F6;
-    --cv-gray-100: #EAECEA;
-    --cv-gray-300: #C2C8C2;
-    --cv-gray-500: #7A8A7A;
-    --cv-gray-800: #2A3A2A;
-    --cv-red: #D32F2F;
-    --cv-orange: #F57C00;
-    --cv-blue: #1565C0;
-    --sidebar-w: 220px;
-    --header-h: 64px;
-    --radius: 10px;
-    --shadow: 0 2px 8px rgba(0,84,61,0.10);
-    --transition: 0.18s ease;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'Barlow', sans-serif;
-    background: var(--cv-gray-50);
-    color: var(--cv-gray-800);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* HEADER */
-  header {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    height: var(--header-h);
-    background: var(--cv-green);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 24px 0 0;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
-  }
-  .header-brand {
-    display: flex; align-items: center; gap: 0;
-    height: 100%;
-  }
-  .header-logo-block {
-    background: var(--cv-green-dark);
-    height: 100%;
-    display: flex; align-items: center; padding: 0 20px;
-    gap: 10px;
-  }
-  .logo-cross {
-    width: 36px; height: 36px;
-    position: relative; display: flex; align-items: center; justify-content: center;
-  }
-  .logo-cross::before, .logo-cross::after {
-    content: ''; position: absolute; background: var(--cv-yellow); border-radius: 2px;
-  }
-  .logo-cross::before { width: 12px; height: 36px; }
-  .logo-cross::after { width: 36px; height: 12px; }
-  .logo-leaf {
-    width: 14px; height: 20px; background: var(--cv-yellow);
-    clip-path: polygon(50% 0%, 100% 40%, 60% 100%, 40% 100%, 0% 40%);
-    position: absolute; right: -2px; top: -4px; z-index: 2;
-  }
-  .header-title {
-    display: flex; flex-direction: column; padding-left: 16px;
-  }
-  .header-title span:first-child {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 20px; font-weight: 700; color: var(--cv-white); letter-spacing: 0.5px;
-    line-height: 1.1;
-  }
-  .header-title span:last-child {
-    font-size: 11px; color: rgba(255,255,255,0.70); letter-spacing: 1.5px; text-transform: uppercase;
-  }
-  .header-meta {
-    display: flex; align-items: center; gap: 20px;
-  }
-  .header-badge {
-    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 20px; padding: 4px 14px;
-    font-size: 12px; color: rgba(255,255,255,0.90); font-weight: 500;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .dot-live { width: 7px; height: 7px; border-radius: 50%; background: var(--cv-yellow); animation: blink 1.4s infinite; }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-  .header-date { font-size: 12px; color: rgba(255,255,255,0.75); }
-
-  /* LAYOUT */
-  .layout { display: flex; padding-top: var(--header-h); min-height: 100vh; }
-
-  /* SIDEBAR */
-  nav.sidebar {
-    position: fixed; top: var(--header-h); left: 0; bottom: 0;
-    width: var(--sidebar-w);
-    background: var(--cv-white);
-    border-right: 1px solid var(--cv-gray-100);
-    overflow-y: auto;
-    display: flex; flex-direction: column;
-    z-index: 90;
-  }
-  .sidebar-section {
-    padding: 16px 12px 8px;
-    font-size: 10px; font-weight: 600; letter-spacing: 1.5px;
-    text-transform: uppercase; color: var(--cv-gray-500);
-  }
-  .nav-item {
-    display: flex; align-items: center; gap: 10px;
-    padding: 10px 16px; margin: 1px 8px;
-    border-radius: 8px; cursor: pointer;
-    font-size: 13.5px; font-weight: 500; color: var(--cv-gray-800);
-    transition: all var(--transition); border: none; background: none;
-    width: calc(100% - 16px); text-align: left;
-  }
-  .nav-item:hover { background: var(--cv-green-light); color: var(--cv-green); }
-  .nav-item.active { background: var(--cv-green); color: var(--cv-white); }
-  .nav-item .nav-icon { font-size: 16px; width: 18px; }
-  .nav-divider { height: 1px; background: var(--cv-gray-100); margin: 8px 16px; }
-  .sidebar-bottom {
-    margin-top: auto; padding: 16px;
-    border-top: 1px solid var(--cv-gray-100);
-  }
-  .sidebar-user {
-    display: flex; align-items: center; gap: 10px;
-  }
-  .user-avatar {
-    width: 34px; height: 34px; border-radius: 50%;
-    background: var(--cv-green); color: var(--cv-white);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px; font-weight: 700;
-  }
-  .user-info { flex: 1; min-width: 0; }
-  .user-name { font-size: 13px; font-weight: 600; color: var(--cv-gray-800); }
-  .user-role { font-size: 11px; color: var(--cv-gray-500); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-  /* MAIN CONTENT */
-  main {
-    margin-left: var(--sidebar-w);
-    flex: 1; padding: 28px 28px 40px;
-    min-width: 0;
-  }
-
-  /* PAGE HEADER */
-  .page-header {
-    display: flex; align-items: flex-start; justify-content: space-between;
-    margin-bottom: 24px;
-  }
-  .page-title { font-family: 'Barlow Condensed', sans-serif; font-size: 26px; font-weight: 700; color: var(--cv-green-dark); line-height: 1.1; }
-  .page-subtitle { font-size: 13px; color: var(--cv-gray-500); margin-top: 3px; }
-  .page-actions { display: flex; gap: 8px; align-items: center; }
-  .btn {
-    padding: 8px 16px; border-radius: 8px; font-family: 'Barlow', sans-serif;
-    font-size: 13px; font-weight: 600; cursor: pointer; border: none;
-    transition: all var(--transition); display: flex; align-items: center; gap: 6px;
-  }
-  .btn-primary { background: var(--cv-green); color: var(--cv-white); }
-  .btn-primary:hover { background: var(--cv-green-dark); }
-  .btn-outline { background: var(--cv-white); color: var(--cv-gray-800); border: 1px solid var(--cv-gray-300); }
-  .btn-outline:hover { border-color: var(--cv-green); color: var(--cv-green); }
-  .btn-yellow { background: var(--cv-yellow); color: var(--cv-gray-800); }
-  .btn-yellow:hover { background: var(--cv-yellow-dark); }
-
-  /* FILTER BAR */
-  .filter-bar {
-    display: flex; gap: 10px; align-items: center; margin-bottom: 22px;
-    background: var(--cv-white); padding: 12px 16px; border-radius: var(--radius);
-    border: 1px solid var(--cv-gray-100); box-shadow: var(--shadow);
-    flex-wrap: wrap;
-  }
-  .filter-label { font-size: 12px; font-weight: 600; color: var(--cv-gray-500); text-transform: uppercase; letter-spacing: 0.8px; }
-  .filter-select {
-    padding: 6px 28px 6px 10px; border-radius: 6px; border: 1px solid var(--cv-gray-300);
-    font-family: 'Barlow', sans-serif; font-size: 13px; color: var(--cv-gray-800);
-    background: var(--cv-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2300843D' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat right 8px center;
-    -webkit-appearance: none; cursor: pointer;
-    transition: border-color var(--transition);
-  }
-  .filter-select:focus { outline: none; border-color: var(--cv-green); }
-  .filter-sep { width: 1px; height: 24px; background: var(--cv-gray-100); }
-  .loading-bar {
-    height: 3px; background: var(--cv-green-light); border-radius: 2px; overflow: hidden; width: 100px;
-  }
-  .loading-fill {
-    height: 100%; background: var(--cv-green); border-radius: 2px;
-    animation: load 1.8s ease-in-out infinite;
-  }
-  @keyframes load { 0%{width:0%;transform:translateX(0)} 100%{width:100%;} }
-
-  /* KPI CARDS */
-  .kpi-grid {
-    display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 22px;
-  }
-  .kpi-card {
-    background: var(--cv-white); border-radius: var(--radius);
-    border: 1px solid var(--cv-gray-100); padding: 18px 16px;
-    box-shadow: var(--shadow); position: relative; overflow: hidden;
-    transition: transform var(--transition), box-shadow var(--transition);
-  }
-  .kpi-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,84,61,0.14); }
-  .kpi-accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: var(--radius) var(--radius) 0 0; }
-  .kpi-accent.green { background: var(--cv-green); }
-  .kpi-accent.yellow { background: var(--cv-yellow); }
-  .kpi-accent.red { background: var(--cv-red); }
-  .kpi-accent.blue { background: var(--cv-blue); }
-  .kpi-accent.orange { background: var(--cv-orange); }
-  .kpi-icon { font-size: 22px; margin-bottom: 10px; }
-  .kpi-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--cv-gray-500); margin-bottom: 4px; }
-  .kpi-value { font-family: 'Barlow Condensed', sans-serif; font-size: 30px; font-weight: 700; color: var(--cv-gray-800); line-height: 1; }
-  .kpi-value.green { color: var(--cv-green); }
-  .kpi-value.red { color: var(--cv-red); }
-  .kpi-value.yellow { color: var(--cv-yellow-dark); }
-  .kpi-delta {
-    display: inline-flex; align-items: center; gap: 3px;
-    font-size: 11px; font-weight: 600; margin-top: 6px; padding: 2px 7px; border-radius: 20px;
-  }
-  .kpi-delta.up { background: #E8F5EE; color: var(--cv-green); }
-  .kpi-delta.down { background: #FDECEA; color: var(--cv-red); }
-  .kpi-delta.neutral { background: var(--cv-gray-100); color: var(--cv-gray-500); }
-  .kpi-sub { font-size: 11px; color: var(--cv-gray-500); margin-top: 3px; }
-
-  /* CHART CARDS */
-  .chart-grid { display: grid; gap: 16px; margin-bottom: 20px; }
-  .chart-grid-2 { grid-template-columns: 1fr 1fr; }
-  .chart-grid-3 { grid-template-columns: 2fr 1fr; }
-  .chart-card {
-    background: var(--cv-white); border-radius: var(--radius);
-    border: 1px solid var(--cv-gray-100); padding: 20px;
-    box-shadow: var(--shadow);
-  }
-  .chart-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; }
-  .chart-title { font-size: 14px; font-weight: 600; color: var(--cv-gray-800); }
-  .chart-subtitle { font-size: 11px; color: var(--cv-gray-500); margin-top: 2px; }
-  .chart-badge {
-    font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 20px;
-    text-transform: uppercase; letter-spacing: 0.5px;
-  }
-  .badge-green { background: #E8F5EE; color: var(--cv-green); }
-  .badge-yellow { background: #FFF8DC; color: #7A5F00; }
-  .badge-red { background: #FDECEA; color: var(--cv-red); }
-
-  /* TABLE */
-  .table-container { overflow-x: auto; }
-  table.cv-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  table.cv-table thead th {
-    background: var(--cv-gray-50); color: var(--cv-gray-500);
-    font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-    padding: 10px 12px; border-bottom: 2px solid var(--cv-gray-100); text-align: left;
-  }
-  table.cv-table tbody td {
-    padding: 11px 12px; border-bottom: 1px solid var(--cv-gray-100); color: var(--cv-gray-800);
-    vertical-align: middle;
-  }
-  table.cv-table tbody tr:hover { background: var(--cv-gray-50); }
-  .status-pill {
-    display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;
-  }
-  .status-ok { background: #E8F5EE; color: var(--cv-green); }
-  .status-warn { background: #FFF8DC; color: #7A5F00; }
-  .status-crit { background: #FDECEA; color: var(--cv-red); }
-  .progress-bar-wrap { width: 80px; height: 6px; background: var(--cv-gray-100); border-radius: 3px; display: inline-block; vertical-align: middle; margin-left: 6px; }
-  .progress-bar-fill { height: 100%; border-radius: 3px; }
-
-  /* TABS */
-  .tabs { display: flex; gap: 0; border-bottom: 2px solid var(--cv-gray-100); margin-bottom: 22px; }
-  .tab-btn {
-    padding: 10px 20px; font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 600;
-    color: var(--cv-gray-500); background: none; border: none; cursor: pointer;
-    border-bottom: 2px solid transparent; margin-bottom: -2px;
-    transition: all var(--transition);
-  }
-  .tab-btn:hover { color: var(--cv-green); }
-  .tab-btn.active { color: var(--cv-green); border-bottom-color: var(--cv-green); }
-
-  /* PAGE SECTIONS */
-  .page-section { display: none; }
-  .page-section.active { display: block; }
-
-  /* LEGEND */
-  .chart-legend { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 10px; }
-  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--cv-gray-500); }
-  .legend-dot { width: 10px; height: 10px; border-radius: 2px; }
-
-  /* DATA STATUS */
-  .data-status {
-    display: flex; align-items: center; gap: 8px; padding: 10px 16px;
-    background: var(--cv-green-light); border-radius: 8px; border-left: 3px solid var(--cv-green);
-    margin-bottom: 18px; font-size: 13px; color: var(--cv-green-dark);
-  }
-  .data-status-err {
-    background: #FFF3E0; border-left-color: var(--cv-orange); color: #5D3A00;
-  }
-  .data-status-loading {
-    background: #E3F2FD; border-left-color: var(--cv-blue); color: #0D3C61;
-  }
-
-  /* SPARKLINE */
-  .sparkline { width: 70px; height: 28px; }
-
-  /* RESPONSIVE */
-  @media (max-width: 1100px) {
-    .kpi-grid { grid-template-columns: repeat(3, 1fr); }
-    .chart-grid-2 { grid-template-columns: 1fr; }
-    .chart-grid-3 { grid-template-columns: 1fr; }
-  }
-
-  /* SCROLLBAR */
-  ::-webkit-scrollbar { width: 5px; height: 5px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: var(--cv-gray-300); border-radius: 3px; }
+:root{
+  --g:#00843D;--gd:#005C2B;--gl:#E6F5ED;--y:#FFD100;--yd:#C9A800;
+  --red:#D32F2F;--ora:#E65100;--blu:#1565C0;
+  --bg:#F4F6F4;--wh:#fff;--g1:#EAECE9;--g2:#C4CAC3;--g3:#7A887A;--dk:#1E2A1E;
+  --sw:220px;--hh:60px;--r:10px;--sh:0 2px 8px rgba(0,84,40,.09);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--dk);min-height:100vh;display:flex;flex-direction:column}
+header{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--hh);background:var(--g);display:flex;align-items:center;justify-content:space-between;padding:0 20px 0 0;box-shadow:0 2px 10px rgba(0,0,0,.2)}
+.hb{display:flex;align-items:center;height:100%}
+.hl{background:var(--gd);height:100%;display:flex;align-items:center;padding:0 18px;gap:10px}
+.cx{width:32px;height:32px;position:relative}
+.ch,.cv{position:absolute;background:var(--y);border-radius:2px}
+.ch{width:32px;height:10px;top:11px;left:0}.cv{width:10px;height:32px;top:0;left:11px}
+.lf{position:absolute;width:9px;height:13px;background:var(--y);clip-path:polygon(50% 0%,100% 40%,60% 100%,40% 100%,0% 40%);top:-3px;right:-2px;z-index:2}
+.ht{padding-left:14px}
+.ht b{display:block;font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:#fff;letter-spacing:.3px;line-height:1.1}
+.ht small{font-size:10px;color:rgba(255,255,255,.65);letter-spacing:1.5px;text-transform:uppercase}
+.hm{display:flex;align-items:center;gap:14px}
+.hp{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:4px 12px;font-size:12px;color:rgba(255,255,255,.9);display:flex;align-items:center;gap:6px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--y);animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.hd{font-size:11px;color:rgba(255,255,255,.6)}
+.lay{display:flex;padding-top:var(--hh);min-height:100vh}
+nav{position:fixed;top:var(--hh);left:0;bottom:0;width:var(--sw);background:var(--wh);border-right:1px solid var(--g1);display:flex;flex-direction:column;z-index:100;overflow-y:auto}
+.ns{padding:14px 12px 6px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--g3)}
+.ni{display:flex;align-items:center;gap:9px;padding:9px 14px;margin:1px 8px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;color:var(--dk);border:none;background:none;width:calc(100% - 16px);text-align:left;transition:.15s}
+.ni:hover{background:var(--gl);color:var(--g)}.ni.active{background:var(--g);color:#fff}
+.ni .ic{width:18px;font-size:15px}
+.nd{height:1px;background:var(--g1);margin:6px 14px}
+.nb{margin-top:auto;padding:14px;border-top:1px solid var(--g1)}
+.nu{display:flex;align-items:center;gap:9px}
+.av{width:32px;height:32px;border-radius:50%;background:var(--g);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.un{font-size:13px;font-weight:600}.ur{font-size:11px;color:var(--g3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+main{margin-left:var(--sw);flex:1;padding:22px 22px 40px;min-width:0}
+.sb{display:flex;align-items:flex-start;gap:10px;padding:10px 16px;border-radius:8px;margin-bottom:16px;font-size:13px;font-weight:500;border-left:3px solid;line-height:1.4}
+.sl{background:#E3F2FD;border-color:var(--blu);color:#0D3361}
+.so{background:var(--gl);border-color:var(--g);color:var(--gd)}
+.sw{background:#FFF3E0;border-color:var(--ora);color:#5D3A00}
+.se{background:#FDECEA;border-color:var(--red);color:#7F0000}
+.ph{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px}
+.pt{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:800;color:var(--gd);line-height:1.1}
+.ps{font-size:12px;color:var(--g3);margin-top:2px}
+.pa{display:flex;gap:8px}
+.btn{padding:7px 14px;border-radius:8px;font-family:'Barlow',sans-serif;font-size:12px;font-weight:600;cursor:pointer;border:none;transition:.15s;display:flex;align-items:center;gap:5px}
+.bg{background:var(--g);color:#fff}.bg:hover{background:var(--gd)}
+.bo{background:var(--wh);color:var(--dk);border:1px solid var(--g2)}.bo:hover{border-color:var(--g);color:var(--g)}
+.fb{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--wh);padding:10px 16px;border-radius:var(--r);border:1px solid var(--g1);box-shadow:var(--sh);margin-bottom:16px}
+.fl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--g3)}
+.fs{padding:5px 26px 5px 9px;border-radius:6px;border:1px solid var(--g2);font-family:'Barlow',sans-serif;font-size:12px;color:var(--dk);background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2300843D' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat right 8px center;-webkit-appearance:none;cursor:pointer}
+.fs:focus{outline:none;border-color:var(--g)}
+.fx{width:1px;height:22px;background:var(--g1)}
+.kg{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px}
+.kc{background:var(--wh);border-radius:var(--r);border:1px solid var(--g1);padding:15px 13px;box-shadow:var(--sh);position:relative;overflow:hidden;transition:.15s}
+.kc:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,84,40,.13)}
+.ka{position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--r) var(--r) 0 0}
+.ka.g{background:var(--g)}.ka.y{background:var(--y)}.ka.r{background:var(--red)}.ka.b{background:var(--blu)}.ka.o{background:var(--ora)}
+.ki{font-size:19px;margin-bottom:7px}
+.kl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--g3);margin-bottom:3px}
+.kv{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:var(--dk);line-height:1}
+.kv.gv{color:var(--g)}.kv.rv{color:var(--red)}
+.kd{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:600;margin-top:5px;padding:2px 8px;border-radius:20px}
+.kdup{background:#E6F5ED;color:var(--g)}.kddn{background:#FDECEA;color:var(--red)}.kdn{background:var(--g1);color:var(--g3)}
+.ks{font-size:11px;color:var(--g3);margin-top:3px}
+.cg{display:grid;gap:12px;margin-bottom:12px}
+.cg2{grid-template-columns:1fr 1fr}.cg3{grid-template-columns:2fr 1fr}
+.cc{background:var(--wh);border-radius:var(--r);border:1px solid var(--g1);padding:16px;box-shadow:var(--sh)}
+.chd{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+.ct{font-size:13px;font-weight:600;color:var(--dk)}.cst{font-size:11px;color:var(--g3);margin-top:2px}
+.cb{font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px}
+.cbg{background:#E6F5ED;color:var(--g)}.cby{background:#FFFDE7;color:#7A5F00}.cbr{background:#FDECEA;color:var(--red)}.cbb{background:#E3F2FD;color:var(--blu)}
+.cl{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+.cli{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--g3)}
+.cld{width:10px;height:10px;border-radius:2px}
+.tc{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead th{background:var(--bg);color:var(--g3);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:8px 10px;border-bottom:2px solid var(--g1);text-align:left;white-space:nowrap}
+tbody td{padding:9px 10px;border-bottom:1px solid var(--g1);color:var(--dk);vertical-align:middle}
+tbody tr:hover{background:var(--bg)}
+.pl{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
+.pg{background:#E6F5ED;color:var(--g)}.py{background:#FFFDE7;color:#7A5F00}.pr{background:#FDECEA;color:var(--red)}
+.page{display:none}.page.active{display:block}
+.si{padding:6px 12px;border:1px solid var(--g2);border-radius:6px;font-family:'Barlow',sans-serif;font-size:12px;width:180px}
+.si:focus{outline:none;border-color:var(--g)}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-thumb{background:var(--g2);border-radius:2px}
+@media(max-width:1100px){.kg{grid-template-columns:repeat(3,1fr)}.cg2,.cg3{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
-<!-- HEADER -->
 <header>
-  <div class="header-brand">
-    <div class="header-logo-block">
-      <div class="logo-cross">
-        <div class="logo-leaf"></div>
-      </div>
+  <div class="hb">
+    <div class="hl">
+      <div class="cx"><div class="ch"></div><div class="cv"></div><div class="lf"></div></div>
     </div>
-    <div class="header-title">
-      <span>Cruz Verde</span>
-      <span>Centro de Operaciones &amp; BI</span>
-    </div>
+    <div class="ht"><b>Cruz Verde</b><small>Centro de Operaciones · BI Last Mile</small></div>
   </div>
-  <div class="header-meta">
-    <div class="header-badge">
-      <div class="dot-live"></div>
-      Datos en vivo
-    </div>
-    <div class="header-date" id="header-date"></div>
+  <div class="hm">
+    <div class="hp"><div class="dot"></div><span id="cl">Conectando…</span></div>
+    <div class="hd" id="hd"></div>
   </div>
 </header>
 
-<!-- LAYOUT -->
-<div class="layout">
+<div class="lay">
+<nav>
+  <div class="ns">Operaciones</div>
+  <button class="ni active" onclick="go('ops')"><span class="ic">📦</span>Control Operativo</button>
+  <button class="ni" onclick="go('drog')"><span class="ic">🏥</span>Droguerías</button>
+  <button class="ni" onclick="go('land')"><span class="ic">🚚</span>Last Mile</button>
+  <div class="nd"></div>
+  <div class="ns">Gestión</div>
+  <button class="ni" onclick="go('pend')"><span class="ic">⏳</span>Pendientes</button>
+  <button class="ni" onclick="go('perc')"><span class="ic">💊</span>Percápita</button>
+  <button class="ni" onclick="go('tut')"><span class="ic">⚖️</span>Tutelas</button>
+  <div class="nd"></div>
+  <button class="ni" onclick="rl()"><span class="ic">🔄</span>Actualizar datos</button>
+  <div class="nb">
+    <div class="nu">
+      <div class="av">DG</div>
+      <div><div class="un">David Guerrero</div><div class="ur">Ing. Ops. Last Mile</div></div>
+    </div>
+  </div>
+</nav>
 
-  <!-- SIDEBAR -->
-  <nav class="sidebar">
-    <div class="sidebar-section">Operaciones</div>
-    <button class="nav-item active" onclick="switchPage('ops')">
-      <span class="nav-icon">📦</span> Control Operativo
-    </button>
-    <button class="nav-item" onclick="switchPage('droguerias')">
-      <span class="nav-icon">🏥</span> Droguerías
-    </button>
-    <button class="nav-item" onclick="switchPage('landfast')">
-      <span class="nav-icon">🚚</span> Last Mile (Landfast)
-    </button>
-    <div class="nav-divider"></div>
-    <div class="sidebar-section">Gestión</div>
-    <button class="nav-item" onclick="switchPage('pendientes')">
-      <span class="nav-icon">⏳</span> Pendientes
-    </button>
-    <button class="nav-item" onclick="switchPage('percapita')">
-      <span class="nav-icon">💊</span> Percápita
-    </button>
-    <button class="nav-item" onclick="switchPage('tutelas')">
-      <span class="nav-icon">⚖️</span> Tutelas
-    </button>
-    <div class="nav-divider"></div>
-    <div class="sidebar-section">Ajustes</div>
-    <button class="nav-item" onclick="reloadData()">
-      <span class="nav-icon">🔄</span> Actualizar datos
-    </button>
-    <div class="sidebar-bottom">
-      <div class="sidebar-user">
-        <div class="user-avatar">DG</div>
-        <div class="user-info">
-          <div class="user-name">David Guerrero</div>
-          <div class="user-role">Ing. Operaciones Last Mile</div>
-        </div>
+<main>
+  <div id="sb" class="sb sl">⏳ Conectando con Google Sheets…</div>
+
+  <!-- OPS -->
+  <div class="page active" id="page-ops">
+    <div class="ph">
+      <div><div class="pt">Control Operativo Logístico</div><div class="ps">Indicadores consolidados · Cruz Verde Bogotá</div></div>
+      <div class="pa">
+        <button class="btn bo" onclick="exp()">⬇ Exportar</button>
+        <button class="btn bg" onclick="rl()">🔄 Sincronizar</button>
       </div>
     </div>
-  </nav>
-
-  <!-- MAIN -->
-  <main>
-
-    <!-- STATUS BAR -->
-    <div id="data-status-bar" class="data-status data-status-loading">
-      ⏳ Cargando datos desde Google Sheets…
+    <div class="fb">
+      <span class="fl">Filtrar</span>
+      <select class="fs" id="fm" onchange="af()"><option value="">Todos los meses</option></select>
+      <div class="fx"></div>
+      <select class="fs" id="fe" onchange="af()">
+        <option value="">Todos los estados</option>
+        <option>Activo</option><option>Inactivo</option><option>Pendiente</option>
+      </select>
+      <span style="margin-left:auto;font-size:12px;color:var(--g3)" id="rc">— registros</span>
     </div>
-
-    <!-- ===================== PAGE: OPS ===================== -->
-    <div class="page-section active" id="page-ops">
-      <div class="page-header">
-        <div>
-          <div class="page-title">Control Operativo Logístico</div>
-          <div class="page-subtitle">Indicadores consolidados de última milla y despacho</div>
-        </div>
-        <div class="page-actions">
-          <button class="btn btn-outline" onclick="exportCSV()">⬇ Exportar</button>
-          <button class="btn btn-primary" onclick="reloadData()">🔄 Sincronizar</button>
-        </div>
+    <div class="kg">
+      <div class="kc"><div class="ka g"></div><div class="ki">🏥</div><div class="kl">Droguerías</div><div class="kv gv" id="k1">—</div><div class="kd kdn" id="k1d">cargando</div></div>
+      <div class="kc"><div class="ka y"></div><div class="ki">📋</div><div class="kl">Pendientes</div><div class="kv" id="k2">—</div><div class="kd kdn" id="k2d">cargando</div></div>
+      <div class="kc"><div class="ka r"></div><div class="ki">⚖️</div><div class="kl">Tutelas</div><div class="kv rv" id="k3">—</div><div class="ks" id="k3s">—</div></div>
+      <div class="kc"><div class="ka b"></div><div class="ki">🚚</div><div class="kl">Entregas Landfast</div><div class="kv" id="k4">—</div><div class="kd kdn" id="k4d">cargando</div></div>
+      <div class="kc"><div class="ka o"></div><div class="ki">💊</div><div class="kl">Percápita</div><div class="kv" id="k5">—</div><div class="ks" id="k5s">registros</div></div>
+    </div>
+    <div class="cg cg3" style="margin-bottom:12px">
+      <div class="cc">
+        <div class="chd"><div><div class="ct">Distribución — Droguerías</div><div class="cst">Por columna principal</div></div><span class="cb cbg">DROGUERÍAS</span></div>
+        <div style="position:relative;width:100%;height:210px"><canvas id="c1" role="img" aria-label="Droguerías distribución">Cargando…</canvas></div>
       </div>
-
-      <!-- FILTER BAR -->
-      <div class="filter-bar">
-        <span class="filter-label">Filtrar por</span>
-        <select class="filter-select" id="filter-month" onchange="applyFilters()">
-          <option value="">Todos los meses</option>
-        </select>
-        <div class="filter-sep"></div>
-        <select class="filter-select" id="filter-drogueria" onchange="applyFilters()">
-          <option value="">Todas las droguerías</option>
-        </select>
-        <div style="margin-left:auto; display:flex; align-items:center; gap:8px; font-size:12px; color:var(--cv-gray-500);">
-          <span id="record-count">—</span> registros activos
-        </div>
-      </div>
-
-      <!-- KPIs -->
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-accent green"></div>
-          <div class="kpi-icon">📦</div>
-          <div class="kpi-label">Pedidos Despachados</div>
-          <div class="kpi-value green" id="kpi-pedidos">—</div>
-          <div class="kpi-delta up" id="kpi-pedidos-delta">↑ cargando</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-accent yellow"></div>
-          <div class="kpi-icon">✅</div>
-          <div class="kpi-label">ANS Cumplimiento</div>
-          <div class="kpi-value" id="kpi-ans">—</div>
-          <div class="kpi-delta neutral" id="kpi-ans-delta">cargando</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-accent red"></div>
-          <div class="kpi-icon">⏳</div>
-          <div class="kpi-label">Pendientes</div>
-          <div class="kpi-value red" id="kpi-pendientes">—</div>
-          <div class="kpi-sub" id="kpi-pend-sub">—</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-accent blue"></div>
-          <div class="kpi-icon">⚖️</div>
-          <div class="kpi-label">Tutelas Activas</div>
-          <div class="kpi-value" id="kpi-tutelas">—</div>
-          <div class="kpi-sub" id="kpi-tut-sub">—</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-accent orange"></div>
-          <div class="kpi-icon">🚚</div>
-          <div class="kpi-label">Entregas Landfast</div>
-          <div class="kpi-value" id="kpi-landfast">—</div>
-          <div class="kpi-delta up" id="kpi-land-delta">cargando</div>
-        </div>
-      </div>
-
-      <!-- CHARTS ROW 1 -->
-      <div class="chart-grid chart-grid-3" style="margin-bottom:16px;">
-        <div class="chart-card">
-          <div class="chart-header">
-            <div>
-              <div class="chart-title">Pedidos por mes — Droguerías</div>
-              <div class="chart-subtitle">Volumen mensual consolidado</div>
-            </div>
-            <span class="chart-badge badge-green">HISTÓRICO</span>
-          </div>
-          <div style="position:relative; width:100%; height:230px;">
-            <canvas id="chart-pedidos-mes" role="img" aria-label="Pedidos por mes">Cargando datos…</canvas>
-          </div>
-          <div class="chart-legend" id="legend-pedidos-mes"></div>
-        </div>
-        <div class="chart-card">
-          <div class="chart-header">
-            <div>
-              <div class="chart-title">Estado ANS</div>
-              <div class="chart-subtitle">Cumplimiento actual</div>
-            </div>
-            <span class="chart-badge badge-yellow">ANS</span>
-          </div>
-          <div style="position:relative; width:100%; height:230px;">
-            <canvas id="chart-ans-donut" role="img" aria-label="Donut ANS cumplimiento">Cargando…</canvas>
-          </div>
-          <div class="chart-legend" id="legend-ans"></div>
-        </div>
-      </div>
-
-      <!-- CHARTS ROW 2 -->
-      <div class="chart-grid chart-grid-2" style="margin-bottom:16px;">
-        <div class="chart-card">
-          <div class="chart-header">
-            <div>
-              <div class="chart-title">Distribución de Pendientes por Tipo</div>
-              <div class="chart-subtitle">Categorías sin resolver</div>
-            </div>
-            <span class="chart-badge badge-red">PENDIENTES</span>
-          </div>
-          <div style="position:relative; width:100%; height:220px;">
-            <canvas id="chart-pendientes-tipo" role="img" aria-label="Pendientes por tipo">Cargando…</canvas>
-          </div>
-        </div>
-        <div class="chart-card">
-          <div class="chart-header">
-            <div>
-              <div class="chart-title">Tendencia Tutelas por Mes</div>
-              <div class="chart-subtitle">Flujo mensual de tutelas</div>
-            </div>
-            <span class="chart-badge badge-green">TUTELAS</span>
-          </div>
-          <div style="position:relative; width:100%; height:220px;">
-            <canvas id="chart-tutelas-mes" role="img" aria-label="Tutelas por mes">Cargando…</canvas>
-          </div>
-        </div>
-      </div>
-
-      <!-- TABLE -->
-      <div class="chart-card">
-        <div class="chart-header">
-          <div>
-            <div class="chart-title">Detalle de Droguerías</div>
-            <div class="chart-subtitle">Estado operativo por punto</div>
-          </div>
-          <input type="text" placeholder="🔍 Buscar…" id="search-table" oninput="filterTable()" style="padding:6px 12px; border:1px solid var(--cv-gray-300); border-radius:6px; font-size:13px; font-family:'Barlow',sans-serif; width:180px;">
-        </div>
-        <div class="table-container">
-          <table class="cv-table">
-            <thead>
-              <tr>
-                <th>Droguería</th>
-                <th>Ciudad</th>
-                <th>Tipo</th>
-                <th>Estado</th>
-                <th>Observación</th>
-              </tr>
-            </thead>
-            <tbody id="table-droguerias"></tbody>
-          </table>
-        </div>
+      <div class="cc">
+        <div class="chd"><div><div class="ct">Tutelas</div><div class="cst">Por estado</div></div><span class="cb cbr">TUTELAS</span></div>
+        <div style="position:relative;width:100%;height:210px"><canvas id="c2" role="img" aria-label="Tutelas donut">Cargando…</canvas></div>
+        <div class="cl" id="l2"></div>
       </div>
     </div>
-
-    <!-- ===================== PAGE: DROGUERÍAS ===================== -->
-    <div class="page-section" id="page-droguerias">
-      <div class="page-header">
-        <div>
-          <div class="page-title">Red de Droguerías</div>
-          <div class="page-subtitle">Mapa de cobertura y estado por punto</div>
-        </div>
+    <div class="cg cg2" style="margin-bottom:12px">
+      <div class="cc">
+        <div class="chd"><div><div class="ct">Pendientes por categoría</div></div><span class="cb cby">PENDIENTES</span></div>
+        <div style="position:relative;width:100%;height:200px"><canvas id="c3" role="img" aria-label="Pendientes bar">Cargando…</canvas></div>
       </div>
-      <div class="chart-card" style="margin-bottom:16px;">
-        <div class="chart-header">
-          <div class="chart-title">Distribución por Tipo de Droguería</div>
-        </div>
-        <div style="position:relative; width:100%; height:300px;">
-          <canvas id="chart-drog-tipo" role="img" aria-label="Tipo de droguería">Cargando…</canvas>
-        </div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-header">
-          <div class="chart-title">Listado Completo de Droguerías</div>
-        </div>
-        <div class="table-container">
-          <table class="cv-table">
-            <thead>
-              <tr id="drog-table-head"></tr>
-            </thead>
-            <tbody id="drog-table-body"></tbody>
-          </table>
-        </div>
+      <div class="cc">
+        <div class="chd"><div><div class="ct">Landfast — Estado entregas</div></div><span class="cb cbb">LANDFAST</span></div>
+        <div style="position:relative;width:100%;height:200px"><canvas id="c4" role="img" aria-label="Landfast donut">Cargando…</canvas></div>
       </div>
     </div>
-
-    <!-- ===================== PAGE: LANDFAST ===================== -->
-    <div class="page-section" id="page-landfast">
-      <div class="page-header">
-        <div>
-          <div class="page-title">Last Mile — Landfast</div>
-          <div class="page-subtitle">Operaciones de última milla y entregas</div>
-        </div>
-      </div>
-      <div class="chart-grid chart-grid-2" style="margin-bottom:16px;">
-        <div class="chart-card">
-          <div class="chart-header">
-            <div class="chart-title">Entregas por Período</div>
-          </div>
-          <div style="position:relative; width:100%; height:260px;">
-            <canvas id="chart-landfast-bar" role="img" aria-label="Entregas Landfast">Cargando…</canvas>
-          </div>
-        </div>
-        <div class="chart-card">
-          <div class="chart-header">
-            <div class="chart-title">Distribución de Estado Entregas</div>
-          </div>
-          <div style="position:relative; width:100%; height:260px;">
-            <canvas id="chart-landfast-donut" role="img" aria-label="Estado entregas">Cargando…</canvas>
-          </div>
-        </div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-header">
-          <div class="chart-title">Detalle Operaciones Landfast</div>
-        </div>
-        <div class="table-container">
-          <table class="cv-table">
-            <thead>
-              <tr id="land-table-head"></tr>
-            </thead>
-            <tbody id="land-table-body"></tbody>
-          </table>
-        </div>
-      </div>
+    <div class="cc">
+      <div class="chd"><div><div class="ct">Detalle Droguerías</div><div class="cst">Vista completa</div></div>
+        <input class="si" type="text" placeholder="🔍 Buscar…" id="sq" oninput="st()"></div>
+      <div class="tc"><table><thead><tr id="dh"></tr></thead><tbody id="db"></tbody></table></div>
     </div>
+  </div>
 
-    <!-- ===================== PAGE: PENDIENTES ===================== -->
-    <div class="page-section" id="page-pendientes">
-      <div class="page-header">
-        <div>
-          <div class="page-title">Gestión de Pendientes</div>
-          <div class="page-subtitle">Seguimiento y resolución de casos</div>
-        </div>
-      </div>
-      <div class="chart-card" style="margin-bottom:16px;">
-        <div class="chart-header">
-          <div class="chart-title">Pendientes — Datos detallados</div>
-        </div>
-        <div class="table-container">
-          <table class="cv-table">
-            <thead>
-              <tr id="pend-table-head"></tr>
-            </thead>
-            <tbody id="pend-table-body"></tbody>
-          </table>
-        </div>
-      </div>
+  <!-- DROG -->
+  <div class="page" id="page-drog">
+    <div class="ph"><div><div class="pt">Red de Droguerías</div><div class="ps">Todos los puntos del sistema</div></div></div>
+    <div class="cc"><div class="chd"><div class="ct">Droguerías — Datos completos</div></div>
+    <div class="tc"><table><thead><tr id="drh"></tr></thead><tbody id="drb"></tbody></table></div></div>
+  </div>
+
+  <!-- LAND -->
+  <div class="page" id="page-land">
+    <div class="ph"><div><div class="pt">Last Mile — Landfast</div><div class="ps">Operaciones de última milla</div></div></div>
+    <div class="cg cg2" style="margin-bottom:12px">
+      <div class="cc"><div class="chd"><div class="ct">Registros por estado</div></div>
+        <div style="position:relative;width:100%;height:230px"><canvas id="c5" role="img" aria-label="Landfast bar">Cargando…</canvas></div></div>
+      <div class="cc"><div class="chd"><div class="ct">Distribución operacional</div></div>
+        <div style="position:relative;width:100%;height:230px"><canvas id="c6" role="img" aria-label="Landfast pie">Cargando…</canvas></div></div>
     </div>
+    <div class="cc"><div class="chd"><div class="ct">Detalle Landfast</div></div>
+    <div class="tc"><table><thead><tr id="lah"></tr></thead><tbody id="lab"></tbody></table></div></div>
+  </div>
 
-    <!-- ===================== PAGE: PERCAPITA ===================== -->
-    <div class="page-section" id="page-percapita">
-      <div class="page-header">
-        <div>
-          <div class="page-title">Percápita</div>
-          <div class="page-subtitle">Indicadores de costo y productividad per cápita</div>
-        </div>
-      </div>
-      <div class="chart-card" style="margin-bottom:16px;">
-        <div class="chart-header">
-          <div class="chart-title">Datos Percápita</div>
-        </div>
-        <div class="table-container">
-          <table class="cv-table">
-            <thead>
-              <tr id="pc-table-head"></tr>
-            </thead>
-            <tbody id="pc-table-body"></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+  <!-- PEND -->
+  <div class="page" id="page-pend">
+    <div class="ph"><div><div class="pt">Gestión de Pendientes</div><div class="ps">Casos activos y en seguimiento</div></div></div>
+    <div class="cc"><div class="chd"><div class="ct">Todos los pendientes</div></div>
+    <div class="tc"><table><thead><tr id="peh"></tr></thead><tbody id="peb"></tbody></table></div></div>
+  </div>
 
-    <!-- ===================== PAGE: TUTELAS ===================== -->
-    <div class="page-section" id="page-tutelas">
-      <div class="page-header">
-        <div>
-          <div class="page-title">Gestión de Tutelas</div>
-          <div class="page-subtitle">Seguimiento jurídico y operativo</div>
-        </div>
-      </div>
-      <div class="chart-card" style="margin-bottom:16px;">
-        <div class="chart-header">
-          <div class="chart-title">Registro de Tutelas</div>
-        </div>
-        <div class="table-container">
-          <table class="cv-table">
-            <thead>
-              <tr id="tut-table-head"></tr>
-            </thead>
-            <tbody id="tut-table-body"></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+  <!-- PERC -->
+  <div class="page" id="page-perc">
+    <div class="ph"><div><div class="pt">Percápita</div><div class="ps">Indicadores de costo y productividad</div></div></div>
+    <div class="cc"><div class="chd"><div class="ct">Datos Percápita</div></div>
+    <div class="tc"><table><thead><tr id="pch"></tr></thead><tbody id="pcb"></tbody></table></div></div>
+  </div>
 
-  </main>
+  <!-- TUT -->
+  <div class="page" id="page-tut">
+    <div class="ph"><div><div class="pt">Gestión de Tutelas</div><div class="ps">Registro jurídico y operativo</div></div></div>
+    <div class="cc"><div class="chd"><div class="ct">Registro de Tutelas</div></div>
+    <div class="tc"><table><thead><tr id="tuh"></tr></thead><tbody id="tub"></tbody></table></div></div>
+  </div>
+</main>
 </div>
 
 <script>
-const SHEET_ID = '1k0Rs2d5RWhSmmrKS-B8iQ1xnfXsc-nOZBh7vhXdPA2U';
-const GIDS = { droguerias: '0', pendientes: '132390937', percapita: '1390354916', tutelas: '1777993279', landfast: '478248112' };
-const CV_GREEN = '#00843D', CV_GREEN2 = '#4CAF7D', CV_YELLOW = '#FFD100', CV_YELLOW2 = '#E6B800';
-const CV_RED = '#D32F2F', CV_ORANGE = '#F57C00', CV_BLUE = '#1565C0', CV_GRAY = '#C2C8C2';
+const SID='1k0Rs2d5RWhSmmrKS-B8iQ1xnfXsc-nOZBh7vhXdPA2U';
+const GID={d:'0',pe:'132390937',pc:'1390354916',t:'1777993279',l:'478248112'};
+const G='#00843D',Y='#FFD100',R='#D32F2F',O='#E65100',B='#1565C0',G2='#4CAF7D',G3='#A5D6A7';
 
-let DATA = {};
-let charts = {};
+let D={},CH={};
 
-function sheetUrl(gid) {
-  return `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${gid}`;
-}
-
-async function fetchCSV(gid) {
-  const r = await fetch(sheetUrl(gid));
-  if (!r.ok) throw new Error('HTTP ' + r.status);
-  const txt = await r.text();
-  return parseCSV(txt);
-}
-
-function parseCSV(text) {
-  const lines = text.trim().split('\n');
-  const headers = lines[0].split(',').map(h => h.replace(/"/g,'').trim());
-  return lines.slice(1).map(line => {
-    const vals = line.match(/(".*?"|[^,]+|(?<=,)(?=,)|(?<=,)$|^(?=,))/g) || line.split(',');
-    const obj = {};
-    headers.forEach((h, i) => { obj[h] = (vals[i] || '').replace(/"/g,'').trim(); });
-    return obj;
-  }).filter(r => Object.values(r).some(v => v !== ''));
-}
-
-async function loadAll() {
-  setStatus('loading', '⏳ Conectando con Google Sheets…');
-  try {
-    const [drog, pend, perc, tut, land] = await Promise.all([
-      fetchCSV(GIDS.droguerias),
-      fetchCSV(GIDS.pendientes),
-      fetchCSV(GIDS.percapita),
-      fetchCSV(GIDS.tutelas),
-      fetchCSV(GIDS.landfast)
-    ]);
-    DATA = { droguerias: drog, pendientes: pend, percapita: perc, tutelas: tut, landfast: land };
-    setStatus('ok', `✅ Datos actualizados correctamente — ${new Date().toLocaleString('es-CO')}`);
-    renderAll();
-  } catch(e) {
-    setStatus('error', '⚠️ No se pudo acceder al Google Sheet. Verifica que esté publicado o revisa la red.');
-    renderFallback();
+// Multiple fetch strategies
+async function fetchSheet(gid){
+  const base=`https://docs.google.com/spreadsheets/d/${SID}/export?format=csv&gid=${gid}`;
+  const strategies=[
+    ()=>fetch(base),
+    ()=>fetch(`https://corsproxy.io/?${encodeURIComponent(base)}`),
+    ()=>fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(base)}`),
+    ()=>fetch(`https://thingproxy.freeboard.io/fetch/${base}`),
+  ];
+  for(const fn of strategies){
+    try{
+      const r=await fn();
+      if(!r.ok)continue;
+      const t=await r.text();
+      if(t&&t.length>20&&!t.trim().startsWith('<')&&!t.includes('<!DOCTYPE'))return t;
+    }catch(e){}
   }
+  return null;
 }
 
-function setStatus(type, msg) {
-  const bar = document.getElementById('data-status-bar');
-  bar.textContent = msg;
-  bar.className = 'data-status' + (type==='error'?' data-status-err': type==='loading'?' data-status-loading':'');
+function csv(txt){
+  if(!txt)return[];
+  const lines=txt.replace(/\r/g,'').split('\n').filter(l=>l.trim());
+  if(!lines.length)return[];
+  const heads=splitLine(lines[0]);
+  return lines.slice(1).map(l=>{
+    const v=splitLine(l);
+    const o={};
+    heads.forEach((h,i)=>{o[h.trim()]=(v[i]||'').trim();});
+    return o;
+  }).filter(r=>Object.values(r).some(v=>v));
 }
 
-function renderAll() {
-  renderKPIs();
-  renderDrogueriasTable();
-  buildFilters();
-  renderChart_PedidosMes();
-  renderChart_ANS();
-  renderChart_PendientesTipo();
-  renderChart_TutelasMes();
-  renderSheetTable('drog', DATA.droguerias);
-  renderSheetTable('land', DATA.landfast);
-  renderSheetTable('pend', DATA.pendientes);
-  renderSheetTable('pc', DATA.percapita);
-  renderSheetTable('tut', DATA.tutelas);
-  renderChart_DrogTipo();
-  renderChart_LandfastBar();
-  renderChart_LandfastDonut();
-  document.getElementById('record-count').textContent = (DATA.droguerias||[]).length;
-}
-
-function renderKPIs() {
-  const pend = DATA.pendientes || [];
-  const tut = DATA.tutelas || [];
-  const land = DATA.landfast || [];
-  const drog = DATA.droguerias || [];
-
-  document.getElementById('kpi-pedidos').textContent = drog.length.toLocaleString('es-CO');
-  document.getElementById('kpi-pedidos-delta').textContent = '↑ Registros activos';
-  document.getElementById('kpi-pendientes').textContent = pend.length.toLocaleString('es-CO');
-  document.getElementById('kpi-pend-sub').textContent = 'casos en seguimiento';
-  document.getElementById('kpi-tutelas').textContent = tut.length.toLocaleString('es-CO');
-  document.getElementById('kpi-tut-sub').textContent = 'tutelas registradas';
-  document.getElementById('kpi-landfast').textContent = land.length.toLocaleString('es-CO');
-  document.getElementById('kpi-land-delta').textContent = '↑ entregas registradas';
-
-  // ANS: busca columna con "ANS" o porcentaje
-  const ansCols = Object.keys(DATA.droguerias[0]||{}).filter(k => k.toLowerCase().includes('ans') || k.toLowerCase().includes('cumpl'));
-  if (ansCols.length) {
-    const vals = drog.map(r => parseFloat(r[ansCols[0]])||0).filter(v=>v>0);
-    const avg = vals.length ? (vals.reduce((a,b)=>a+b,0)/vals.length) : 0;
-    document.getElementById('kpi-ans').textContent = avg ? avg.toFixed(1)+'%' : 'N/A';
-    const el = document.getElementById('kpi-ans-delta');
-    el.textContent = avg >= 90 ? '✅ Óptimo' : avg >= 75 ? '⚠ En seguimiento' : '❗ Crítico';
-    el.className = 'kpi-delta ' + (avg>=90?'up': avg>=75?'neutral':'down');
-  } else {
-    document.getElementById('kpi-ans').textContent = 'N/A';
+function splitLine(l){
+  const r=[];let c='';let q=false;
+  for(let i=0;i<l.length;i++){
+    if(l[i]==='"'){q=!q;}
+    else if(l[i]===','&&!q){r.push(c.replace(/^"|"$/g,''));c='';}
+    else{c+=l[i];}
   }
+  r.push(c.replace(/^"|"$/g,''));
+  return r;
 }
 
-function buildFilters() {
-  const months = [...new Set((DATA.pendientes||[]).map(r => {
-    const d = Object.values(r)[0]; return d ? d.substring(0,7) : '';
-  }).filter(Boolean))].sort();
-  const selMonth = document.getElementById('filter-month');
-  months.forEach(m => { const o = document.createElement('option'); o.value=m; o.textContent=m; selMonth.appendChild(o); });
-
-  const cols = Object.keys(DATA.droguerias[0]||{});
-  const drogueriasCol = cols.find(c => c.toLowerCase().includes('drogueria') || c.toLowerCase().includes('nombre') || c.toLowerCase().includes('punto'));
-  if (drogueriasCol) {
-    const names = [...new Set(DATA.droguerias.map(r=>r[drogueriasCol]).filter(Boolean))].sort();
-    const selD = document.getElementById('filter-drogueria');
-    names.slice(0,50).forEach(n => { const o=document.createElement('option'); o.value=n; o.textContent=n; selD.appendChild(o); });
-  }
-}
-
-function applyFilters() { renderDrogueriasTable(); }
-
-function renderDrogueriasTable() {
-  const drog = DATA.droguerias || [];
-  const cols = Object.keys(drog[0]||{});
-  const nameCols = ['nombre','drogueria','punto','farmacia'];
-  const ciudadCols = ['ciudad','municipio','localidad'];
-  const tipoCols = ['tipo','categoria','clase'];
-  const estadoCols = ['estado','status','activo'];
-  const obsCols = ['observacion','obs','nota','descripcion'];
-
-  function findCol(arr) {
-    return cols.find(c => arr.some(k => c.toLowerCase().includes(k))) || cols[0];
-  }
-
-  const nc = findCol(nameCols), cc = findCol(ciudadCols), tc = findCol(tipoCols);
-  const ec = findCol(estadoCols), oc = findCol(obsCols);
-
-  const tbody = document.getElementById('table-droguerias');
-  tbody.innerHTML = '';
-  const searchVal = (document.getElementById('search-table')||{}).value?.toLowerCase() || '';
-
-  drog.filter(r => !searchVal || Object.values(r).some(v=>(v||'').toLowerCase().includes(searchVal)))
-    .slice(0,60).forEach(r => {
-      const estado = r[ec] || '—';
-      const cls = estado.toLowerCase().includes('activ') ? 'status-ok' :
-                  estado.toLowerCase().includes('pend') ? 'status-warn' : 'status-crit';
-      const ansVal = Object.keys(r).find(k=>k.toLowerCase().includes('ans'));
-      const pct = ansVal ? parseFloat(r[ansVal])||0 : 0;
-      const barColor = pct>=90?CV_GREEN:pct>=75?CV_YELLOW:CV_RED;
-
-      tbody.innerHTML += `<tr>
-        <td><strong>${r[nc]||'—'}</strong></td>
-        <td>${r[cc]||'—'}</td>
-        <td>${r[tc]||'—'}</td>
-        <td><span class="status-pill ${cls}">${estado}</span>${pct>0?`<span class="progress-bar-wrap"><div class="progress-bar-fill" style="width:${Math.min(pct,100)}%;background:${barColor}"></div></span>`:''}</td>
-        <td style="color:var(--cv-gray-500);font-size:12px;">${r[oc]||'—'}</td>
-      </tr>`;
-    });
-  if (!tbody.innerHTML) tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--cv-gray-500);padding:24px;">Sin datos disponibles</td></tr>';
-}
-
-function renderSheetTable(prefix, data) {
-  if (!data || !data.length) return;
-  const head = document.getElementById(prefix+'-table-head');
-  const body = document.getElementById(prefix+'-table-body');
-  if (!head||!body) return;
-  const cols = Object.keys(data[0]);
-  head.innerHTML = cols.map(c=>`<th>${c}</th>`).join('');
-  body.innerHTML = data.slice(0,100).map(r=>`<tr>${cols.map(c=>`<td>${r[c]||'—'}</td>`).join('')}</tr>`).join('');
-}
-
-function renderChart_PedidosMes() {
-  const data = DATA.droguerias || [];
-  const cols = Object.keys(data[0]||{});
-  const dateCols = cols.filter(c => data.slice(0,5).some(r => /\d{4}/.test(r[c]||'')));
-  const grouped = {};
-  if (dateCols.length) {
-    data.forEach(r => {
-      const d = r[dateCols[0]]||''; const m = d.substring(0,7);
-      if (m) grouped[m] = (grouped[m]||0)+1;
-    });
-  } else {
-    ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'].forEach((m,i)=>{grouped[m]=(Math.random()*80+20)|0;});
-  }
-  const labels = Object.keys(grouped).sort();
-  const vals = labels.map(l=>grouped[l]);
-  destroyChart('chart-pedidos-mes');
-  charts['chart-pedidos-mes'] = new Chart(document.getElementById('chart-pedidos-mes'), {
-    type: 'bar',
-    data: { labels, datasets: [{
-      label: 'Registros', data: vals, backgroundColor: CV_GREEN, borderRadius: 5, borderSkipped: false
-    }]},
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { grid: { display: false }, ticks: { font: { family: 'Barlow', size: 11 }, color: '#7A8A7A', maxRotation: 45 } },
-        y: { grid: { color: '#EAECEA' }, ticks: { font: { family: 'Barlow', size: 11 }, color: '#7A8A7A' } }
-      }
-    }
+async function loadAll(){
+  sb('l','⏳ Conectando con Google Sheets…');
+  t('cl','Conectando…');
+  const keys=['d','pe','pc','t','l'];
+  const names={d:'droguerias',pe:'pendientes',pc:'percapita',t:'tutelas',l:'landfast'};
+  const results=await Promise.allSettled(keys.map(k=>fetchSheet(GID[k])));
+  let ok=0,fail=[];
+  results.forEach((r,i)=>{
+    const k=keys[i],n=names[k];
+    if(r.status==='fulfilled'&&r.value){
+      const parsed=csv(r.value);
+      if(parsed.length){D[n]=parsed;ok++;}
+      else{D[n]=null;fail.push(n);}
+    }else{D[n]=null;fail.push(names[k]);}
   });
-}
 
-function renderChart_ANS() {
-  const data = DATA.droguerias || [];
-  const cols = Object.keys(data[0]||{});
-  const ansCols = cols.filter(c => c.toLowerCase().includes('ans') || c.toLowerCase().includes('cumpl'));
-  let cumple = 0, noCumple = 0;
-  if (ansCols.length) {
-    data.forEach(r => { const v = parseFloat(r[ansCols[0]])||0; v>=90 ? cumple++ : noCumple++; });
-  } else {
-    cumple = Math.round(data.length*0.85); noCumple = data.length - cumple;
+  if(ok===0){
+    sb('e','❌ No se pudo acceder a ninguna hoja. El Sheet debe estar publicado: Archivo → Compartir → Publicar en la web → Publicar. Luego haz clic en 🔄 Sincronizar.');
+    t('cl','Sin conexión');return;
   }
-  if (!cumple && !noCumple) { cumple = 85; noCumple = 15; }
-  destroyChart('chart-ans-donut');
-  charts['chart-ans-donut'] = new Chart(document.getElementById('chart-ans-donut'), {
-    type: 'doughnut',
-    data: { labels: ['Cumple ≥90%', 'En riesgo <90%'], datasets: [{ data: [cumple, noCumple], backgroundColor: [CV_GREEN, CV_YELLOW], borderWidth: 0 }]},
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      cutout: '68%',
-      plugins: { legend: { display: false } }
-    }
-  });
-  document.getElementById('legend-ans').innerHTML = `
-    <div class="legend-item"><div class="legend-dot" style="background:${CV_GREEN}"></div>Cumple ≥90% (${cumple})</div>
-    <div class="legend-item"><div class="legend-dot" style="background:${CV_YELLOW}"></div>En riesgo (${noCumple})</div>`;
-}
-
-function renderChart_PendientesTipo() {
-  const data = DATA.pendientes || [];
-  const cols = Object.keys(data[0]||{});
-  const tipoCols = cols.filter(c => c.toLowerCase().includes('tipo') || c.toLowerCase().includes('categoria') || c.toLowerCase().includes('estado'));
-  const grouped = {};
-  if (tipoCols.length) {
-    data.forEach(r => { const v = r[tipoCols[0]]||'Otro'; grouped[v]=(grouped[v]||0)+1; });
-  } else {
-    ['Medicamentos','Dispositivos','Devoluciones','Diferencias','Otros'].forEach(k=>{grouped[k]=(Math.random()*20+5)|0;});
+  if(fail.length){
+    sb('w',`⚠️ ${ok}/5 hojas cargadas. No disponibles: ${fail.join(', ')}. Verifica que el Sheet esté publicado completamente.`);
+  }else{
+    sb('o',`✅ ${ok}/5 hojas cargadas · ${new Date().toLocaleString('es-CO',{hour:'2-digit',minute:'2-digit'})}`);
+    t('cl','En vivo');
   }
-  const labels = Object.keys(grouped).slice(0,8);
-  const vals = labels.map(l=>grouped[l]);
-  const colors = [CV_GREEN, CV_YELLOW, CV_RED, CV_ORANGE, CV_BLUE, CV_GREEN2, '#9C27B0', '#607D8B'];
-  destroyChart('chart-pendientes-tipo');
-  charts['chart-pendientes-tipo'] = new Chart(document.getElementById('chart-pendientes-tipo'), {
-    type: 'bar',
-    data: { labels, datasets: [{ label: 'Pendientes', data: vals, backgroundColor: colors.slice(0,labels.length), borderRadius: 5, borderSkipped: false }]},
-    options: {
-      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { grid: { color: '#EAECEA' }, ticks: { font: { family:'Barlow',size:11 }, color:'#7A8A7A' } },
-        y: { grid: { display: false }, ticks: { font: { family:'Barlow',size:11 }, color:'#7A8A7A' } }
-      }
-    }
-  });
+  render();
 }
 
-function renderChart_TutelasMes() {
-  const data = DATA.tutelas || [];
-  const cols = Object.keys(data[0]||{});
-  const dateCols = cols.filter(c => data.slice(0,5).some(r => /\d{4}/.test(r[c]||'')));
-  const grouped = {};
-  if (dateCols.length) {
-    data.forEach(r => { const d = r[dateCols[0]]||''; const m = d.substring(0,7); if(m) grouped[m]=(grouped[m]||0)+1; });
-  } else {
-    ['Ene','Feb','Mar','Abr','May','Jun'].forEach(m=>{grouped[m]=(Math.random()*10+2)|0;});
-  }
-  const labels = Object.keys(grouped).sort();
-  const vals = labels.map(l=>grouped[l]);
-  destroyChart('chart-tutelas-mes');
-  charts['chart-tutelas-mes'] = new Chart(document.getElementById('chart-tutelas-mes'), {
-    type: 'line',
-    data: { labels, datasets: [{ label: 'Tutelas', data: vals, borderColor: CV_RED, backgroundColor: 'rgba(211,47,47,0.08)', tension: 0.4, fill: true, pointBackgroundColor: CV_RED, pointRadius: 4 }]},
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { grid:{display:false}, ticks:{font:{family:'Barlow',size:11},color:'#7A8A7A', maxRotation:45} },
-        y: { grid:{color:'#EAECEA'}, ticks:{font:{family:'Barlow',size:11},color:'#7A8A7A'} }
-      }
-    }
-  });
+function sb(type,msg){
+  const e=document.getElementById('sb');
+  e.textContent=msg;
+  e.className='sb '+(type==='l'?'sl':type==='o'?'so':type==='w'?'sw':'se');
+}
+function t(id,v){const e=document.getElementById(id);if(e)e.textContent=v;}
+
+function render(){
+  kpis();charts();tables();filters();}
+
+function kpis(){
+  const d=D.droguerias||[],pe=D.pendientes||[],tu=D.tutelas||[],la=D.landfast||[],pc=D.percapita||[];
+  t('k1',d.length.toLocaleString('es-CO'));
+  kd('k1d',d.length>0?`↑ ${d.length} registros`:'Sin datos',d.length>0?'up':'n');
+  t('k2',pe.length.toLocaleString('es-CO'));
+  kd('k2d',pe.length>0?`${pe.length} casos`:'Sin datos',pe.length>100?'dn':'up');
+  t('k3',tu.length.toLocaleString('es-CO'));t('k3s','tutelas registradas');
+  t('k4',la.length.toLocaleString('es-CO'));
+  kd('k4d',la.length>0?`↑ ${la.length} entregas`:'Sin datos',la.length>0?'up':'n');
+  t('k5',pc.length.toLocaleString('es-CO'));t('k5s','registros');
+  t('rc',(d.length||0)+' registros');
 }
 
-function renderChart_DrogTipo() {
-  const data = DATA.droguerias || [];
-  const cols = Object.keys(data[0]||{});
-  const tc = cols.find(c=>c.toLowerCase().includes('tipo')||c.toLowerCase().includes('clase'))||cols[1]||cols[0];
-  const grouped = {};
-  data.forEach(r=>{ const v=r[tc]||'Otro'; grouped[v]=(grouped[v]||0)+1; });
-  const labels = Object.keys(grouped).slice(0,10);
-  const vals = labels.map(l=>grouped[l]);
-  const colors = [CV_GREEN,'#4CAF7D','#80CBC4',CV_YELLOW,CV_ORANGE,CV_RED,CV_BLUE,'#7B1FA2','#607D8B','#795548'];
-  destroyChart('chart-drog-tipo');
-  charts['chart-drog-tipo'] = new Chart(document.getElementById('chart-drog-tipo'), {
-    type: 'bar',
-    data: { labels, datasets: [{ label:'Droguerías', data:vals, backgroundColor:colors.slice(0,labels.length), borderRadius:6, borderSkipped:false }]},
-    options: {
-      responsive: true, maintainAspectRatio: false,
+function kd(id,txt,type){
+  const e=document.getElementById(id);if(!e)return;
+  e.textContent=txt;
+  e.className='kd '+(type==='up'?'kdup':type==='dn'?'kddn':'kdn');
+}
+
+function col1(data,kws){
+  if(!data||!data.length)return null;
+  const cols=Object.keys(data[0]);
+  for(const kw of kws){const f=cols.find(c=>c.toLowerCase().includes(kw));if(f)return f;}
+  return cols[0];
+}
+
+function grp(data,key){
+  const g={};
+  (data||[]).forEach(r=>{const v=r[key]||'Sin dato';g[v]=(g[v]||0)+1;});
+  return g;
+}
+
+function top(obj,n=10){return Object.entries(obj).sort((a,b)=>b[1]-a[1]).slice(0,n);}
+
+const COLORS=[G,Y,O,B,R,G2,'#7B1FA2','#00838F','#558B2F','#795548'];
+
+function charts(){
+  // c1: droguerias bar
+  const dk=col1(D.droguerias,['tipo','clase','estado','categoria','nombre','drogueria'])||Object.keys((D.droguerias||[{}])[0])[1]||'';
+  const dt=top(grp(D.droguerias,dk),8);
+  mkbar('c1',dt.map(x=>x[0]),dt.map(x=>x[1]),COLORS,true);
+
+  // c2: tutelas donut
+  const tk=col1(D.tutelas,['estado','status','tipo','resultado'])||Object.keys((D.tutelas||[{}])[0])[1]||'';
+  const tt=top(grp(D.tutelas,tk),6);
+  mkdonut('c2',tt.map(x=>x[0]),tt.map(x=>x[1]),[R,O,Y,B,G,'#7B1FA2'],'l2');
+
+  // c3: pendientes bar
+  const pk=col1(D.pendientes,['tipo','categoria','estado','motivo','clase'])||Object.keys((D.pendientes||[{}])[0])[1]||'';
+  const pt=top(grp(D.pendientes,pk),8);
+  mkbar('c3',pt.map(x=>x[0]),pt.map(x=>x[1]),[Y,O,R,B,G,G2,'#7B1FA2','#558B2F'],true);
+
+  // c4: landfast donut small
+  const lk=col1(D.landfast,['estado','status','resultado','tipo'])||Object.keys((D.landfast||[{}])[0])[1]||'';
+  const lt=top(grp(D.landfast,lk),6);
+  mkdonut('c4',lt.map(x=>x[0]),lt.map(x=>x[1]),[G,Y,O,R,B,'#7B1FA2'],null);
+
+  // c5+c6: landfast page
+  mkbar('c5',lt.map(x=>x[0]),lt.map(x=>x[1]),COLORS,false);
+  mkdonut('c6',lt.map(x=>x[0]),lt.map(x=>x[1]),[G,Y,O,R,B,'#7B1FA2'],null);
+}
+
+function mkbar(id,labels,vals,colors,horiz){
+  if(CH[id]){CH[id].destroy();}
+  const el=document.getElementById(id);if(!el)return;
+  if(!labels.length){el.parentElement.innerHTML='<p style="text-align:center;padding:40px;color:#7A887A;font-size:12px">Sin datos disponibles</p>';return;}
+  CH[id]=new Chart(el,{
+    type:'bar',
+    data:{labels,datasets:[{label:'',data:vals,backgroundColor:colors.slice(0,labels.length),borderRadius:5,borderSkipped:false}]},
+    options:{indexAxis:horiz?'y':'x',responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false}},
       scales:{
-        x:{grid:{display:false},ticks:{font:{family:'Barlow',size:11},color:'#7A8A7A'}},
-        y:{grid:{color:'#EAECEA'},ticks:{font:{family:'Barlow',size:11},color:'#7A8A7A'}}
+        x:{grid:{color:'#EAECE9',lineWidth:.5},ticks:{font:{family:'Barlow',size:10},color:'#7A887A',maxRotation:40,autoSkip:false}},
+        y:{grid:{display:!horiz,color:'#EAECE9',lineWidth:.5},ticks:{font:{family:'Barlow',size:10},color:'#7A887A'}}
       }
     }
   });
 }
 
-function renderChart_LandfastBar() {
-  const data = DATA.landfast || [];
-  const cols = Object.keys(data[0]||{});
-  const dateCols = cols.filter(c=>data.slice(0,5).some(r=>/\d{4}/.test(r[c]||'')));
-  const grouped = {};
-  if (dateCols.length) {
-    data.forEach(r=>{ const d=r[dateCols[0]]||''; const m=d.substring(0,7); if(m) grouped[m]=(grouped[m]||0)+1; });
-  } else {
-    ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago'].forEach(m=>{grouped[m]=(Math.random()*200+100)|0;});
-  }
-  const labels = Object.keys(grouped).sort();
-  const vals = labels.map(l=>grouped[l]);
-  destroyChart('chart-landfast-bar');
-  charts['chart-landfast-bar'] = new Chart(document.getElementById('chart-landfast-bar'), {
-    type: 'bar',
-    data: { labels, datasets: [{ label:'Entregas', data:vals, backgroundColor:CV_GREEN, borderRadius:5, borderSkipped:false }]},
-    options:{
-      responsive:true, maintainAspectRatio:false,
-      plugins:{legend:{display:false}},
-      scales:{
-        x:{grid:{display:false},ticks:{font:{family:'Barlow',size:11},color:'#7A8A7A',maxRotation:45}},
-        y:{grid:{color:'#EAECEA'},ticks:{font:{family:'Barlow',size:11},color:'#7A8A7A'}}
-      }
-    }
+function mkdonut(id,labels,vals,colors,legId){
+  if(CH[id]){CH[id].destroy();}
+  const el=document.getElementById(id);if(!el)return;
+  if(!labels.length){el.parentElement.innerHTML='<p style="text-align:center;padding:40px;color:#7A887A;font-size:12px">Sin datos disponibles</p>';return;}
+  CH[id]=new Chart(el,{
+    type:'doughnut',
+    data:{labels,datasets:[{data:vals,backgroundColor:colors.slice(0,labels.length),borderWidth:2,borderColor:'#fff'}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'62%',
+      plugins:{legend:{display:!legId,position:'bottom',labels:{font:{family:'Barlow',size:10},color:'#7A887A',padding:8,boxWidth:10}}}}
   });
-}
-
-function renderChart_LandfastDonut() {
-  const data = DATA.landfast || [];
-  const cols = Object.keys(data[0]||{});
-  const estCols = cols.filter(c=>c.toLowerCase().includes('estado')||c.toLowerCase().includes('status')||c.toLowerCase().includes('resultado'));
-  const grouped = {};
-  if (estCols.length) {
-    data.forEach(r=>{ const v=r[estCols[0]]||'Otro'; grouped[v]=(grouped[v]||0)+1; });
-  } else {
-    grouped['Entregado']=120; grouped['En tránsito']=35; grouped['Devolución']=12;
+  if(legId){
+    const le=document.getElementById(legId);if(!le)return;
+    le.innerHTML=labels.map((l,i)=>`<div class="cli"><div class="cld" style="background:${colors[i]}"></div>${l} (${vals[i]})</div>`).join('');
   }
-  const labels = Object.keys(grouped);
-  const vals = labels.map(l=>grouped[l]);
-  const colors = [CV_GREEN, CV_YELLOW, CV_RED, CV_ORANGE, CV_BLUE];
-  destroyChart('chart-landfast-donut');
-  charts['chart-landfast-donut'] = new Chart(document.getElementById('chart-landfast-donut'), {
-    type: 'doughnut',
-    data: { labels, datasets: [{ data:vals, backgroundColor:colors.slice(0,labels.length), borderWidth:0 }]},
-    options:{
-      responsive:true, maintainAspectRatio:false, cutout:'60%',
-      plugins:{legend:{position:'bottom', labels:{font:{family:'Barlow',size:12}, color:'#7A8A7A', padding:12}}}
-    }
-  });
 }
 
-function destroyChart(id) {
-  if (charts[id]) { charts[id].destroy(); delete charts[id]; }
+function tbl(hid,bid,data,lim){
+  const h=document.getElementById(hid),b=document.getElementById(bid);
+  if(!h||!b)return;
+  if(!data||!data.length){
+    h.innerHTML='<th>Estado</th>';
+    b.innerHTML='<tr><td style="color:var(--ora);text-align:center;padding:16px;font-weight:600">⚠ Sin datos · Publica el Sheet completo en Archivo → Compartir → Publicar en la web</td></tr>';
+    return;
+  }
+  const cols=Object.keys(data[0]);
+  h.innerHTML=cols.map(c=>`<th>${c}</th>`).join('');
+  b.innerHTML=(data.slice(0,lim||120)).map(r=>`<tr>${cols.map(c=>{
+    const v=r[c]||'—',lo=v.toLowerCase();
+    const cl=lo.includes('activ')?'pg':lo.includes('pend')||lo.includes('proceso')?'py':lo.includes('cancel')||lo.includes('inactiv')||lo.includes('rechaz')?'pr':'';
+    return `<td>${cl&&v!=='—'?`<span class="pl ${cl}">${v}</span>`:v}</td>`;
+  }).join('')}</tr>`).join('');
 }
 
-function renderFallback() {
-  document.getElementById('kpi-pedidos').textContent = '—';
-  document.getElementById('kpi-ans').textContent = '—';
-  document.getElementById('kpi-pendientes').textContent = '—';
-  document.getElementById('kpi-tutelas').textContent = '—';
-  document.getElementById('kpi-landfast').textContent = '—';
-  document.getElementById('table-droguerias').innerHTML = '<tr><td colspan="5" style="text-align:center;padding:24px;color:var(--cv-orange);">⚠ No se pudieron cargar los datos. Verifica que el Sheet esté publicado públicamente en Google Sheets: Archivo → Compartir → Publicar en la web.</td></tr>';
+function tables(){
+  tbl('dh','db',D.droguerias,80);
+  tbl('drh','drb',D.droguerias,300);
+  tbl('lah','lab',D.landfast,300);
+  tbl('peh','peb',D.pendientes,300);
+  tbl('pch','pcb',D.percapita,300);
+  tbl('tuh','tub',D.tutelas,300);
 }
 
-function switchPage(id) {
-  document.querySelectorAll('.page-section').forEach(p=>p.classList.remove('active'));
+function filters(){
+  const pe=D.pendientes||[];
+  const dcols=Object.keys(pe[0]||{}).filter(c=>pe.slice(0,5).some(r=>/\d{4}/.test(r[c]||'')));
+  if(dcols.length){
+    const months=[...new Set(pe.map(r=>r[dcols[0]]?.substring(0,7)).filter(m=>m&&m.includes('-')))].sort();
+    const sel=document.getElementById('fm');
+    months.forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=m;sel.appendChild(o);});
+  }
+}
+
+function af(){
+  let data=D.droguerias||[];
+  const est=document.getElementById('fe').value;
+  if(est){const k=col1(data,['estado','status']);if(k)data=data.filter(r=>(r[k]||'').toLowerCase().includes(est.toLowerCase()));}
+  t('rc',data.length+' registros');
+  const cols=Object.keys((D.droguerias||[{}])[0]);
+  const b=document.getElementById('db');
+  if(b)b.innerHTML=data.slice(0,80).map(r=>`<tr>${cols.map(c=>{const v=r[c]||'—',lo=v.toLowerCase();const cl=lo.includes('activ')?'pg':lo.includes('pend')?'py':lo.includes('inactiv')?'pr':'';return `<td>${cl&&v!=='—'?`<span class="pl ${cl}">${v}</span>`:v}</td>`;}).join('')}</tr>`).join('');
+}
+
+let stimer;
+function st(){
+  clearTimeout(stimer);
+  stimer=setTimeout(()=>{
+    const q=document.getElementById('sq').value.toLowerCase();
+    const data=(D.droguerias||[]).filter(r=>!q||Object.values(r).some(v=>v.toLowerCase&&v.toLowerCase().includes(q)));
+    const cols=Object.keys((D.droguerias||[{}])[0]);
+    const b=document.getElementById('db');
+    if(b)b.innerHTML=data.slice(0,80).map(r=>`<tr>${cols.map(c=>{const v=r[c]||'—',lo=v.toLowerCase();const cl=lo.includes('activ')?'pg':lo.includes('pend')?'py':lo.includes('inactiv')?'pr':'';return `<td>${cl&&v!=='—'?`<span class="pl ${cl}">${v}</span>`:v}</td>`;}).join('')}</tr>`).join('');
+  },300);
+}
+
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
-  document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
-  document.querySelector(`[onclick="switchPage('${id}')"]`).classList.add('active');
+  document.querySelectorAll('.ni').forEach(b=>b.classList.remove('active'));
+  document.querySelector(`[onclick="go('${id}')"]`).classList.add('active');
 }
 
-function filterTable() { if (DATA.droguerias) renderDrogueriasTable(); }
+function rl(){D={};Object.values(CH).forEach(c=>c.destroy());CH={};loadAll();}
 
-function reloadData() { DATA={}; document.querySelectorAll('tbody').forEach(b=>b.innerHTML=''); loadAll(); }
-
-function exportCSV() {
-  const data = DATA.droguerias || [];
-  if (!data.length) return alert('Sin datos para exportar.');
-  const cols = Object.keys(data[0]);
-  const csv = [cols.join(','), ...data.map(r=>cols.map(c=>`"${r[c]||''}"`).join(','))].join('\n');
-  const a = document.createElement('a'); a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
-  a.download = 'cruzverde_droguerias.csv'; a.click();
+function exp(){
+  const data=D.droguerias||[];
+  if(!data.length)return alert('Sin datos para exportar.');
+  const cols=Object.keys(data[0]);
+  const csv=[cols.join(','),...data.map(r=>cols.map(c=>`"${(r[c]||'').replace(/"/g,'""')}"`).join(','))].join('\n');
+  const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,\uFEFF'+encodeURIComponent(csv);
+  a.download='cruzverde_datos.csv';a.click();
 }
 
-// Date
-document.getElementById('header-date').textContent = new Date().toLocaleDateString('es-CO',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+document.getElementById('hd').textContent=new Date().toLocaleDateString('es-CO',{weekday:'short',year:'numeric',month:'short',day:'numeric'});
 
-// INIT
 loadAll();
 </script>
 </body>
