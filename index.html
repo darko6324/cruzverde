@@ -9,469 +9,347 @@
 <style>
 :root{
   --g:#00843D;--gd:#005C2B;--gl:#E6F5ED;--y:#FFD100;--yd:#C9A800;
-  --red:#D32F2F;--ora:#E65100;--blu:#1565C0;
-  --bg:#F4F6F4;--wh:#fff;--g1:#EAECE9;--g2:#C4CAC3;--g3:#7A887A;--dk:#1E2A1E;
-  --sw:220px;--hh:60px;--r:10px;--sh:0 2px 8px rgba(0,84,40,.09);
+  --red:#D32F2F;--ora:#E65100;--blu:#1565C0;--pur:#7B1FA2;
+  --bg:#F3F6F3;--wh:#fff;--g1:#EAECE9;--g2:#C4CAC3;--g3:#7A887A;--dk:#1A2A1A;
+  --sw:226px;--hh:62px;--r:10px;--sh:0 1px 6px rgba(0,80,30,.08);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--dk);min-height:100vh;display:flex;flex-direction:column}
-header{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--hh);background:var(--g);display:flex;align-items:center;justify-content:space-between;padding:0 20px 0 0;box-shadow:0 2px 10px rgba(0,0,0,.2)}
-.hb{display:flex;align-items:center;height:100%}
-.hl{background:var(--gd);height:100%;display:flex;align-items:center;padding:0 18px;gap:10px}
-.cx{width:32px;height:32px;position:relative}
+header{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--hh);background:var(--g);display:flex;align-items:center;justify-content:space-between;padding:0 24px 0 0;box-shadow:0 2px 12px rgba(0,0,0,.22)}
+.hbrand{display:flex;align-items:center;height:100%}
+.hlogo{background:var(--gd);height:100%;display:flex;align-items:center;padding:0 20px;gap:12px}
+.cross{width:34px;height:34px;position:relative}
 .ch,.cv{position:absolute;background:var(--y);border-radius:2px}
-.ch{width:32px;height:10px;top:11px;left:0}.cv{width:10px;height:32px;top:0;left:11px}
-.lf{position:absolute;width:9px;height:13px;background:var(--y);clip-path:polygon(50% 0%,100% 40%,60% 100%,40% 100%,0% 40%);top:-3px;right:-2px;z-index:2}
-.ht{padding-left:14px}
-.ht b{display:block;font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:#fff;letter-spacing:.3px;line-height:1.1}
-.ht small{font-size:10px;color:rgba(255,255,255,.65);letter-spacing:1.5px;text-transform:uppercase}
-.hm{display:flex;align-items:center;gap:14px}
-.hp{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:4px 12px;font-size:12px;color:rgba(255,255,255,.9);display:flex;align-items:center;gap:6px}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--y);animation:blink 1.5s infinite}
+.ch{width:34px;height:11px;top:11px;left:0}.cv{width:11px;height:34px;top:0;left:11px}
+.leaf{position:absolute;width:10px;height:14px;background:var(--y);clip-path:polygon(50% 0%,100% 40%,60% 100%,40% 100%,0% 40%);top:-3px;right:-2px;z-index:2}
+.htxt{padding-left:16px}
+.htxt b{display:block;font-family:'Barlow Condensed',sans-serif;font-size:21px;font-weight:800;color:#fff;letter-spacing:.3px;line-height:1.1}
+.htxt small{font-size:10px;color:rgba(255,255,255,.65);letter-spacing:1.8px;text-transform:uppercase}
+.hmeta{display:flex;align-items:center;gap:16px}
+.hbadge{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:4px 13px;font-size:12px;color:rgba(255,255,255,.92);display:flex;align-items:center;gap:6px;font-weight:500}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--y);animation:blink 1.6s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
-.hd{font-size:11px;color:rgba(255,255,255,.6)}
-.lay{display:flex;padding-top:var(--hh);min-height:100vh}
+.hdate{font-size:11px;color:rgba(255,255,255,.6)}
+.layout{display:flex;padding-top:var(--hh);min-height:100vh}
 nav{position:fixed;top:var(--hh);left:0;bottom:0;width:var(--sw);background:var(--wh);border-right:1px solid var(--g1);display:flex;flex-direction:column;z-index:100;overflow-y:auto}
-.ns{padding:14px 12px 6px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--g3)}
-.ni{display:flex;align-items:center;gap:9px;padding:9px 14px;margin:1px 8px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;color:var(--dk);border:none;background:none;width:calc(100% - 16px);text-align:left;transition:.15s}
+.ns{padding:16px 14px 6px;font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--g3)}
+.ni{display:flex;align-items:center;gap:10px;padding:10px 15px;margin:1px 8px;border-radius:8px;cursor:pointer;font-size:13.5px;font-weight:500;color:var(--dk);border:none;background:none;width:calc(100% - 16px);text-align:left;transition:.14s ease}
 .ni:hover{background:var(--gl);color:var(--g)}.ni.active{background:var(--g);color:#fff}
-.ni .ic{width:18px;font-size:15px}
-.nd{height:1px;background:var(--g1);margin:6px 14px}
-.nb{margin-top:auto;padding:14px;border-top:1px solid var(--g1)}
-.nu{display:flex;align-items:center;gap:9px}
-.av{width:32px;height:32px;border-radius:50%;background:var(--g);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
-.un{font-size:13px;font-weight:600}.ur{font-size:11px;color:var(--g3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-main{margin-left:var(--sw);flex:1;padding:22px 22px 40px;min-width:0}
-.sb{display:flex;align-items:flex-start;gap:10px;padding:10px 16px;border-radius:8px;margin-bottom:16px;font-size:13px;font-weight:500;border-left:3px solid;line-height:1.4}
-.sl{background:#E3F2FD;border-color:var(--blu);color:#0D3361}
-.so{background:var(--gl);border-color:var(--g);color:var(--gd)}
-.sw{background:#FFF3E0;border-color:var(--ora);color:#5D3A00}
-.se{background:#FDECEA;border-color:var(--red);color:#7F0000}
-.ph{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px}
-.pt{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:800;color:var(--gd);line-height:1.1}
-.ps{font-size:12px;color:var(--g3);margin-top:2px}
-.pa{display:flex;gap:8px}
-.btn{padding:7px 14px;border-radius:8px;font-family:'Barlow',sans-serif;font-size:12px;font-weight:600;cursor:pointer;border:none;transition:.15s;display:flex;align-items:center;gap:5px}
-.bg{background:var(--g);color:#fff}.bg:hover{background:var(--gd)}
-.bo{background:var(--wh);color:var(--dk);border:1px solid var(--g2)}.bo:hover{border-color:var(--g);color:var(--g)}
-.fb{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--wh);padding:10px 16px;border-radius:var(--r);border:1px solid var(--g1);box-shadow:var(--sh);margin-bottom:16px}
-.fl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--g3)}
-.fs{padding:5px 26px 5px 9px;border-radius:6px;border:1px solid var(--g2);font-family:'Barlow',sans-serif;font-size:12px;color:var(--dk);background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2300843D' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat right 8px center;-webkit-appearance:none;cursor:pointer}
-.fs:focus{outline:none;border-color:var(--g)}
-.fx{width:1px;height:22px;background:var(--g1)}
-.kg{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px}
-.kc{background:var(--wh);border-radius:var(--r);border:1px solid var(--g1);padding:15px 13px;box-shadow:var(--sh);position:relative;overflow:hidden;transition:.15s}
-.kc:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,84,40,.13)}
+.ni .ic{width:20px;font-size:16px;text-align:center}
+.nd{height:1px;background:var(--g1);margin:7px 14px}
+.nb{margin-top:auto;padding:16px;border-top:1px solid var(--g1)}
+.nu{display:flex;align-items:center;gap:10px}
+.av{width:34px;height:34px;border-radius:50%;background:var(--g);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.un{font-size:13px;font-weight:600;line-height:1.2}.ur{font-size:11px;color:var(--g3)}
+main{margin-left:var(--sw);flex:1;padding:24px;min-width:0}
+.ph{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;gap:12px}
+.pt{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;color:var(--gd);line-height:1}
+.ps{font-size:12px;color:var(--g3);margin-top:3px}
+.kg{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:18px}
+.kc{background:var(--wh);border-radius:var(--r);border:1px solid var(--g1);padding:16px 14px;box-shadow:var(--sh);position:relative;overflow:hidden;transition:.14s}
+.kc:hover{transform:translateY(-2px);box-shadow:0 5px 16px rgba(0,80,30,.13)}
 .ka{position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--r) var(--r) 0 0}
-.ka.g{background:var(--g)}.ka.y{background:var(--y)}.ka.r{background:var(--red)}.ka.b{background:var(--blu)}.ka.o{background:var(--ora)}
-.ki{font-size:19px;margin-bottom:7px}
-.kl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--g3);margin-bottom:3px}
-.kv{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:var(--dk);line-height:1}
-.kv.gv{color:var(--g)}.kv.rv{color:var(--red)}
-.kd{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:600;margin-top:5px;padding:2px 8px;border-radius:20px}
-.kdup{background:#E6F5ED;color:var(--g)}.kddn{background:#FDECEA;color:var(--red)}.kdn{background:var(--g1);color:var(--g3)}
+.ki{font-size:20px;margin-bottom:8px}
+.kl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.1px;color:var(--g3);margin-bottom:4px}
+.kv{font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:800;line-height:1}
+.kd{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:600;margin-top:6px;padding:2px 8px;border-radius:20px}
+.ku{background:#E6F5ED;color:var(--g)}.kw{background:#FDECEA;color:var(--red)}.kn{background:var(--g1);color:var(--g3)}
 .ks{font-size:11px;color:var(--g3);margin-top:3px}
-.cg{display:grid;gap:12px;margin-bottom:12px}
-.cg2{grid-template-columns:1fr 1fr}.cg3{grid-template-columns:2fr 1fr}
-.cc{background:var(--wh);border-radius:var(--r);border:1px solid var(--g1);padding:16px;box-shadow:var(--sh)}
-.chd{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
-.ct{font-size:13px;font-weight:600;color:var(--dk)}.cst{font-size:11px;color:var(--g3);margin-top:2px}
-.cb{font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px}
+.cg{display:grid;gap:14px;margin-bottom:14px}
+.c2{grid-template-columns:1fr 1fr}.c3{grid-template-columns:2fr 1fr}
+.cc{background:var(--wh);border-radius:var(--r);border:1px solid var(--g1);padding:18px;box-shadow:var(--sh)}
+.chd{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px}
+.ct{font-size:13.5px;font-weight:600;color:var(--dk)}.cst{font-size:11px;color:var(--g3);margin-top:2px}
+.cb{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px;flex-shrink:0}
 .cbg{background:#E6F5ED;color:var(--g)}.cby{background:#FFFDE7;color:#7A5F00}.cbr{background:#FDECEA;color:var(--red)}.cbb{background:#E3F2FD;color:var(--blu)}
-.cl{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+.cleg{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
 .cli{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--g3)}
-.cld{width:10px;height:10px;border-radius:2px}
+.cld{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.srow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.sc{background:var(--wh);border-radius:var(--r);border:1px solid var(--g1);padding:14px;text-align:center;box-shadow:var(--sh)}
+.sv{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800}
+.sl{font-size:11px;color:var(--g3);margin-top:2px}
 .tc{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:12px}
 thead th{background:var(--bg);color:var(--g3);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:8px 10px;border-bottom:2px solid var(--g1);text-align:left;white-space:nowrap}
-tbody td{padding:9px 10px;border-bottom:1px solid var(--g1);color:var(--dk);vertical-align:middle}
+tbody td{padding:9px 10px;border-bottom:1px solid var(--g1);vertical-align:middle}
 tbody tr:hover{background:var(--bg)}
-.pl{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
-.pg{background:#E6F5ED;color:var(--g)}.py{background:#FFFDE7;color:#7A5F00}.pr{background:#FDECEA;color:var(--red)}
+.pbw{width:120px;height:7px;background:var(--g1);border-radius:4px;overflow:hidden}
+.pbf{height:100%;border-radius:4px}
 .page{display:none}.page.active{display:block}
-.si{padding:6px 12px;border:1px solid var(--g2);border-radius:6px;font-family:'Barlow',sans-serif;font-size:12px;width:180px}
-.si:focus{outline:none;border-color:var(--g)}
 ::-webkit-scrollbar{width:4px;height:4px}
 ::-webkit-scrollbar-thumb{background:var(--g2);border-radius:2px}
-@media(max-width:1100px){.kg{grid-template-columns:repeat(3,1fr)}.cg2,.cg3{grid-template-columns:1fr}}
+@media(max-width:1200px){.kg{grid-template-columns:repeat(3,1fr)}.c2,.c3{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header>
-  <div class="hb">
-    <div class="hl">
-      <div class="cx"><div class="ch"></div><div class="cv"></div><div class="lf"></div></div>
-    </div>
-    <div class="ht"><b>Cruz Verde</b><small>Centro de Operaciones · BI Last Mile</small></div>
+  <div class="hbrand">
+    <div class="hlogo"><div class="cross"><div class="ch"></div><div class="cv"></div><div class="leaf"></div></div></div>
+    <div class="htxt"><b>Cruz Verde</b><small>Centro de Operaciones · BI Last Mile</small></div>
   </div>
-  <div class="hm">
-    <div class="hp"><div class="dot"></div><span id="cl">Conectando…</span></div>
-    <div class="hd" id="hd"></div>
+  <div class="hmeta">
+    <div class="hbadge"><div class="dot"></div>305,688 registros cargados</div>
+    <div class="hdate" id="hdate"></div>
   </div>
 </header>
 
-<div class="lay">
+<div class="layout">
 <nav>
   <div class="ns">Operaciones</div>
-  <button class="ni active" onclick="go('ops')"><span class="ic">📦</span>Control Operativo</button>
+  <button class="ni active" onclick="go('ops')"><span class="ic">📊</span>Resumen Ejecutivo</button>
   <button class="ni" onclick="go('drog')"><span class="ic">🏥</span>Droguerías</button>
-  <button class="ni" onclick="go('land')"><span class="ic">🚚</span>Last Mile</button>
+  <button class="ni" onclick="go('pend')"><span class="ic">📋</span>Pendientes</button>
   <div class="nd"></div>
   <div class="ns">Gestión</div>
-  <button class="ni" onclick="go('pend')"><span class="ic">⏳</span>Pendientes</button>
-  <button class="ni" onclick="go('perc')"><span class="ic">💊</span>Percápita</button>
   <button class="ni" onclick="go('tut')"><span class="ic">⚖️</span>Tutelas</button>
+  <button class="ni" onclick="go('land')"><span class="ic">🚚</span>Landfast Last Mile</button>
   <div class="nd"></div>
-  <button class="ni" onclick="rl()"><span class="ic">🔄</span>Actualizar datos</button>
   <div class="nb">
     <div class="nu">
       <div class="av">DG</div>
-      <div><div class="un">David Guerrero</div><div class="ur">Ing. Ops. Last Mile</div></div>
+      <div><div class="un">David Guerrero</div><div class="ur">Ing. Operaciones Last Mile</div></div>
     </div>
   </div>
 </nav>
 
 <main>
-  <div id="sb" class="sb sl">⏳ Conectando con Google Sheets…</div>
 
-  <!-- OPS -->
-  <div class="page active" id="page-ops">
-    <div class="ph">
-      <div><div class="pt">Control Operativo Logístico</div><div class="ps">Indicadores consolidados · Cruz Verde Bogotá</div></div>
-      <div class="pa">
-        <button class="btn bo" onclick="exp()">⬇ Exportar</button>
-        <button class="btn bg" onclick="rl()">🔄 Sincronizar</button>
-      </div>
-    </div>
-    <div class="fb">
-      <span class="fl">Filtrar</span>
-      <select class="fs" id="fm" onchange="af()"><option value="">Todos los meses</option></select>
-      <div class="fx"></div>
-      <select class="fs" id="fe" onchange="af()">
-        <option value="">Todos los estados</option>
-        <option>Activo</option><option>Inactivo</option><option>Pendiente</option>
-      </select>
-      <span style="margin-left:auto;font-size:12px;color:var(--g3)" id="rc">— registros</span>
-    </div>
-    <div class="kg">
-      <div class="kc"><div class="ka g"></div><div class="ki">🏥</div><div class="kl">Droguerías</div><div class="kv gv" id="k1">—</div><div class="kd kdn" id="k1d">cargando</div></div>
-      <div class="kc"><div class="ka y"></div><div class="ki">📋</div><div class="kl">Pendientes</div><div class="kv" id="k2">—</div><div class="kd kdn" id="k2d">cargando</div></div>
-      <div class="kc"><div class="ka r"></div><div class="ki">⚖️</div><div class="kl">Tutelas</div><div class="kv rv" id="k3">—</div><div class="ks" id="k3s">—</div></div>
-      <div class="kc"><div class="ka b"></div><div class="ki">🚚</div><div class="kl">Entregas Landfast</div><div class="kv" id="k4">—</div><div class="kd kdn" id="k4d">cargando</div></div>
-      <div class="kc"><div class="ka o"></div><div class="ki">💊</div><div class="kl">Percápita</div><div class="kv" id="k5">—</div><div class="ks" id="k5s">registros</div></div>
-    </div>
-    <div class="cg cg3" style="margin-bottom:12px">
-      <div class="cc">
-        <div class="chd"><div><div class="ct">Distribución — Droguerías</div><div class="cst">Por columna principal</div></div><span class="cb cbg">DROGUERÍAS</span></div>
-        <div style="position:relative;width:100%;height:210px"><canvas id="c1" role="img" aria-label="Droguerías distribución">Cargando…</canvas></div>
-      </div>
-      <div class="cc">
-        <div class="chd"><div><div class="ct">Tutelas</div><div class="cst">Por estado</div></div><span class="cb cbr">TUTELAS</span></div>
-        <div style="position:relative;width:100%;height:210px"><canvas id="c2" role="img" aria-label="Tutelas donut">Cargando…</canvas></div>
-        <div class="cl" id="l2"></div>
-      </div>
-    </div>
-    <div class="cg cg2" style="margin-bottom:12px">
-      <div class="cc">
-        <div class="chd"><div><div class="ct">Pendientes por categoría</div></div><span class="cb cby">PENDIENTES</span></div>
-        <div style="position:relative;width:100%;height:200px"><canvas id="c3" role="img" aria-label="Pendientes bar">Cargando…</canvas></div>
-      </div>
-      <div class="cc">
-        <div class="chd"><div><div class="ct">Landfast — Estado entregas</div></div><span class="cb cbb">LANDFAST</span></div>
-        <div style="position:relative;width:100%;height:200px"><canvas id="c4" role="img" aria-label="Landfast donut">Cargando…</canvas></div>
-      </div>
+<div class="page active" id="page-ops">
+  <div class="ph"><div><div class="pt">Resumen Ejecutivo</div><div class="ps">Consolidado operacional Cruz Verde · Datos reales del sistema</div></div></div>
+  <div class="kg">
+    <div class="kc"><div class="ka" style="background:var(--g)"></div><div class="ki">🏥</div><div class="kl">Servicios Droguerías</div><div class="kv" style="color:var(--g)">73,419</div><div class="kd ku">↑ Ene–Abr 2026</div></div>
+    <div class="kc"><div class="ka" style="background:var(--y)"></div><div class="ki">📋</div><div class="kl">Pendientes</div><div class="kv">232,269</div><div class="kd ku">ANS 86.5%</div></div>
+    <div class="kc"><div class="ka" style="background:var(--red)"></div><div class="ki">⚖️</div><div class="kl">Tutelas</div><div class="kv" style="color:var(--red)">371</div><div class="kd ku">88.1% entregado</div></div>
+    <div class="kc"><div class="ka" style="background:var(--blu)"></div><div class="ki">🚚</div><div class="kl">Guías Landfast</div><div class="kv" style="color:var(--blu)">216</div><div class="kd kw">74.5% en tiempo</div></div>
+    <div class="kc"><div class="ka" style="background:var(--ora)"></div><div class="ki">📦</div><div class="kl">Tasa entrega global</div><div class="kv" style="color:var(--ora)">86.5%</div><div class="ks">pendientes ANS</div></div>
+  </div>
+  <div class="cg c3">
+    <div class="cc">
+      <div class="chd"><div><div class="ct">Servicios por mes — Droguerías</div><div class="cst">Ene–Abr 2026</div></div><span class="cb cbg">HISTÓRICO</span></div>
+      <div style="position:relative;width:100%;height:220px"><canvas id="c-drog-mes" role="img" aria-label="Droguerías por mes"></canvas></div>
     </div>
     <div class="cc">
-      <div class="chd"><div><div class="ct">Detalle Droguerías</div><div class="cst">Vista completa</div></div>
-        <input class="si" type="text" placeholder="🔍 Buscar…" id="sq" oninput="st()"></div>
-      <div class="tc"><table><thead><tr id="dh"></tr></thead><tbody id="db"></tbody></table></div>
+      <div class="chd"><div><div class="ct">ANS Pendientes</div><div class="cst">Entregado vs sin entrega</div></div><span class="cb cby">ANS</span></div>
+      <div style="position:relative;width:100%;height:180px"><canvas id="c-ans-donut" role="img" aria-label="ANS"></canvas></div>
+      <div class="cleg" id="l-ans"></div>
     </div>
   </div>
-
-  <!-- DROG -->
-  <div class="page" id="page-drog">
-    <div class="ph"><div><div class="pt">Red de Droguerías</div><div class="ps">Todos los puntos del sistema</div></div></div>
-    <div class="cc"><div class="chd"><div class="ct">Droguerías — Datos completos</div></div>
-    <div class="tc"><table><thead><tr id="drh"></tr></thead><tbody id="drb"></tbody></table></div></div>
-  </div>
-
-  <!-- LAND -->
-  <div class="page" id="page-land">
-    <div class="ph"><div><div class="pt">Last Mile — Landfast</div><div class="ps">Operaciones de última milla</div></div></div>
-    <div class="cg cg2" style="margin-bottom:12px">
-      <div class="cc"><div class="chd"><div class="ct">Registros por estado</div></div>
-        <div style="position:relative;width:100%;height:230px"><canvas id="c5" role="img" aria-label="Landfast bar">Cargando…</canvas></div></div>
-      <div class="cc"><div class="chd"><div class="ct">Distribución operacional</div></div>
-        <div style="position:relative;width:100%;height:230px"><canvas id="c6" role="img" aria-label="Landfast pie">Cargando…</canvas></div></div>
+  <div class="cg c2">
+    <div class="cc">
+      <div class="chd"><div><div class="ct">Top ciudades — Volumen de servicio</div><div class="cst">Droguerías</div></div><span class="cb cbg">CIUDADES</span></div>
+      <div style="position:relative;width:100%;height:220px"><canvas id="c-ciudad" role="img" aria-label="Ciudades"></canvas></div>
     </div>
-    <div class="cc"><div class="chd"><div class="ct">Detalle Landfast</div></div>
-    <div class="tc"><table><thead><tr id="lah"></tr></thead><tbody id="lab"></tbody></table></div></div>
+    <div class="cc">
+      <div class="chd"><div><div class="ct">Causas de novedades</div><div class="cst">Pendientes sin entregar</div></div><span class="cb cbr">NOVEDADES</span></div>
+      <div style="position:relative;width:100%;height:220px"><canvas id="c-novedades" role="img" aria-label="Novedades"></canvas></div>
+    </div>
   </div>
+</div>
 
-  <!-- PEND -->
-  <div class="page" id="page-pend">
-    <div class="ph"><div><div class="pt">Gestión de Pendientes</div><div class="ps">Casos activos y en seguimiento</div></div></div>
-    <div class="cc"><div class="chd"><div class="ct">Todos los pendientes</div></div>
-    <div class="tc"><table><thead><tr id="peh"></tr></thead><tbody id="peb"></tbody></table></div></div>
+<div class="page" id="page-drog">
+  <div class="ph"><div><div class="pt">Droguerías — Servicios</div><div class="ps">73,419 registros · dispensación domiciliaria y entregas</div></div></div>
+  <div class="srow">
+    <div class="sc"><div class="sv" style="color:var(--g)">73,419</div><div class="sl">Total servicios</div></div>
+    <div class="sc"><div class="sv" style="color:var(--g)">73,406</div><div class="sl">Finalizados</div></div>
+    <div class="sc"><div class="sv" style="color:var(--red)">13</div><div class="sl">Cancelados</div></div>
+    <div class="sc"><div class="sv" style="color:var(--blu)">12</div><div class="sl">Ciudades activas</div></div>
   </div>
+  <div class="cg c2">
+    <div class="cc">
+      <div class="chd"><div><div class="ct">Tipo de servicio</div><div class="cst">Distribución del portafolio</div></div><span class="cb cbg">SERVICIOS</span></div>
+      <div style="position:relative;width:100%;height:260px"><canvas id="c-tipo" role="img" aria-label="Tipo servicio"></canvas></div>
+    </div>
+    <div class="cc">
+      <div class="chd"><div><div class="ct">Novedades operativas</div><div class="cst">Causas de incidentes (excl. Sin novedad)</div></div><span class="cb cbr">NOVEDADES</span></div>
+      <div style="position:relative;width:100%;height:260px"><canvas id="c-nov-drog" role="img" aria-label="Novedades drog"></canvas></div>
+    </div>
+  </div>
+  <div class="cg c2">
+    <div class="cc">
+      <div class="chd"><div><div class="ct">Top 10 CEDIs por volumen</div></div><span class="cb cbg">CEDIs</span></div>
+      <div style="position:relative;width:100%;height:300px"><canvas id="c-cedi" role="img" aria-label="CEDIs"></canvas></div>
+    </div>
+    <div class="cc">
+      <div class="chd"><div><div class="ct">Cobertura por departamento</div></div><span class="cb cbg">REGIONAL</span></div>
+      <div style="position:relative;width:100%;height:300px"><canvas id="c-depto" role="img" aria-label="Departamentos"></canvas></div>
+    </div>
+  </div>
+  <div class="cc">
+    <div class="chd"><div><div class="ct">CEDIs — Ranking operativo</div><div class="cst">Volumen de servicio por punto de dispensación</div></div></div>
+    <div class="tc"><table>
+      <thead><tr><th>#</th><th>CEDI</th><th>Servicios</th><th>% Total</th><th>Volumen</th></tr></thead>
+      <tbody><tr><td>1</td><td><strong>CV DOMICILIOS SANTA ROSA</strong></td><td>14,585</td><td>19.9%</td><td><div class="pbw"><div class="pbf" style="width:100%;background:var(--g)"></div></div></td></tr><tr><td>2</td><td><strong>CV CALLE 13</strong></td><td>14,217</td><td>19.4%</td><td><div class="pbw"><div class="pbf" style="width:97%;background:var(--g)"></div></div></td></tr><tr><td>3</td><td><strong>CV SURA MC ROSALES</strong></td><td>5,818</td><td>7.9%</td><td><div class="pbw"><div class="pbf" style="width:40%;background:var(--g)"></div></div></td></tr><tr><td>4</td><td><strong>CV SURA MC MARAYA</strong></td><td>4,824</td><td>6.6%</td><td><div class="pbw"><div class="pbf" style="width:33%;background:var(--g)"></div></div></td></tr><tr><td>5</td><td><strong>CLINICA COLOMBIA</strong></td><td>4,162</td><td>5.7%</td><td><div class="pbw"><div class="pbf" style="width:29%;background:var(--g)"></div></div></td></tr><tr><td>6</td><td><strong>CV ARMENIA CARRERA 13</strong></td><td>2,630</td><td>3.6%</td><td><div class="pbw"><div class="pbf" style="width:18%;background:var(--g)"></div></div></td></tr><tr><td>7</td><td><strong>CAL-714-CV MC PASOANCHO</strong></td><td>2,518</td><td>3.4%</td><td><div class="pbw"><div class="pbf" style="width:17%;background:var(--g)"></div></div></td></tr><tr><td>8</td><td><strong>CV CARRERA 42</strong></td><td>2,431</td><td>3.3%</td><td><div class="pbw"><div class="pbf" style="width:17%;background:var(--g)"></div></div></td></tr><tr><td>9</td><td><strong>FLO-139-CV FLORENCIA</strong></td><td>1,361</td><td>1.9%</td><td><div class="pbw"><div class="pbf" style="width:9%;background:var(--g)"></div></div></td></tr><tr><td>10</td><td><strong>CV SAN SIMON</strong></td><td>1,303</td><td>1.8%</td><td><div class="pbw"><div class="pbf" style="width:9%;background:var(--g)"></div></div></td></tr></tbody>
+    </table></div>
+  </div>
+</div>
 
-  <!-- PERC -->
-  <div class="page" id="page-perc">
-    <div class="ph"><div><div class="pt">Percápita</div><div class="ps">Indicadores de costo y productividad</div></div></div>
-    <div class="cc"><div class="chd"><div class="ct">Datos Percápita</div></div>
-    <div class="tc"><table><thead><tr id="pch"></tr></thead><tbody id="pcb"></tbody></table></div></div>
+<div class="page" id="page-pend">
+  <div class="ph"><div><div class="pt">Gestión de Pendientes</div><div class="ps">232,269 casos · ANS de entrega 86.5%</div></div></div>
+  <div class="srow">
+    <div class="sc"><div class="sv" style="color:var(--g)">200,825</div><div class="sl">Entregados</div></div>
+    <div class="sc"><div class="sv" style="color:var(--red)">11,829</div><div class="sl">Sin quien reciba</div></div>
+    <div class="sc"><div class="sv" style="color:var(--ora)">11,569</div><div class="sl">Dirección errada</div></div>
+    <div class="sc"><div class="sv" style="color:var(--pur,#7B1FA2)">6,056</div><div class="sl">Devuelto a central</div></div>
   </div>
+  <div class="cg c2">
+    <div class="cc">
+      <div class="chd"><div><div class="ct">Volumen mensual de pendientes</div><div class="cst">2026</div></div><span class="cb cby">TENDENCIA</span></div>
+      <div style="position:relative;width:100%;height:230px"><canvas id="c-pend-mes" role="img" aria-label="Pendientes mes"></canvas></div>
+    </div>
+    <div class="cc">
+      <div class="chd"><div><div class="ct">Distribución de novedades</div><div class="cst">Resultado de gestión</div></div><span class="cb cbr">NOVEDADES</span></div>
+      <div style="position:relative;width:100%;height:230px"><canvas id="c-pend-nov" role="img" aria-label="Novedades pendientes"></canvas></div>
+    </div>
+  </div>
+  <div class="cc">
+    <div class="chd"><div><div class="ct">Top ciudades — Concentración de pendientes</div></div><span class="cb cby">CIUDADES</span></div>
+    <div style="position:relative;width:100%;height:190px"><canvas id="c-pend-ciudad" role="img" aria-label="Pendientes ciudad"></canvas></div>
+  </div>
+</div>
 
-  <!-- TUT -->
-  <div class="page" id="page-tut">
-    <div class="ph"><div><div class="pt">Gestión de Tutelas</div><div class="ps">Registro jurídico y operativo</div></div></div>
-    <div class="cc"><div class="chd"><div class="ct">Registro de Tutelas</div></div>
-    <div class="tc"><table><thead><tr id="tuh"></tr></thead><tbody id="tub"></tbody></table></div></div>
+<div class="page" id="page-tut">
+  <div class="ph"><div><div class="pt">Gestión de Tutelas</div><div class="ps">371 casos · tasa de entrega 88.1%</div></div></div>
+  <div class="srow">
+    <div class="sc"><div class="sv" style="color:var(--g)">327</div><div class="sl">Entregadas</div></div>
+    <div class="sc"><div class="sv" style="color:var(--red)">25</div><div class="sl">Sin quien reciba</div></div>
+    <div class="sc"><div class="sv" style="color:var(--ora)">17</div><div class="sl">Devuelto a central</div></div>
+    <div class="sc"><div class="sv" style="color:var(--g)">88.1%</div><div class="sl">Tasa de entrega</div></div>
   </div>
+  <div class="cg c2">
+    <div class="cc">
+      <div class="chd"><div><div class="ct">Tutelas por CEDI</div><div class="cst">Distribución por punto de despacho</div></div><span class="cb cbr">CEDIs</span></div>
+      <div style="position:relative;width:100%;height:240px"><canvas id="c-tut-cedi" role="img" aria-label="Tutelas CEDI"></canvas></div>
+    </div>
+    <div class="cc">
+      <div class="chd"><div><div class="ct">Resultado de tutelas</div><div class="cst">Novedad final</div></div><span class="cb cbr">RESULTADO</span></div>
+      <div style="position:relative;width:100%;height:200px"><canvas id="c-tut-nov" role="img" aria-label="Tutelas novedad"></canvas></div>
+      <div class="cleg" id="l-tut"></div>
+    </div>
+  </div>
+  <div class="cc">
+    <div class="chd"><div><div class="ct">Tutelas por mes · 2026</div><div class="cst">Flujo mensual</div></div><span class="cb cbr">MENSUAL</span></div>
+    <div style="position:relative;width:100%;height:170px"><canvas id="c-tut-mes" role="img" aria-label="Tutelas mes"></canvas></div>
+  </div>
+</div>
+
+<div class="page" id="page-land">
+  <div class="ph"><div><div class="pt">Last Mile — Landfast</div><div class="ps">216 guías · 74.5% cumple tiempo de entrega · Sep 2025–May 2026</div></div></div>
+  <div class="srow">
+    <div class="sc"><div class="sv" style="color:var(--g)">161</div><div class="sl">Cumple tiempo</div></div>
+    <div class="sc"><div class="sv" style="color:var(--red)">55</div><div class="sl">Fuera de tiempo</div></div>
+    <div class="sc"><div class="sv" style="color:var(--g)">74.5%</div><div class="sl">Eficiencia SLA</div></div>
+    <div class="sc"><div class="sv" style="color:var(--blu)">4</div><div class="sl">Ciudades cubiertas</div></div>
+  </div>
+  <div class="cg c2">
+    <div class="cc">
+      <div class="chd"><div><div class="ct">Guías despachadas por mes</div><div class="cst">Sep 2025 – May 2026</div></div><span class="cb cbb">TENDENCIA</span></div>
+      <div style="position:relative;width:100%;height:230px"><canvas id="c-land-mes" role="img" aria-label="Landfast mes"></canvas></div>
+    </div>
+    <div class="cc">
+      <div class="chd"><div><div class="ct">Cumplimiento de tiempo SLA</div><div class="cst">SI vs NO</div></div><span class="cb cbb">SLA</span></div>
+      <div style="position:relative;width:100%;height:200px"><canvas id="c-land-sla" role="img" aria-label="Landfast SLA"></canvas></div>
+      <div class="cleg" id="l-land"></div>
+    </div>
+  </div>
+  <div class="cc">
+    <div class="chd"><div><div class="ct">Volumen por ciudad</div><div class="cst">Guías despachadas por destino</div></div><span class="cb cbb">CIUDADES</span></div>
+    <div style="position:relative;width:100%;height:150px"><canvas id="c-land-ciudad" role="img" aria-label="Landfast ciudad"></canvas></div>
+  </div>
+</div>
+
 </main>
 </div>
 
 <script>
-const SID='1k0Rs2d5RWhSmmrKS-B8iQ1xnfXsc-nOZBh7vhXdPA2U';
-const GID={d:'0',pe:'132390937',pc:'1390354916',t:'1777993279',l:'478248112'};
-const G='#00843D',Y='#FFD100',R='#D32F2F',O='#E65100',B='#1565C0',G2='#4CAF7D',G3='#A5D6A7';
+const DATA = {"droguerias": {"total": 73419, "por_ciudad": {"BOGOTA": 18920, "CALI": 17556, "MANIZALES": 6309, "PEREIRA": 4431, "PASTO": 2435, "ARMENIA": 2315, "POPAYAN": 1536, "IBAGUE": 1324, "NEIVA": 1280, "TUNJA": 1223, "FLORENCIA": 1190, "SANTA MARTA": 1141}, "por_tipo": {"DISPENSACION": 59343, "TRASLADO DISPENSACION": 7183, "VENTA MOSTRADOR DOMICILIO": 1510, "SALUD EN CASA": 1141, "ENTREGA DE PENDIENTES": 1037, "ENTREGA CLINICAS": 1012, "VENTA MOSTRADOR DROGUERIA": 784, "TRASLADO VENTA MOSTRADOR - 1": 507}, "por_novedad": {"SIN NOVEDAD": 68767, "NO HAY USUARIO PARA RECIBIR": 1479, "ENTREGADO PREVIAMENTE": 1380, "DIRECCION ERRADA": 1209, "AUTORIZACIÓN O FORMULA NO VIGENTE": 256, "NO CUENTA CON MEDIO DE PAGO": 157, "GUIA DUPLICADA": 143, "MEDICAMENTO AVERIADO": 18}, "por_cedi": {"CRUZ VERDE DOMICILIOS SANTA ROSA": 14585, "CRUZ VERDE CALLE 13": 14217, "CRUZ VERDE SURA MEDICARTE ROSALES": 5818, "CRUZ VERDE SURA MEDICARTE MARAYA": 4824, "CLINICA COLOMBIA": 4162, "CRUZ VERDE ARMENIA CARRERA 13": 2630, "CAL-714-CRUZ VERDE MEDICARTE PASOANCHO": 2518, "CRUZ VERDE CARRERA 42": 2431, "FLO-139-CRUZ VERDE FLORENCIA": 1361, "CRUZ VERDE SAN SIMON": 1303}, "por_depto": {"Valle del Cauca": 20868, "BOGOTA": 18920, "CALDAS": 6380, "RISARALDA": 5590, "QUINDIO": 2891, "PUTUMAYO": 2435, "CAUCA": 1859, "BOYACA": 1440}, "por_estado": {"Finalizado": 73406, "Cancelado": 13}, "por_mes": {"2026-01": 12965, "2026-02": 10330, "2026-03": 12126, "2026-04": 11726}}, "pendientes": {"total": 232269, "por_novedad": {"ENTREGADO": 200825, "NO HAY QUIEN RECIBA": 11829, "DIRECCION ERRADA": 11569, "DEVUELTO A CENTRAL": 6056, "NO CONOCEN AL DESTINATARIO": 1023, "FUERA DE COBERTURA": 317, "NO LLEGO FISICO": 191, "CLIENTE SE NEGO A RECIBIR": 178}, "por_ciudad": {"BOGOTA": 122375, "CALI": 33649, "BARRANQUILLA": 21024, "BUCARAMANGA": 10531, "IBAGUE": 8739, "SOLEDAD": 7606, "SANTA MARTA": 6793, "PALMIRA": 6139}, "por_tipo": {"Entrega": 231898, "Tutelas": 371}, "por_mes": {"2026-01": 4266, "2026-02": 4162, "2026-03": 8794, "2026-04": 6730, "2026-05": 7152, "2026-06": 8423, "2026-07": 7248, "2026-08": 10165, "2026-09": 9152, "2026-10": 8999, "2026-11": 6932, "2026-12": 4592}, "tasa_entrega": 86.5}, "tutelas": {"total": 371, "por_novedad": {"ENTREGADO": 327, "NO HAY QUIEN RECIBA": 25, "DEVUELTO A CENTRAL": 17, "DESTINATARIO SE TRASLADO": 2}, "por_cedi": {"CRUZ VERDE PENDIENTES Depot": 193, "CRUZ VERDE CALI PENDIENTES": 118, "CRUZ VERDE PENDIENTES BARRANQUILLA": 33, "CRUZ VERDE IBAGUE PENDIENTES": 18, "CRUZ VERDE BUCARAMANGA PENDIENTES": 5, "CRUZ VERDE SANTA MARTA PENDIENTES": 4}, "por_mes": {"2026-01": 7, "2026-02": 2, "2026-03": 10, "2026-04": 3, "2026-05": 4}, "tasa_entrega": 88.1}, "landfast": {"total": 216, "por_ciudad": {"BARRANQUILLA": 65, "BUCARAMANGA": 56, "IBAGUE": 54, "CALI": 41}, "por_estado": {"RECIBIDO EN CEDI": 216}, "cumple": {"SI": 161, "NO": 55}, "por_mes": {"2025-02": 2, "2025-09": 21, "2025-10": 30, "2025-11": 33, "2025-12": 29, "2026-01": 26, "2026-02": 22, "2026-03": 22, "2026-04": 21, "2026-05": 6, "2026-10": 3}, "pct_cumple": 74.5}};
+const G='#00843D',Y='#FFD100',R='#D32F2F',O='#E65100',B='#1565C0',PU='#7B1FA2',T='#00838F',GN='#558B2F';
+const PAL=[G,Y,O,B,R,PU,T,GN,'#795548','#546E7A'];
+const CH={};
 
-let D={},CH={};
-
-// Multiple fetch strategies
-async function fetchSheet(gid){
-  const base=`https://docs.google.com/spreadsheets/d/${SID}/export?format=csv&gid=${gid}`;
-  const strategies=[
-    ()=>fetch(base),
-    ()=>fetch(`https://corsproxy.io/?${encodeURIComponent(base)}`),
-    ()=>fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(base)}`),
-    ()=>fetch(`https://thingproxy.freeboard.io/fetch/${base}`),
-  ];
-  for(const fn of strategies){
-    try{
-      const r=await fn();
-      if(!r.ok)continue;
-      const t=await r.text();
-      if(t&&t.length>20&&!t.trim().startsWith('<')&&!t.includes('<!DOCTYPE'))return t;
-    }catch(e){}
-  }
-  return null;
-}
-
-function csv(txt){
-  if(!txt)return[];
-  const lines=txt.replace(/\r/g,'').split('\n').filter(l=>l.trim());
-  if(!lines.length)return[];
-  const heads=splitLine(lines[0]);
-  return lines.slice(1).map(l=>{
-    const v=splitLine(l);
-    const o={};
-    heads.forEach((h,i)=>{o[h.trim()]=(v[i]||'').trim();});
-    return o;
-  }).filter(r=>Object.values(r).some(v=>v));
-}
-
-function splitLine(l){
-  const r=[];let c='';let q=false;
-  for(let i=0;i<l.length;i++){
-    if(l[i]==='"'){q=!q;}
-    else if(l[i]===','&&!q){r.push(c.replace(/^"|"$/g,''));c='';}
-    else{c+=l[i];}
-  }
-  r.push(c.replace(/^"|"$/g,''));
-  return r;
-}
-
-async function loadAll(){
-  sb('l','⏳ Conectando con Google Sheets…');
-  t('cl','Conectando…');
-  const keys=['d','pe','pc','t','l'];
-  const names={d:'droguerias',pe:'pendientes',pc:'percapita',t:'tutelas',l:'landfast'};
-  const results=await Promise.allSettled(keys.map(k=>fetchSheet(GID[k])));
-  let ok=0,fail=[];
-  results.forEach((r,i)=>{
-    const k=keys[i],n=names[k];
-    if(r.status==='fulfilled'&&r.value){
-      const parsed=csv(r.value);
-      if(parsed.length){D[n]=parsed;ok++;}
-      else{D[n]=null;fail.push(n);}
-    }else{D[n]=null;fail.push(names[k]);}
-  });
-
-  if(ok===0){
-    sb('e','❌ No se pudo acceder a ninguna hoja. El Sheet debe estar publicado: Archivo → Compartir → Publicar en la web → Publicar. Luego haz clic en 🔄 Sincronizar.');
-    t('cl','Sin conexión');return;
-  }
-  if(fail.length){
-    sb('w',`⚠️ ${ok}/5 hojas cargadas. No disponibles: ${fail.join(', ')}. Verifica que el Sheet esté publicado completamente.`);
-  }else{
-    sb('o',`✅ ${ok}/5 hojas cargadas · ${new Date().toLocaleString('es-CO',{hour:'2-digit',minute:'2-digit'})}`);
-    t('cl','En vivo');
-  }
-  render();
-}
-
-function sb(type,msg){
-  const e=document.getElementById('sb');
-  e.textContent=msg;
-  e.className='sb '+(type==='l'?'sl':type==='o'?'so':type==='w'?'sw':'se');
-}
-function t(id,v){const e=document.getElementById(id);if(e)e.textContent=v;}
-
-function render(){
-  kpis();charts();tables();filters();}
-
-function kpis(){
-  const d=D.droguerias||[],pe=D.pendientes||[],tu=D.tutelas||[],la=D.landfast||[],pc=D.percapita||[];
-  t('k1',d.length.toLocaleString('es-CO'));
-  kd('k1d',d.length>0?`↑ ${d.length} registros`:'Sin datos',d.length>0?'up':'n');
-  t('k2',pe.length.toLocaleString('es-CO'));
-  kd('k2d',pe.length>0?`${pe.length} casos`:'Sin datos',pe.length>100?'dn':'up');
-  t('k3',tu.length.toLocaleString('es-CO'));t('k3s','tutelas registradas');
-  t('k4',la.length.toLocaleString('es-CO'));
-  kd('k4d',la.length>0?`↑ ${la.length} entregas`:'Sin datos',la.length>0?'up':'n');
-  t('k5',pc.length.toLocaleString('es-CO'));t('k5s','registros');
-  t('rc',(d.length||0)+' registros');
-}
-
-function kd(id,txt,type){
-  const e=document.getElementById(id);if(!e)return;
-  e.textContent=txt;
-  e.className='kd '+(type==='up'?'kdup':type==='dn'?'kddn':'kdn');
-}
-
-function col1(data,kws){
-  if(!data||!data.length)return null;
-  const cols=Object.keys(data[0]);
-  for(const kw of kws){const f=cols.find(c=>c.toLowerCase().includes(kw));if(f)return f;}
-  return cols[0];
-}
-
-function grp(data,key){
-  const g={};
-  (data||[]).forEach(r=>{const v=r[key]||'Sin dato';g[v]=(g[v]||0)+1;});
-  return g;
-}
-
-function top(obj,n=10){return Object.entries(obj).sort((a,b)=>b[1]-a[1]).slice(0,n);}
-
-const COLORS=[G,Y,O,B,R,G2,'#7B1FA2','#00838F','#558B2F','#795548'];
-
-function charts(){
-  // c1: droguerias bar
-  const dk=col1(D.droguerias,['tipo','clase','estado','categoria','nombre','drogueria'])||Object.keys((D.droguerias||[{}])[0])[1]||'';
-  const dt=top(grp(D.droguerias,dk),8);
-  mkbar('c1',dt.map(x=>x[0]),dt.map(x=>x[1]),COLORS,true);
-
-  // c2: tutelas donut
-  const tk=col1(D.tutelas,['estado','status','tipo','resultado'])||Object.keys((D.tutelas||[{}])[0])[1]||'';
-  const tt=top(grp(D.tutelas,tk),6);
-  mkdonut('c2',tt.map(x=>x[0]),tt.map(x=>x[1]),[R,O,Y,B,G,'#7B1FA2'],'l2');
-
-  // c3: pendientes bar
-  const pk=col1(D.pendientes,['tipo','categoria','estado','motivo','clase'])||Object.keys((D.pendientes||[{}])[0])[1]||'';
-  const pt=top(grp(D.pendientes,pk),8);
-  mkbar('c3',pt.map(x=>x[0]),pt.map(x=>x[1]),[Y,O,R,B,G,G2,'#7B1FA2','#558B2F'],true);
-
-  // c4: landfast donut small
-  const lk=col1(D.landfast,['estado','status','resultado','tipo'])||Object.keys((D.landfast||[{}])[0])[1]||'';
-  const lt=top(grp(D.landfast,lk),6);
-  mkdonut('c4',lt.map(x=>x[0]),lt.map(x=>x[1]),[G,Y,O,R,B,'#7B1FA2'],null);
-
-  // c5+c6: landfast page
-  mkbar('c5',lt.map(x=>x[0]),lt.map(x=>x[1]),COLORS,false);
-  mkdonut('c6',lt.map(x=>x[0]),lt.map(x=>x[1]),[G,Y,O,R,B,'#7B1FA2'],null);
-}
-
-function mkbar(id,labels,vals,colors,horiz){
-  if(CH[id]){CH[id].destroy();}
+function mk(id,type,labels,datasets,extra={}){
+  if(CH[id])CH[id].destroy();
   const el=document.getElementById(id);if(!el)return;
-  if(!labels.length){el.parentElement.innerHTML='<p style="text-align:center;padding:40px;color:#7A887A;font-size:12px">Sin datos disponibles</p>';return;}
-  CH[id]=new Chart(el,{
-    type:'bar',
-    data:{labels,datasets:[{label:'',data:vals,backgroundColor:colors.slice(0,labels.length),borderRadius:5,borderSkipped:false}]},
-    options:{indexAxis:horiz?'y':'x',responsive:true,maintainAspectRatio:false,
+  CH[id]=new Chart(el,{type,data:{labels,datasets},
+    options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false}},
       scales:{
-        x:{grid:{color:'#EAECE9',lineWidth:.5},ticks:{font:{family:'Barlow',size:10},color:'#7A887A',maxRotation:40,autoSkip:false}},
-        y:{grid:{display:!horiz,color:'#EAECE9',lineWidth:.5},ticks:{font:{family:'Barlow',size:10},color:'#7A887A'}}
-      }
+        x:{grid:{color:'#EAECE9',lineWidth:.5},ticks:{font:{family:'Barlow',size:10},color:'#7A887A',maxRotation:40}},
+        y:{grid:{color:'#EAECE9',lineWidth:.5},ticks:{font:{family:'Barlow',size:10},color:'#7A887A'}}
+      },...extra
     }
   });
 }
-
-function mkdonut(id,labels,vals,colors,legId){
-  if(CH[id]){CH[id].destroy();}
+function hbar(id,labels,vals,colors){
+  mk(id,'bar',labels,[{data:vals,backgroundColor:colors||PAL.slice(0,labels.length),borderRadius:4,borderSkipped:false}],
+    {scales:{x:{grid:{color:'#EAECE9'},ticks:{font:{family:'Barlow',size:10},color:'#7A887A'}},y:{grid:{display:false},ticks:{font:{family:'Barlow',size:10},color:'#7A887A'}}},indexAxis:'y'});
+}
+function bar(id,labels,vals,colors){
+  mk(id,'bar',labels,[{data:vals,backgroundColor:colors||PAL.slice(0,labels.length),borderRadius:4,borderSkipped:false}]);
+}
+function line(id,labels,vals,color){
+  mk(id,'line',labels,[{data:vals,borderColor:color||G,backgroundColor:(color||G)+'18',tension:.35,fill:true,pointBackgroundColor:color||G,pointRadius:4,pointHoverRadius:6,borderWidth:2}]);
+}
+function donut(id,labels,vals,colors,legId){
+  if(CH[id])CH[id].destroy();
   const el=document.getElementById(id);if(!el)return;
-  if(!labels.length){el.parentElement.innerHTML='<p style="text-align:center;padding:40px;color:#7A887A;font-size:12px">Sin datos disponibles</p>';return;}
-  CH[id]=new Chart(el,{
-    type:'doughnut',
-    data:{labels,datasets:[{data:vals,backgroundColor:colors.slice(0,labels.length),borderWidth:2,borderColor:'#fff'}]},
-    options:{responsive:true,maintainAspectRatio:false,cutout:'62%',
-      plugins:{legend:{display:!legId,position:'bottom',labels:{font:{family:'Barlow',size:10},color:'#7A887A',padding:8,boxWidth:10}}}}
+  CH[id]=new Chart(el,{type:'doughnut',
+    data:{labels,datasets:[{data:vals,backgroundColor:colors||PAL.slice(0,labels.length),borderWidth:2,borderColor:'#fff'}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'64%',plugins:{legend:{display:false}}}
   });
   if(legId){
     const le=document.getElementById(legId);if(!le)return;
-    le.innerHTML=labels.map((l,i)=>`<div class="cli"><div class="cld" style="background:${colors[i]}"></div>${l} (${vals[i]})</div>`).join('');
+    le.innerHTML=labels.map((l,i)=>`<div class="cli"><div class="cld" style="background:${(colors||PAL)[i]}"></div>${l}&nbsp;(${vals[i].toLocaleString('es-CO')})</div>`).join('');
   }
 }
 
-function tbl(hid,bid,data,lim){
-  const h=document.getElementById(hid),b=document.getElementById(bid);
-  if(!h||!b)return;
-  if(!data||!data.length){
-    h.innerHTML='<th>Estado</th>';
-    b.innerHTML='<tr><td style="color:var(--ora);text-align:center;padding:16px;font-weight:600">⚠ Sin datos · Publica el Sheet completo en Archivo → Compartir → Publicar en la web</td></tr>';
-    return;
-  }
-  const cols=Object.keys(data[0]);
-  h.innerHTML=cols.map(c=>`<th>${c}</th>`).join('');
-  b.innerHTML=(data.slice(0,lim||120)).map(r=>`<tr>${cols.map(c=>{
-    const v=r[c]||'—',lo=v.toLowerCase();
-    const cl=lo.includes('activ')?'pg':lo.includes('pend')||lo.includes('proceso')?'py':lo.includes('cancel')||lo.includes('inactiv')||lo.includes('rechaz')?'pr':'';
-    return `<td>${cl&&v!=='—'?`<span class="pl ${cl}">${v}</span>`:v}</td>`;
-  }).join('')}</tr>`).join('');
-}
+function renderAll(){
+  const D=DATA;
 
-function tables(){
-  tbl('dh','db',D.droguerias,80);
-  tbl('drh','drb',D.droguerias,300);
-  tbl('lah','lab',D.landfast,300);
-  tbl('peh','peb',D.pendientes,300);
-  tbl('pch','pcb',D.percapita,300);
-  tbl('tuh','tub',D.tutelas,300);
-}
+  // RESUMEN
+  const dm=D.droguerias.por_mes;
+  bar('c-drog-mes',Object.keys(dm),Object.values(dm),[G,G,G,G,G]);
+  const entregado=D.pendientes.por_novedad['ENTREGADO']||0;
+  donut('c-ans-donut',['Entregado','No entregado'],[entregado,D.pendientes.total-entregado],[G,R],'l-ans');
+  const c8=Object.entries(D.droguerias.por_ciudad).slice(0,8);
+  hbar('c-ciudad',c8.map(x=>x[0]),c8.map(x=>x[1]));
+  const pnov=Object.entries(D.pendientes.por_novedad).filter(x=>x[0]!='ENTREGADO').slice(0,7);
+  hbar('c-novedades',pnov.map(x=>x[0]),pnov.map(x=>x[1]),[O,R,Y,PU,B,T,GN]);
 
-function filters(){
-  const pe=D.pendientes||[];
-  const dcols=Object.keys(pe[0]||{}).filter(c=>pe.slice(0,5).some(r=>/\d{4}/.test(r[c]||'')));
-  if(dcols.length){
-    const months=[...new Set(pe.map(r=>r[dcols[0]]?.substring(0,7)).filter(m=>m&&m.includes('-')))].sort();
-    const sel=document.getElementById('fm');
-    months.forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=m;sel.appendChild(o);});
-  }
-}
+  // DROGUERÍAS
+  const tipos=Object.entries(D.droguerias.por_tipo);
+  hbar('c-tipo',tipos.map(x=>x[0]),tipos.map(x=>x[1]));
+  const nd=Object.entries(D.droguerias.por_novedad).filter(x=>x[0]!='SIN NOVEDAD');
+  hbar('c-nov-drog',nd.map(x=>x[0]),nd.map(x=>x[1]),[O,R,Y,PU,B,T]);
+  const ce=Object.entries(D.droguerias.por_cedi);
+  hbar('c-cedi',ce.map(x=>x[0].replace('CRUZ VERDE ','CV ').replace('MEDICARTE ','MC ')),ce.map(x=>x[1]));
+  const dp=Object.entries(D.droguerias.por_depto);
+  hbar('c-depto',dp.map(x=>x[0]),dp.map(x=>x[1]));
 
-function af(){
-  let data=D.droguerias||[];
-  const est=document.getElementById('fe').value;
-  if(est){const k=col1(data,['estado','status']);if(k)data=data.filter(r=>(r[k]||'').toLowerCase().includes(est.toLowerCase()));}
-  t('rc',data.length+' registros');
-  const cols=Object.keys((D.droguerias||[{}])[0]);
-  const b=document.getElementById('db');
-  if(b)b.innerHTML=data.slice(0,80).map(r=>`<tr>${cols.map(c=>{const v=r[c]||'—',lo=v.toLowerCase();const cl=lo.includes('activ')?'pg':lo.includes('pend')?'py':lo.includes('inactiv')?'pr':'';return `<td>${cl&&v!=='—'?`<span class="pl ${cl}">${v}</span>`:v}</td>`;}).join('')}</tr>`).join('');
-}
+  // PENDIENTES
+  const pm=D.pendientes.por_mes;
+  line('c-pend-mes',Object.keys(pm),Object.values(pm),G);
+  const pn=Object.entries(D.pendientes.por_novedad);
+  donut('c-pend-nov',pn.map(x=>x[0]),pn.map(x=>x[1]),[G,O,R,Y,B,PU,T,'#795548'],null);
+  if(CH['c-pend-nov']){CH['c-pend-nov'].options.plugins.legend={display:true,position:'right',labels:{font:{family:'Barlow',size:10},color:'#7A887A',padding:8,boxWidth:10}};CH['c-pend-nov'].update();}
+  const pc=Object.entries(D.pendientes.por_ciudad);
+  hbar('c-pend-ciudad',pc.map(x=>x[0]),pc.map(x=>x[1]));
 
-let stimer;
-function st(){
-  clearTimeout(stimer);
-  stimer=setTimeout(()=>{
-    const q=document.getElementById('sq').value.toLowerCase();
-    const data=(D.droguerias||[]).filter(r=>!q||Object.values(r).some(v=>v.toLowerCase&&v.toLowerCase().includes(q)));
-    const cols=Object.keys((D.droguerias||[{}])[0]);
-    const b=document.getElementById('db');
-    if(b)b.innerHTML=data.slice(0,80).map(r=>`<tr>${cols.map(c=>{const v=r[c]||'—',lo=v.toLowerCase();const cl=lo.includes('activ')?'pg':lo.includes('pend')?'py':lo.includes('inactiv')?'pr':'';return `<td>${cl&&v!=='—'?`<span class="pl ${cl}">${v}</span>`:v}</td>`;}).join('')}</tr>`).join('');
-  },300);
+  // TUTELAS
+  const tc=Object.entries(D.tutelas.por_cedi);
+  hbar('c-tut-cedi',tc.map(x=>x[0].replace('CRUZ VERDE ','CV ').replace('PENDIENTES','')),tc.map(x=>x[1]),[R,R,R,R,R,R]);
+  const tn=Object.entries(D.tutelas.por_novedad);
+  donut('c-tut-nov',tn.map(x=>x[0]),tn.map(x=>x[1]),[G,O,R,Y],'l-tut');
+  const tm=D.tutelas.por_mes;
+  bar('c-tut-mes',Object.keys(tm),Object.values(tm),[R,R,R,R,R]);
+
+  // LANDFAST
+  const lm=D.landfast.por_mes;
+  const lk=Object.keys(lm).filter(k=>/^\d{4}-\d{2}$/.test(k));
+  bar('c-land-mes',lk,lk.map(k=>lm[k]),[B,B,B,B,B,B,B,B,B,B,B]);
+  donut('c-land-sla',['Cumple SLA','Fuera de SLA'],[D.landfast.cumple['SI']||0,D.landfast.cumple['NO']||0],[G,R],'l-land');
+  const lc=Object.entries(D.landfast.por_ciudad);
+  bar('c-land-ciudad',lc.map(x=>x[0]),lc.map(x=>x[1]),[B,B,B,B]);
 }
 
 function go(id){
@@ -481,20 +359,8 @@ function go(id){
   document.querySelector(`[onclick="go('${id}')"]`).classList.add('active');
 }
 
-function rl(){D={};Object.values(CH).forEach(c=>c.destroy());CH={};loadAll();}
-
-function exp(){
-  const data=D.droguerias||[];
-  if(!data.length)return alert('Sin datos para exportar.');
-  const cols=Object.keys(data[0]);
-  const csv=[cols.join(','),...data.map(r=>cols.map(c=>`"${(r[c]||'').replace(/"/g,'""')}"`).join(','))].join('\n');
-  const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,\uFEFF'+encodeURIComponent(csv);
-  a.download='cruzverde_datos.csv';a.click();
-}
-
-document.getElementById('hd').textContent=new Date().toLocaleDateString('es-CO',{weekday:'short',year:'numeric',month:'short',day:'numeric'});
-
-loadAll();
+document.getElementById('hdate').textContent=new Date().toLocaleDateString('es-CO',{weekday:'short',year:'numeric',month:'short',day:'numeric'});
+renderAll();
 </script>
 </body>
 </html>
