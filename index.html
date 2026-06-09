@@ -158,7 +158,7 @@ tbody tr:hover{background:var(--bg)}
   </div>
   <div class="hmeta">
     <div class="hmeta-info">
-      <div class="hbadge" id="records-badge"><div class="dot"></div><span id="records-count">305,275</span> registros cargados</div>
+      <div class="hbadge" id="records-badge"><div class="dot"></div><span id="records-count">—</span> registros cargados</div>
       <div class="hdate" id="hdate"></div>
     </div>
     <div class="refresh-wrap">
@@ -212,37 +212,21 @@ tbody tr:hover{background:var(--bg)}
     <div class="fsep"></div>
     <select class="fsel" id="f-ops-mes" onchange="applyOpsFilters()">
       <option value="">📅 Todos los meses</option>
-      <optgroup label="Confirmados">
-        <option value="2026-01">Enero 2026</option>
-        <option value="2026-02">Febrero 2026</option>
-        <option value="2026-03">Marzo 2026</option>
-        <option value="2026-04">Abril 2026</option>
-      </optgroup>
-      <optgroup label="Programados en sistema">
-        <option value="2026-05">Mayo 2026</option>
-        <option value="2026-06">Junio 2026</option>
-        <option value="2026-07">Julio 2026</option>
-        <option value="2026-08">Agosto 2026</option>
-        <option value="2026-09">Septiembre 2026</option>
-        <option value="2026-10">Octubre 2026</option>
-        <option value="2026-11">Noviembre 2026</option>
-        <option value="2026-12">Diciembre 2026</option>
-      </optgroup>
     </select>
     <button class="fbtn-reset" onclick="resetFilters('ops')">✕ Limpiar filtros</button>
     <span class="ftag" id="f-ops-tag" style="display:none">Activos <span class="ftag-count" id="f-ops-count">0</span></span>
   </div>
 
   <div class="kg" id="ops-kg">
-    <div class="kc" data-module="drog"><div class="ka" style="background:var(--g)"></div><div class="ki">🏥</div><div class="kl">Servicios Droguerías</div><div class="kv" style="color:var(--g)" id="ops-kv-drog">73,419</div><div class="kd ku" id="ops-ks-drog">↑ Ene–Abr 2026</div></div>
-    <div class="kc" data-module="pend"><div class="ka" style="background:var(--y)"></div><div class="ki">📋</div><div class="kl">Pendientes</div><div class="kv" id="ops-kv-pend">232,269</div><div class="kd ku" id="ops-ks-pend">ANS 86.5%</div></div>
-    <div class="kc" data-module="tut"><div class="ka" style="background:var(--red)"></div><div class="ki">⚖️</div><div class="kl">Tutelas</div><div class="kv" style="color:var(--red)" id="ops-kv-tut">371</div><div class="kd ku" id="ops-ks-tut">88.1% entregado</div></div>
-    <div class="kc" data-module="land"><div class="ka" style="background:var(--blu)"></div><div class="ki">🚚</div><div class="kl">Guías Landfast</div><div class="kv" style="color:var(--blu)" id="ops-kv-land">216</div><div class="kd kw" id="ops-ks-land">74.5% en tiempo</div></div>
-    <div class="kc" data-module="pend"><div class="ka" style="background:var(--ora)"></div><div class="ki">📦</div><div class="kl">Tasa entrega global</div><div class="kv" style="color:var(--ora)" id="ops-kv-tasa">86.5%</div><div class="ks">pendientes ANS</div></div>
+    <div class="kc" data-module="drog"><div class="ka" style="background:var(--g)"></div><div class="ki">🏥</div><div class="kl">Servicios Droguerías</div><div class="kv" style="color:var(--g)" id="ops-kv-drog">—</div><div class="kd ku" id="ops-ks-drog">Desde base</div></div>
+    <div class="kc" data-module="pend"><div class="ka" style="background:var(--y)"></div><div class="ki">📋</div><div class="kl">Pendientes</div><div class="kv" id="ops-kv-pend">—</div><div class="kd ku" id="ops-ks-pend">Desde base</div></div>
+    <div class="kc" data-module="tut"><div class="ka" style="background:var(--red)"></div><div class="ki">⚖️</div><div class="kl">Tutelas</div><div class="kv" style="color:var(--red)" id="ops-kv-tut">—</div><div class="kd ku" id="ops-ks-tut">Desde base</div></div>
+    <div class="kc" data-module="land"><div class="ka" style="background:var(--blu)"></div><div class="ki">🚚</div><div class="kl">Guías Landfast</div><div class="kv" style="color:var(--blu)" id="ops-kv-land">—</div><div class="kd kw" id="ops-ks-land">Desde base</div></div>
+    <div class="kc" data-module="pend"><div class="ka" style="background:var(--ora)"></div><div class="ki">📦</div><div class="kl">Tasa entrega global</div><div class="kv" style="color:var(--ora)" id="ops-kv-tasa">—</div><div class="ks">pendientes ANS</div></div>
   </div>
   <div class="cg c3">
     <div class="cc">
-      <div class="chd"><div><div class="ct">Servicios por mes — Droguerías</div><div class="cst" id="ops-drog-mes-sub">Ene–Dic 2026 · confirmados Ene–Abr</div></div><span class="cb cbg">HISTÓRICO</span></div>
+      <div class="chd"><div><div class="ct">Servicios por mes — Droguerías</div><div class="cst" id="ops-drog-mes-sub">Datos cargados desde la base</div></div><span class="cb cbg">HISTÓRICO</span></div>
       <div style="position:relative;width:100%;height:220px"><canvas id="c-drog-mes" role="img" aria-label="Droguerías por mes"></canvas></div>
     </div>
     <div class="cc">
@@ -268,7 +252,7 @@ tbody tr:hover{background:var(--bg)}
      Filtros: Ciudad, Mes, Tipo de servicio
 ════════════════════════════════════════════════════════ -->
 <div class="page" id="page-drog">
-  <div class="ph"><div><div class="pt">Droguerías — Servicios</div><div class="ps" id="drog-ps">73,419 registros · dispensación domiciliaria y entregas</div></div></div>
+  <div class="ph"><div><div class="pt">Droguerías — Servicios</div><div class="ps" id="drog-ps">—</div></div></div>
 
   <!-- FILTER BAR -->
   <div class="fbar">
@@ -276,57 +260,25 @@ tbody tr:hover{background:var(--bg)}
     <span class="fbar-label">Filtrar por</span>
     <select class="fsel" id="f-drog-ciudad" onchange="applyDrogFilters()">
       <option value="">🏙️ Todas las ciudades</option>
-      <option value="BOGOTA">Bogotá</option>
-      <option value="CALI">Cali</option>
-      <option value="MANIZALES">Manizales</option>
-      <option value="PEREIRA">Pereira</option>
-      <option value="PASTO">Pasto</option>
-      <option value="ARMENIA">Armenia</option>
-      <option value="POPAYAN">Popayán</option>
-      <option value="IBAGUE">Ibagué</option>
-      <option value="NEIVA">Neiva</option>
-      <option value="TUNJA">Tunja</option>
     </select>
     <div class="fsep"></div>
     <select class="fsel" id="f-drog-mes" onchange="applyDrogFilters()">
       <option value="">📅 Todos los meses</option>
-      <optgroup label="Ene–Abr 2026 (confirmados)">
-        <option value="2026-01">Enero 2026</option>
-        <option value="2026-02">Febrero 2026</option>
-        <option value="2026-03">Marzo 2026</option>
-        <option value="2026-04">Abril 2026</option>
-      </optgroup>
-      <optgroup label="May–Dic 2026 (programados)">
-        <option value="2026-05">Mayo 2026</option>
-        <option value="2026-06">Junio 2026</option>
-        <option value="2026-07">Julio 2026</option>
-        <option value="2026-08">Agosto 2026</option>
-        <option value="2026-09">Septiembre 2026</option>
-        <option value="2026-10">Octubre 2026</option>
-        <option value="2026-11">Noviembre 2026</option>
-        <option value="2026-12">Diciembre 2026</option>
-      </optgroup>
     </select>
     <div class="fsep"></div>
     <select class="fsel" id="f-drog-tipo" onchange="applyDrogFilters()">
       <option value="">📦 Todos los tipos</option>
-      <option value="DISPENSACION">Dispensación</option>
-      <option value="TRASLADO DISPENSACION">Traslado Dispensación</option>
-      <option value="VENTA MOSTRADOR DOMICILIO">Venta Mostrador Dom.</option>
-      <option value="SALUD EN CASA">Salud en Casa</option>
-      <option value="ENTREGA DE PENDIENTES">Entrega de Pendientes</option>
-      <option value="ENTREGA CLINICAS">Entrega Clínicas</option>
     </select>
     <button class="fbtn-reset" onclick="resetFilters('drog')">✕ Limpiar filtros</button>
     <span class="ftag" id="f-drog-tag" style="display:none">Activos <span class="ftag-count" id="f-drog-count">0</span></span>
   </div>
 
   <div class="srow" id="drog-srow" style="grid-template-columns:repeat(5,1fr)">
-    <div class="sc"><div class="sv" style="color:var(--g)" id="drog-total">73,419</div><div class="sl">Total servicios</div></div>
-    <div class="sc"><div class="sv" style="color:var(--g)" id="drog-fin">73,406</div><div class="sl">Finalizados</div></div>
-    <div class="sc"><div class="sv" style="color:var(--red)" id="drog-can">13</div><div class="sl">Cancelados</div></div>
-    <div class="sc"><div class="sv" style="color:var(--blu)" id="drog-ciu">12</div><div class="sl">Ciudades activas</div></div>
-    <div class="sc" style="border:2px solid var(--g)"><div class="sv" style="color:var(--g)" id="drog-pct">99.98%</div><div class="sl">✅ % Cumplimiento</div><div style="font-size:10px;color:var(--g3);margin-top:2px">Finalizados / Total</div></div>
+    <div class="sc"><div class="sv" style="color:var(--g)" id="drog-total">—</div><div class="sl">Total servicios</div></div>
+    <div class="sc"><div class="sv" style="color:var(--g)" id="drog-fin">—</div><div class="sl">Finalizados</div></div>
+    <div class="sc"><div class="sv" style="color:var(--red)" id="drog-can">—</div><div class="sl">Cancelados</div></div>
+    <div class="sc"><div class="sv" style="color:var(--blu)" id="drog-ciu">—</div><div class="sl">Ciudades activas</div></div>
+    <div class="sc" style="border:2px solid var(--g)"><div class="sv" style="color:var(--g)" id="drog-pct">—</div><div class="sl">✅ % Cumplimiento</div><div style="font-size:10px;color:var(--g3);margin-top:2px">Finalizados / Total</div></div>
   </div>
   <div class="cg c2">
     <div class="cc">
@@ -353,16 +305,7 @@ tbody tr:hover{background:var(--bg)}
     <div class="tc"><table>
       <thead><tr><th>#</th><th>CEDI</th><th>Servicios</th><th>% Total</th><th>Volumen</th></tr></thead>
       <tbody id="drog-table-body">
-        <tr><td>1</td><td><strong>CV DOMICILIOS SANTA ROSA</strong></td><td>14,585</td><td>19.9%</td><td><div class="pbw"><div class="pbf" style="width:100%;background:var(--g)"></div></div></td></tr>
-        <tr><td>2</td><td><strong>CV CALLE 13</strong></td><td>14,217</td><td>19.4%</td><td><div class="pbw"><div class="pbf" style="width:97%;background:var(--g)"></div></div></td></tr>
-        <tr><td>3</td><td><strong>CV SURA MC ROSALES</strong></td><td>5,818</td><td>7.9%</td><td><div class="pbw"><div class="pbf" style="width:40%;background:var(--g)"></div></div></td></tr>
-        <tr><td>4</td><td><strong>CV SURA MC MARAYA</strong></td><td>4,824</td><td>6.6%</td><td><div class="pbw"><div class="pbf" style="width:33%;background:var(--g)"></div></div></td></tr>
-        <tr><td>5</td><td><strong>CLINICA COLOMBIA</strong></td><td>4,162</td><td>5.7%</td><td><div class="pbw"><div class="pbf" style="width:29%;background:var(--g)"></div></div></td></tr>
-        <tr><td>6</td><td><strong>CV ARMENIA CARRERA 13</strong></td><td>2,630</td><td>3.6%</td><td><div class="pbw"><div class="pbf" style="width:18%;background:var(--g)"></div></div></td></tr>
-        <tr><td>7</td><td><strong>CAL-714-CV MC PASOANCHO</strong></td><td>2,518</td><td>3.4%</td><td><div class="pbw"><div class="pbf" style="width:17%;background:var(--g)"></div></div></td></tr>
-        <tr><td>8</td><td><strong>CV CARRERA 42</strong></td><td>2,431</td><td>3.3%</td><td><div class="pbw"><div class="pbf" style="width:17%;background:var(--g)"></div></div></td></tr>
-        <tr><td>9</td><td><strong>FLO-139-CV FLORENCIA</strong></td><td>1,361</td><td>1.9%</td><td><div class="pbw"><div class="pbf" style="width:9%;background:var(--g)"></div></div></td></tr>
-        <tr><td>10</td><td><strong>CV SAN SIMON</strong></td><td>1,303</td><td>1.8%</td><td><div class="pbw"><div class="pbf" style="width:9%;background:var(--g)"></div></div></td></tr>
+        <tr><td colspan="5">Cargando CEDIs desde la base…</td></tr>
       </tbody>
     </table></div>
   </div>
@@ -375,9 +318,9 @@ tbody tr:hover{background:var(--bg)}
 <div class="page" id="page-pend">
   <div class="ph"><div><div class="pt">Gestión de Pendientes</div>
   <div style="background:#E6F5ED;border:1px solid var(--g);border-radius:8px;padding:8px 14px;margin-bottom:10px;font-size:12px;color:var(--gd);display:flex;align-items:center;gap:8px">
-    <span>📅</span><div><strong>Período:</strong> Enero – Mayo 2026 · <strong>232,269 casos</strong> · Tasa de entrega <strong>86.5%</strong></div>
+    <span>📅</span><div><strong>Período:</strong> datos cargados directamente desde la base</div>
   </div>
-  <div class="ps" id="pend-ps">232,269 casos · Ene–May 2026 · ANS 86.5%</div></div></div>
+  <div class="ps" id="pend-ps">—</div></div></div>
   
 
   <!-- FILTER BAR -->
@@ -386,29 +329,14 @@ tbody tr:hover{background:var(--bg)}
     <span class="fbar-label">Filtrar por</span>
     <select class="fsel" id="f-pend-ciudad" onchange="applyPendFilters()">
       <option value="">🏙️ Todas las ciudades</option>
-      <option value="BOGOTA">Bogotá</option>
-      <option value="CALI">Cali</option>
-      <option value="BARRANQUILLA">Barranquilla</option>
-      <option value="BUCARAMANGA">Bucaramanga</option>
-      <option value="IBAGUE">Ibagué</option>
-      <option value="SOLEDAD">Soledad</option>
-      <option value="SANTA MARTA">Santa Marta</option>
-      <option value="PALMIRA">Palmira</option>
     </select>
     <div class="fsep"></div>
         <select class="fsel" id="f-pend-mes" onchange="applyPendFilters()">
       <option value="">📅 Todos los meses</option>
-      <option value="2026-01">Enero 2026 — 72,654</option>
-      <option value="2026-02">Febrero 2026 — 7,044</option>
-      <option value="2026-03">Marzo 2026 — 75,687</option>
-      <option value="2026-04">Abril 2026 — 54,989</option>
-      <option value="2026-05">Mayo 2026 — 21,895</option>
     </select>
     <div class="fsep"></div>
     <select class="fsel" id="f-pend-tipo" onchange="applyPendFilters()">
       <option value="">📦 Todos los tipos</option>
-      <option value="Entrega">Entregas</option>
-      <option value="Tutelas">Tutelas</option>
     </select>
     <div class="fsep"></div>
     <div style="position:relative" id="pend-nov-wrapper">
@@ -416,19 +344,7 @@ tbody tr:hover{background:var(--bg)}
         📌 Todas las novedades
       </button>
       <div id="pend-nov-dropdown" style="display:none;position:absolute;top:calc(100% + 4px);left:0;background:#fff;border:1px solid var(--g2);border-radius:8px;padding:8px 0;z-index:500;min-width:260px;box-shadow:0 4px 16px rgba(0,80,30,.12)">
-        <div style="padding:6px 12px;font-size:10px;font-weight:700;letter-spacing:1px;color:var(--g3);text-transform:uppercase;border-bottom:1px solid var(--g1);margin-bottom:4px">Incluir en cálculo</div>
-        <label class="nov-opt" onclick="stopProp(event)"><input type="checkbox" class="pend-nov-chk" value="ENTREGADO" checked onchange="applyPendFilters()"> Entregado <span style="color:var(--g);font-weight:700">(200,825)</span></label>
-        <label class="nov-opt" onclick="stopProp(event)"><input type="checkbox" class="pend-nov-chk" value="NO HAY QUIEN RECIBA" checked onchange="applyPendFilters()"> Sin quien reciba <span style="color:var(--red);font-weight:700">(11,829)</span></label>
-        <label class="nov-opt" onclick="stopProp(event)"><input type="checkbox" class="pend-nov-chk" value="DIRECCION ERRADA" checked onchange="applyPendFilters()"> Dirección errada <span style="color:var(--ora);font-weight:700">(11,569)</span></label>
-        <label class="nov-opt" onclick="stopProp(event)"><input type="checkbox" class="pend-nov-chk" value="DEVUELTO A CENTRAL" checked onchange="applyPendFilters()"> Devuelto a central <span style="color:var(--pur);font-weight:700">(6,056)</span></label>
-        <label class="nov-opt" onclick="stopProp(event)"><input type="checkbox" class="pend-nov-chk" value="NO CONOCEN AL DESTINATARIO" checked onchange="applyPendFilters()"> No conocen destinatario <span style="color:var(--g3);font-weight:700">(1,023)</span></label>
-        <label class="nov-opt" onclick="stopProp(event)"><input type="checkbox" class="pend-nov-chk" value="FUERA DE COBERTURA" checked onchange="applyPendFilters()"> Fuera de cobertura <span style="color:var(--g3);font-weight:700">(317)</span></label>
-        <label class="nov-opt" onclick="stopProp(event)"><input type="checkbox" class="pend-nov-chk" value="NO LLEGO FISICO" checked onchange="applyPendFilters()"> No llegó físico <span style="color:var(--g3);font-weight:700">(191)</span></label>
-        <label class="nov-opt" onclick="stopProp(event)"><input type="checkbox" class="pend-nov-chk" value="CLIENTE SE NEGO A RECIBIR" checked onchange="applyPendFilters()"> Cliente se negó <span style="color:var(--g3);font-weight:700">(178)</span></label>
-        <div style="padding:6px 12px 2px;border-top:1px solid var(--g1);margin-top:4px;display:flex;gap:8px">
-          <button onclick="toggleAllNov(true)" style="flex:1;background:var(--gl);border:1px solid var(--g);border-radius:4px;padding:4px;font-size:10px;font-weight:700;color:var(--g);cursor:pointer">✓ Todas</button>
-          <button onclick="toggleAllNov(false)" style="flex:1;background:#fff;border:1px solid var(--g2);border-radius:4px;padding:4px;font-size:10px;font-weight:700;color:var(--g3);cursor:pointer">✕ Ninguna</button>
-        </div>
+        <div style="padding:8px 12px;font-size:11px;color:var(--g3)">Opciones cargadas desde la base</div>
       </div>
     </div>
     <button class="fbtn-reset" onclick="resetFilters('pend')">✕ Limpiar filtros</button>
@@ -436,15 +352,15 @@ tbody tr:hover{background:var(--bg)}
   </div>
 
   <div class="srow" style="grid-template-columns:repeat(5,1fr)">
-    <div class="sc"><div class="sv" style="color:var(--g)" id="pend-entregados">200,825</div><div class="sl">Entregados</div></div>
-    <div class="sc"><div class="sv" style="color:var(--red)" id="pend-sinquien">11,829</div><div class="sl">Sin quien reciba</div></div>
-    <div class="sc"><div class="sv" style="color:var(--ora)" id="pend-direrr">11,569</div><div class="sl">Dirección errada</div></div>
-    <div class="sc"><div class="sv" style="color:var(--pur,#7B1FA2)" id="pend-devuelto">6,056</div><div class="sl">Devuelto a central</div></div>
-    <div class="sc" style="border:2px solid var(--g)"><div class="sv" style="color:var(--g)" id="pend-pct-cumpl">86.5%</div><div class="sl">✅ % Cumplimiento</div><div style="font-size:10px;color:var(--g3);margin-top:2px" id="pend-pct-sub">Entregados / Total novedades sel.</div></div>
+    <div class="sc"><div class="sv" style="color:var(--g)" id="pend-entregados">—</div><div class="sl">Entregados</div></div>
+    <div class="sc"><div class="sv" style="color:var(--red)" id="pend-sinquien">—</div><div class="sl">Sin quien reciba</div></div>
+    <div class="sc"><div class="sv" style="color:var(--ora)" id="pend-direrr">—</div><div class="sl">Dirección errada</div></div>
+    <div class="sc"><div class="sv" style="color:var(--pur,#7B1FA2)" id="pend-devuelto">—</div><div class="sl">Devuelto a central</div></div>
+    <div class="sc" style="border:2px solid var(--g)"><div class="sv" style="color:var(--g)" id="pend-pct-cumpl">—</div><div class="sl">✅ % Cumplimiento</div><div style="font-size:10px;color:var(--g3);margin-top:2px" id="pend-pct-sub">Entregados / Total novedades sel.</div></div>
   </div>
   <div class="cg c2">
     <div class="cc">
-      <div class="chd"><div><div class="ct">Volumen mensual de pendientes</div><div class="cst" id="pend-mes-sub">2026</div></div><span class="cb cby">TENDENCIA</span></div>
+      <div class="chd"><div><div class="ct">Volumen mensual de pendientes</div><div class="cst" id="pend-mes-sub">Desde base</div></div><span class="cb cby">TENDENCIA</span></div>
       <div style="position:relative;width:100%;height:230px"><canvas id="c-pend-mes" role="img" aria-label="Pendientes mes"></canvas></div>
     </div>
     <div class="cc">
@@ -463,7 +379,7 @@ tbody tr:hover{background:var(--bg)}
      Filtros: CEDI, Mes, Novedad/resultado
 ════════════════════════════════════════════════════════ -->
 <div class="page" id="page-tut">
-  <div class="ph"><div><div class="pt">Gestión de Tutelas</div><div class="ps" id="tut-ps">371 casos · tasa de entrega 88.1%</div></div></div>
+  <div class="ph"><div><div class="pt">Gestión de Tutelas</div><div class="ps" id="tut-ps">—</div></div></div>
 
   <!-- FILTER BAR -->
   <div class="fbar">
@@ -471,40 +387,25 @@ tbody tr:hover{background:var(--bg)}
     <span class="fbar-label">Filtrar por</span>
     <select class="fsel" id="f-tut-cedi" onchange="applyTutFilters()">
       <option value="">🏢 Todos los CEDIs</option>
-      <option value="CRUZ VERDE PENDIENTES Depot">CV PENDIENTES Depot</option>
-      <option value="CRUZ VERDE CALI PENDIENTES">CV CALI PENDIENTES</option>
-      <option value="CRUZ VERDE PENDIENTES BARRANQUILLA">CV BARRANQUILLA</option>
-      <option value="CRUZ VERDE IBAGUE PENDIENTES">CV IBAGUÉ</option>
-      <option value="CRUZ VERDE BUCARAMANGA PENDIENTES">CV BUCARAMANGA</option>
-      <option value="CRUZ VERDE SANTA MARTA PENDIENTES">CV SANTA MARTA</option>
     </select>
     <div class="fsep"></div>
         <select class="fsel" id="f-tut-mes" onchange="applyTutFilters()">
       <option value="">📅 Todos los meses</option>
-      <option value="2026-01">Enero 2026 — 131</option>
-      <option value="2026-02">Febrero 2026 — 13</option>
-      <option value="2026-03">Marzo 2026 — 100</option>
-      <option value="2026-04">Abril 2026 — 85</option>
-      <option value="2026-05">Mayo 2026 — 42</option>
     </select>
     <div class="fsep"></div>
     <select class="fsel" id="f-tut-resultado" onchange="applyTutFilters()">
       <option value="">📌 Todos los resultados</option>
-      <option value="ENTREGADO">Entregado</option>
-      <option value="NO HAY QUIEN RECIBA">Sin quien reciba</option>
-      <option value="DEVUELTO A CENTRAL">Devuelto a central</option>
-      <option value="DESTINATARIO SE TRASLADO">Destinatario trasladado</option>
     </select>
     <button class="fbtn-reset" onclick="resetFilters('tut')">✕ Limpiar filtros</button>
     <span class="ftag" id="f-tut-tag" style="display:none">Activos <span class="ftag-count" id="f-tut-count">0</span></span>
   </div>
 
   <div class="srow" style="grid-template-columns:repeat(5,1fr)">
-    <div class="sc"><div class="sv" style="color:var(--g)" id="tut-entregadas">327</div><div class="sl">Entregadas</div></div>
-    <div class="sc"><div class="sv" style="color:var(--red)" id="tut-sinquien">25</div><div class="sl">Sin quien reciba</div></div>
-    <div class="sc"><div class="sv" style="color:var(--ora)" id="tut-devuelto">17</div><div class="sl">Devuelto a central</div></div>
-    <div class="sc"><div class="sv" style="color:var(--g)" id="tut-tasa">88.1%</div><div class="sl">Tasa de entrega</div></div>
-    <div class="sc" style="border:2px solid var(--red)"><div class="sv" style="color:var(--red)" id="tut-pct">88.1%</div><div class="sl">✅ % Cumplimiento</div><div style="font-size:10px;color:var(--g3);margin-top:2px">Entregadas / Total</div></div>
+    <div class="sc"><div class="sv" style="color:var(--g)" id="tut-entregadas">—</div><div class="sl">Entregadas</div></div>
+    <div class="sc"><div class="sv" style="color:var(--red)" id="tut-sinquien">—</div><div class="sl">Sin quien reciba</div></div>
+    <div class="sc"><div class="sv" style="color:var(--ora)" id="tut-devuelto">—</div><div class="sl">Devuelto a central</div></div>
+    <div class="sc"><div class="sv" style="color:var(--g)" id="tut-tasa">—</div><div class="sl">Tasa de entrega</div></div>
+    <div class="sc" style="border:2px solid var(--red)"><div class="sv" style="color:var(--red)" id="tut-pct">—</div><div class="sl">✅ % Cumplimiento</div><div style="font-size:10px;color:var(--g3);margin-top:2px">Entregadas / Total</div></div>
   </div>
   <div class="cg c2">
     <div class="cc">
@@ -536,37 +437,13 @@ tbody tr:hover{background:var(--bg)}
     <span class="fbar-label">Filtrar por</span>
     <select class="fsel" id="f-land-ciudad" onchange="applyLandFilters()">
       <option value="">🏙️ Todas las ciudades</option>
-      <option value="BARRANQUILLA">Barranquilla</option>
-      <option value="BUCARAMANGA">Bucaramanga</option>
-      <option value="IBAGUE">Ibagué</option>
-      <option value="CALI">Cali</option>
     </select>
     <div class="fsep"></div>
     <select class="fsel" id="f-land-mes-desde" onchange="applyLandFilters()">
       <option value="">📅 Desde (mes)</option>
-      <option value="2025-02">Feb 2025</option>
-      <option value="2025-09">Sep 2025</option>
-      <option value="2025-10">Oct 2025</option>
-      <option value="2025-11">Nov 2025</option>
-      <option value="2025-12">Dic 2025</option>
-      <option value="2026-01">Ene 2026</option>
-      <option value="2026-02">Feb 2026</option>
-      <option value="2026-03">Mar 2026</option>
-      <option value="2026-04">Abr 2026</option>
-      <option value="2026-05">May 2026</option>
     </select>
     <select class="fsel" id="f-land-mes-hasta" onchange="applyLandFilters()">
       <option value="">📅 Hasta (mes)</option>
-      <option value="2025-02">Feb 2025</option>
-      <option value="2025-09">Sep 2025</option>
-      <option value="2025-10">Oct 2025</option>
-      <option value="2025-11">Nov 2025</option>
-      <option value="2025-12">Dic 2025</option>
-      <option value="2026-01">Ene 2026</option>
-      <option value="2026-02">Feb 2026</option>
-      <option value="2026-03">Mar 2026</option>
-      <option value="2026-04">Abr 2026</option>
-      <option value="2026-05">May 2026</option>
     </select>
     <div class="fsep"></div>
     <select class="fsel" id="f-land-sla" onchange="applyLandFilters()">
@@ -579,15 +456,15 @@ tbody tr:hover{background:var(--bg)}
   </div>
 
   <div class="srow" style="grid-template-columns:repeat(5,1fr)">
-    <div class="sc"><div class="sv" style="color:var(--g)" id="land-cumple">161</div><div class="sl">Cumple tiempo</div></div>
-    <div class="sc"><div class="sv" style="color:var(--red)" id="land-nocumple">55</div><div class="sl">Fuera de tiempo</div></div>
-    <div class="sc"><div class="sv" style="color:var(--g)" id="land-pct">74.5%</div><div class="sl">Eficiencia SLA</div></div>
-    <div class="sc"><div class="sv" style="color:var(--blu)" id="land-ciu">4</div><div class="sl">Ciudades cubiertas</div></div>
-    <div class="sc" style="border:2px solid var(--blu)"><div class="sv" style="color:var(--blu)" id="land-pct-cumpl">74.5%</div><div class="sl">✅ % Cumplimiento SLA</div><div style="font-size:10px;color:var(--g3);margin-top:2px">Cumple / Total guías</div></div>
+    <div class="sc"><div class="sv" style="color:var(--g)" id="land-cumple">—</div><div class="sl">Cumple tiempo</div></div>
+    <div class="sc"><div class="sv" style="color:var(--red)" id="land-nocumple">—</div><div class="sl">Fuera de tiempo</div></div>
+    <div class="sc"><div class="sv" style="color:var(--g)" id="land-pct">—</div><div class="sl">Eficiencia SLA</div></div>
+    <div class="sc"><div class="sv" style="color:var(--blu)" id="land-ciu">—</div><div class="sl">Ciudades cubiertas</div></div>
+    <div class="sc" style="border:2px solid var(--blu)"><div class="sv" style="color:var(--blu)" id="land-pct-cumpl">—</div><div class="sl">✅ % Cumplimiento SLA</div><div style="font-size:10px;color:var(--g3);margin-top:2px">Cumple / Total guías</div></div>
   </div>
   <div class="cg c2">
     <div class="cc">
-      <div class="chd"><div><div class="ct">Guías despachadas por mes</div><div class="cst" id="land-mes-sub">Sep 2025 – May 2026</div></div><span class="cb cbb">TENDENCIA</span></div>
+      <div class="chd"><div><div class="ct">Guías despachadas por mes</div><div class="cst" id="land-mes-sub">Desde base</div></div><span class="cb cbb">TENDENCIA</span></div>
       <div style="position:relative;width:100%;height:230px"><canvas id="c-land-mes" role="img" aria-label="Landfast mes"></canvas></div>
     </div>
     <div class="cc">
@@ -609,7 +486,166 @@ tbody tr:hover{background:var(--bg)}
 /* ═══════════════════════════════════════════════════════════
    DATA
 ═══════════════════════════════════════════════════════════ */
-const DATA = {"droguerias": {"total": 73419, "por_ciudad": {"BOGOTA": 18920, "CALI": 17556, "MANIZALES": 6309, "PEREIRA": 4431, "PASTO": 2435, "ARMENIA": 2315, "POPAYAN": 1536, "IBAGUE": 1324, "NEIVA": 1280, "TUNJA": 1223, "FLORENCIA": 1190, "SANTA MARTA": 1141}, "por_tipo": {"DISPENSACION": 59343, "TRASLADO DISPENSACION": 7183, "VENTA MOSTRADOR DOMICILIO": 1510, "SALUD EN CASA": 1141, "ENTREGA DE PENDIENTES": 1037, "ENTREGA CLINICAS": 1012, "VENTA MOSTRADOR DROGUERIA": 784, "TRASLADO VENTA MOSTRADOR - 1": 507, "VENTA CONVENIO": 348, "ENTREGA SUPERVISION CONTROLADA": 324, "TUTELAS": 99, "RECOGIDA CLINICAS": 49, "TRASLADO VENTA DROGUERIA": 42, "ENTREGA DE CONVENIOS": 39, "COBRO DISPENSACION SOS": 1}, "por_novedad": {"SIN NOVEDAD": 68767, "NO HAY USUARIO PARA RECIBIR": 1479, "ENTREGADO PREVIAMENTE": 1380, "DIRECCION ERRADA": 1209, "AUTORIZACIÓN O FORMULA NO VIGENTE": 256, "NO CUENTA CON MEDIO DE PAGO": 157, "GUIA DUPLICADA": 143, "MEDICAMENTO AVERIADO": 18}, "por_cedi": {"CRUZ VERDE DOMICILIOS SANTA ROSA": 14585, "CRUZ VERDE CALLE 13": 14217, "CRUZ VERDE SURA MEDICARTE ROSALES": 5818, "CRUZ VERDE SURA MEDICARTE MARAYA": 4824, "CLINICA COLOMBIA": 4162, "CRUZ VERDE ARMENIA CARRERA 13": 2630, "CAL-714-CRUZ VERDE MEDICARTE PASOANCHO": 2518, "CRUZ VERDE CARRERA 42": 2431, "FLO-139-CRUZ VERDE FLORENCIA": 1361, "CRUZ VERDE SAN SIMON": 1303}, "por_depto": {"Valle del Cauca": 20868, "BOGOTA": 18920, "CALDAS": 6380, "RISARALDA": 5590, "QUINDIO": 2891, "PUTUMAYO": 2435, "CAUCA": 1859, "BOYACA": 1440, "TOLIMA": 1344, "HUILA": 1311}, "por_estado": {"Finalizado": 73406, "Cancelado": 13}, "por_mes": {"2026-01": 13928, "2026-02": 12390, "2026-03": 13802, "2026-04": 13867, "2026-05": 2273, "2026-06": 2931, "2026-07": 2675, "2026-08": 1920, "2026-09": 3019, "2026-10": 2592, "2026-11": 2274, "2026-12": 1748}}, "pendientes": {"total": 232269, "por_novedad": {"ENTREGADO": 200825, "NO HAY QUIEN RECIBA": 11829, "DIRECCION ERRADA": 11569, "NO CONOCEN AL DESTINATARIO": 1023, "FUERA DE COBERTURA": 317, "USUARIO RECLAMO EN DROGUERIA": 111, "NO LLEGO FISICO": 191, "DEVUELTO A CENTRAL": 6056, "CLIENTE SE NEGO A RECIBIR": 178, "DESTINATARIO SE TRASLADO": 136, "AVERIA": 18, "null": 16}, "por_ciudad": {"BOGOTA": 122375, "CALI": 33649, "BARRANQUILLA": 21024, "BUCARAMANGA": 10531, "IBAGUE": 8739, "SOLEDAD": 7606, "SANTA MARTA": 6793, "PALMIRA": 6139}, "por_tipo": {"Entrega": 231898, "Tutelas": 371}, "por_mes": {"2026-01": 72654, "2026-02": 7044, "2026-03": 75687, "2026-04": 54989, "2026-05": 21895}, "tasa_entrega": 86.5}, "tutelas": {"total": 371, "por_novedad": {"ENTREGADO": 327, "NO HAY QUIEN RECIBA": 25, "DESTINATARIO SE TRASLADO": 2, "DEVUELTO A CENTRAL": 17}, "por_cedi": {"CRUZ VERDE PENDIENTES Depot": 193, "CRUZ VERDE PENDIENTES BARRANQUILLA": 33, "CRUZ VERDE CALI PENDIENTES": 118, "CRUZ VERDE BUCARAMANGA PENDIENTES": 5, "CRUZ VERDE SANTA MARTA PENDIENTES": 4, "CRUZ VERDE IBAGUE PENDIENTES": 18}, "por_mes": {"2026-01": 131, "2026-02": 13, "2026-03": 100, "2026-04": 85, "2026-05": 42}, "tasa_entrega": 88.1}, "landfast": {"total": 216, "por_ciudad": {"BARRANQUILLA": 65, "BUCARAMANGA": 56, "IBAGUE": 54, "CALI": 41}, "por_estado": {"RECIBIDO EN CEDI": 216}, "cumple": {"SI": 161, "NO": 55}, "por_mes": {"2025-02": 2, "2025-09": 21, "2025-10": 30, "2025-11": 33, "2025-12": 29, "2026-01": 26, "2026-02": 22, "2026-03": 22, "2026-04": 21, "2026-05": 6, "2026-10": 3}, "pct_cumple": 74.5}};
+let DATA = {};
+let XDATA = {};
+let DATA_SOURCE = null;
+
+/*
+  Fuente de datos dinámica.
+  - Recomendado: define window.BI_DATA_URL = 'https://tu-api/bi-operacional'
+    o abre el archivo con: index.html?dataUrl=https://tu-api/bi-operacional
+  - También intenta /api/bi-operacional, /api/bi-data y ./bi_data.json.
+  - El endpoint debe devolver JSON en uno de estos formatos:
+      { "data": {...}, "xdata": {...} }
+      { "DATA": {...}, "XDATA": {...} }
+      { "droguerias": {...}, "pendientes": {...}, "tutelas": {...}, "landfast": {...} }
+  - El fetch usa cache:'no-store' y parámetro _ts para evitar caché; así siempre consulta la fuente/base.
+*/
+const BI_DATA_ENDPOINTS = [
+  window.BI_DATA_URL,
+  new URLSearchParams(window.location.search).get('dataUrl'),
+  '/api/bi-operacional',
+  '/api/bi-data',
+  './bi_data.json'
+].filter(Boolean);
+
+function withCacheBuster(url){
+  const u=new URL(url, window.location.href);
+  u.searchParams.set('_ts', Date.now().toString());
+  return u.toString();
+}
+
+async function fetchJsonNoCache(url){
+  const res=await fetch(withCacheBuster(url),{
+    method:'GET',
+    cache:'no-store',
+    headers:{'Accept':'application/json','Cache-Control':'no-cache'}
+  });
+  if(!res.ok) throw new Error('HTTP '+res.status+' en '+url);
+  return await res.json();
+}
+
+function normalizePayload(payload){
+  if(!payload || typeof payload!=='object') throw new Error('Respuesta vacía o inválida');
+  const data = payload.data || payload.DATA || (
+    payload.droguerias || payload.pendientes || payload.tutelas || payload.landfast ? payload : null
+  );
+  const xdata = payload.xdata || payload.XDATA || payload.crossData || payload.cross_data || null;
+  if(!data || !data.droguerias) throw new Error('El JSON no trae data.droguerias');
+  return {data, xdata:xdata || buildXDataFromSummary(data)};
+}
+
+function buildXDataFromSummary(d){
+  const drog=d.droguerias||{};
+  const pend=d.pendientes||{};
+  const tut=d.tutelas||{};
+  const land=d.landfast||{};
+  const objMap=(source, mapper)=>Object.fromEntries(Object.entries(source||{}).map(([k,v])=>[k, mapper(k,v)]));
+  return {
+    drog:{
+      mes:objMap(drog.por_mes,(k,v)=>({total:v,fin:v,can:0,pct:100})),
+      ciudad:objMap(drog.por_ciudad,(k,v)=>({total:v,fin:v,can:0,pct:100})),
+      tipo:objMap(drog.por_tipo,(k,v)=>({total:v,fin:v,can:0,pct:100}))
+    },
+    pend:{
+      mes:objMap(pend.por_mes,(k,v)=>({total:v,entregados:0,pct:0,by_nov:{}})),
+      ciudad:objMap(pend.por_ciudad,(k,v)=>({total:v,entregados:0,pct:0,by_nov:{}})),
+      tipo:objMap(pend.por_tipo,(k,v)=>({total:v,entregados:0,pct:0,by_nov:{}})),
+      ciudad_mes:{}
+    },
+    tut:{
+      mes:objMap(tut.por_mes,(k,v)=>({total:v,entregadas:0,pct:0,by_nov:{}})),
+      cedi:objMap(tut.por_cedi,(k,v)=>({total:v,entregadas:0,pct:0,by_nov:{}})),
+      cedi_mes:{}
+    },
+    land:{
+      mes:objMap(land.por_mes,(k,v)=>({total:v,cumple:0,nocumple:0,pct:0})),
+      ciudad:objMap(land.por_ciudad,(k,v)=>({total:v,cumple:0,nocumple:0,pct:0})),
+      ciudad_mes:{}
+    }
+  };
+}
+
+async function loadDataFromBase(){
+  const errors=[];
+  for(const endpoint of BI_DATA_ENDPOINTS){
+    try{
+      const payload=await fetchJsonNoCache(endpoint);
+      const normalized=normalizePayload(payload);
+      DATA=normalized.data;
+      XDATA=normalized.xdata;
+      DATA_SOURCE=endpoint;
+      return {endpoint};
+    }catch(err){
+      errors.push(endpoint+': '+err.message);
+    }
+  }
+  throw new Error('No se pudo cargar la fuente de datos. Intentos: '+errors.join(' | '));
+}
+
+function clearDashboardValues(){
+  ['records-count','ops-kv-drog','ops-kv-pend','ops-kv-tut','ops-kv-land','ops-kv-tasa','drog-total','drog-fin','drog-can','drog-ciu','drog-pct','pend-entregados','pend-sinquien','pend-direrr','pend-devuelto','pend-pct-cumpl','tut-entregadas','tut-sinquien','tut-devuelto','tut-tasa','tut-pct','land-cumple','land-nocumple','land-pct','land-ciu','land-pct-cumpl'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.textContent='—';
+  });
+  Object.keys(CH).forEach(id=>{if(CH[id]){CH[id].destroy();delete CH[id];}});
+}
+
+function niceLabel(v){
+  if(!v) return '';
+  return v.toString().toLowerCase().replace(/(^|\s|\/|-)([a-záéíóúñ])/g,(m,p,c)=>p+c.toUpperCase());
+}
+function monthLabel(ym){
+  const names=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  const m=/^(\d{4})-(\d{2})$/.exec(ym||'');
+  if(!m) return ym||'';
+  return names[parseInt(m[2],10)-1]+' '+m[1];
+}
+function sortedKeys(obj, mode='value'){
+  const entries=Object.entries(obj||{});
+  if(mode==='month') return entries.map(([k])=>k).sort();
+  return entries.sort((a,b)=>(b[1]?.total ?? b[1] ?? 0)-(a[1]?.total ?? a[1] ?? 0)).map(([k])=>k);
+}
+function safeAttr(v){return String(v).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function setSelectOptions(id, placeholder, keys, labelFn){
+  const el=document.getElementById(id); if(!el) return;
+  const current=el.value;
+  el.innerHTML='<option value="">'+placeholder+'</option>'+keys.map(k=>'<option value="'+safeAttr(k)+'">'+labelFn(k)+'</option>').join('');
+  if(keys.includes(current)) el.value=current;
+}
+function populatePendNovedades(){
+  const dd=document.getElementById('pend-nov-dropdown'); if(!dd) return;
+  const prev={};
+  document.querySelectorAll('.pend-nov-chk').forEach(c=>{prev[c.value]=c.checked;});
+  const entries=Object.entries(DATA.pendientes?.por_novedad||{}).sort((a,b)=>b[1]-a[1]);
+  const labels=entries.map(([k,v])=>{
+    const checked=(k in prev)?prev[k]:true;
+    return '<label class="nov-opt" onclick="stopProp(event)"><input type="checkbox" class="pend-nov-chk" value="'+safeAttr(k)+'" '+(checked?'checked':'')+' onchange="applyPendFilters()"> '+niceLabel(k)+' <span style="color:var(--g3);font-weight:700">('+fmt(v)+')</span></label>';
+  }).join('');
+  dd.innerHTML='<div style="padding:6px 12px;font-size:10px;font-weight:700;letter-spacing:1px;color:var(--g3);text-transform:uppercase;border-bottom:1px solid var(--g1);margin-bottom:4px">Incluir en cálculo</div>'+labels+'<div style="padding:6px 12px 2px;border-top:1px solid var(--g1);margin-top:4px;display:flex;gap:8px"><button onclick="toggleAllNov(true)" style="flex:1;background:var(--gl);border:1px solid var(--g);border-radius:4px;padding:4px;font-size:10px;font-weight:700;color:var(--g);cursor:pointer">✓ Todas</button><button onclick="toggleAllNov(false)" style="flex:1;background:#fff;border:1px solid var(--g2);border-radius:4px;padding:4px;font-size:10px;font-weight:700;color:var(--g3);cursor:pointer">✕ Ninguna</button></div>';
+}
+function populateFiltersFromData(){
+  const monthsAll=Array.from(new Set([
+    ...sortedKeys(DATA.droguerias?.por_mes,'month'),
+    ...sortedKeys(DATA.pendientes?.por_mes,'month'),
+    ...sortedKeys(DATA.tutelas?.por_mes,'month'),
+    ...sortedKeys(DATA.landfast?.por_mes,'month')
+  ])).sort();
+  setSelectOptions('f-ops-mes','📅 Todos los meses',monthsAll,monthLabel);
+  setSelectOptions('f-drog-ciudad','🏙️ Todas las ciudades',sortedKeys(DATA.droguerias?.por_ciudad),niceLabel);
+  setSelectOptions('f-drog-mes','📅 Todos los meses',sortedKeys(DATA.droguerias?.por_mes,'month'),k=>monthLabel(k)+' — '+fmt(DATA.droguerias.por_mes[k]||0));
+  setSelectOptions('f-drog-tipo','📦 Todos los tipos',sortedKeys(DATA.droguerias?.por_tipo),niceLabel);
+  setSelectOptions('f-pend-ciudad','🏙️ Todas las ciudades',sortedKeys(DATA.pendientes?.por_ciudad),niceLabel);
+  setSelectOptions('f-pend-mes','📅 Todos los meses',sortedKeys(DATA.pendientes?.por_mes,'month'),k=>monthLabel(k)+' — '+fmt(DATA.pendientes.por_mes[k]||0));
+  setSelectOptions('f-pend-tipo','📦 Todos los tipos',sortedKeys(DATA.pendientes?.por_tipo),niceLabel);
+  setSelectOptions('f-tut-cedi','🏢 Todos los CEDIs',sortedKeys(DATA.tutelas?.por_cedi),k=>k.replace('CRUZ VERDE ','CV '));
+  setSelectOptions('f-tut-mes','📅 Todos los meses',sortedKeys(DATA.tutelas?.por_mes,'month'),k=>monthLabel(k)+' — '+fmt(DATA.tutelas.por_mes[k]||0));
+  setSelectOptions('f-tut-resultado','📌 Todos los resultados',sortedKeys(DATA.tutelas?.por_novedad),niceLabel);
+  setSelectOptions('f-land-ciudad','🏙️ Todas las ciudades',sortedKeys(DATA.landfast?.por_ciudad),niceLabel);
+  setSelectOptions('f-land-mes-desde','📅 Desde (mes)',sortedKeys(DATA.landfast?.por_mes,'month'),monthLabel);
+  setSelectOptions('f-land-mes-hasta','📅 Hasta (mes)',sortedKeys(DATA.landfast?.por_mes,'month'),monthLabel);
+  populatePendNovedades();
+}
+
 
 const G='#00843D',Y='#FFD100',R='#D32F2F',O='#E65100',B='#1565C0',PU='#7B1FA2',T='#00838F',GN='#558B2F';
 const PAL=[G,Y,O,B,R,PU,T,GN,'#795548','#546E7A'];
@@ -659,7 +695,7 @@ function fmt(n){return Math.round(n).toLocaleString('es-CO')}
    RENDER BASE (sin filtros)
 ═══════════════════════════════════════════════════════════ */
 
-const XDATA = {"drog": {"mes": {"2026-01": {"total": 13928, "fin": 13924, "can": 4, "pct": 100.0}, "2026-02": {"total": 12390, "fin": 12386, "can": 4, "pct": 100.0}, "2026-03": {"total": 13802, "fin": 13801, "can": 1, "pct": 100.0}, "2026-04": {"total": 13867, "fin": 13867, "can": 0, "pct": 100.0}, "2026-05": {"total": 2273, "fin": 2273, "can": 0, "pct": 100.0}, "2026-06": {"total": 2931, "fin": 2931, "can": 0, "pct": 100.0}, "2026-07": {"total": 2675, "fin": 2675, "can": 0, "pct": 100.0}, "2026-08": {"total": 1920, "fin": 1920, "can": 0, "pct": 100.0}, "2026-09": {"total": 3019, "fin": 3018, "can": 1, "pct": 100.0}, "2026-10": {"total": 2592, "fin": 2592, "can": 0, "pct": 100.0}, "2026-11": {"total": 2274, "fin": 2271, "can": 3, "pct": 99.9}, "2026-12": {"total": 1748, "fin": 1748, "can": 0, "pct": 100.0}}, "ciudad": {"BOGOTA": {"total": 18920, "fin": 18913, "can": 7, "pct": 100.0}, "CALI": {"total": 17556, "fin": 17556, "can": 0, "pct": 100.0}, "MANIZALES": {"total": 6309, "fin": 6309, "can": 0, "pct": 100.0}, "PEREIRA": {"total": 4431, "fin": 4431, "can": 0, "pct": 100.0}, "PASTO": {"total": 2435, "fin": 2435, "can": 0, "pct": 100.0}, "ARMENIA": {"total": 2315, "fin": 2315, "can": 0, "pct": 100.0}, "POPAYAN": {"total": 1536, "fin": 1535, "can": 1, "pct": 99.9}, "IBAGUE": {"total": 1324, "fin": 1324, "can": 0, "pct": 100.0}, "NEIVA": {"total": 1280, "fin": 1280, "can": 0, "pct": 100.0}, "TUNJA": {"total": 1223, "fin": 1223, "can": 0, "pct": 100.0}}, "tipo": {"DISPENSACION": {"total": 59343, "fin": 59334, "can": 9, "pct": 100.0}, "TRASLADO DISPENSACION": {"total": 7183, "fin": 7181, "can": 2, "pct": 100.0}, "VENTA MOSTRADOR DOMICILIO": {"total": 1510, "fin": 1509, "can": 1, "pct": 99.9}, "SALUD EN CASA": {"total": 1141, "fin": 1141, "can": 0, "pct": 100.0}, "ENTREGA DE PENDIENTES": {"total": 1037, "fin": 1036, "can": 1, "pct": 99.9}, "ENTREGA CLINICAS": {"total": 1012, "fin": 1012, "can": 0, "pct": 100.0}, "VENTA MOSTRADOR DROGUERIA": {"total": 784, "fin": 784, "can": 0, "pct": 100.0}, "TRASLADO VENTA MOSTRADOR - 1": {"total": 507, "fin": 507, "can": 0, "pct": 100.0}, "VENTA CONVENIO": {"total": 348, "fin": 348, "can": 0, "pct": 100.0}, "ENTREGA SUPERVISION CONTROLADA": {"total": 324, "fin": 324, "can": 0, "pct": 100.0}, "TUTELAS": {"total": 99, "fin": 99, "can": 0, "pct": 100.0}}}, "pend": {"mes": {"2026-01": {"total": 72654, "entregados": 60866, "pct": 83.8, "by_nov": {"ENTREGADO": 60866, "NO HAY QUIEN RECIBA": 4385, "DIRECCION ERRADA": 4480, "NO CONOCEN AL DESTINATARIO": 308, "FUERA DE COBERTURA": 140, "USUARIO RECLAMO EN DROGUERIA": 26, "NO LLEGO FISICO": 44, "DEVUELTO A CENTRAL": 2310, "CLIENTE SE NEGO A RECIBIR": 37, "DESTINATARIO SE TRASLADO": 43, "AVERIA": 11, "null": 4}}, "2026-02": {"total": 7044, "entregados": 6047, "pct": 85.8, "by_nov": {"ENTREGADO": 6047, "DEVUELTO A CENTRAL": 251, "DIRECCION ERRADA": 353, "NO HAY QUIEN RECIBA": 327, "FUERA DE COBERTURA": 14, "NO CONOCEN AL DESTINATARIO": 30, "DESTINATARIO SE TRASLADO": 6, "NO LLEGO FISICO": 3, "USUARIO RECLAMO EN DROGUERIA": 3, "CLIENTE SE NEGO A RECIBIR": 10}}, "2026-03": {"total": 75687, "entregados": 65539, "pct": 86.6, "by_nov": {"ENTREGADO": 65539, "NO HAY QUIEN RECIBA": 3404, "DIRECCION ERRADA": 3921, "NO CONOCEN AL DESTINATARIO": 349, "FUERA DE COBERTURA": 142, "CLIENTE SE NEGO A RECIBIR": 82, "DESTINATARIO SE TRASLADO": 51, "NO LLEGO FISICO": 47, "DEVUELTO A CENTRAL": 2097, "USUARIO RECLAMO EN DROGUERIA": 47, "AVERIA": 5, "null": 3}}, "2026-04": {"total": 54989, "entregados": 48809, "pct": 88.8, "by_nov": {"ENTREGADO": 48809, "DEVUELTO A CENTRAL": 1082, "DIRECCION ERRADA": 2093, "NO HAY QUIEN RECIBA": 2590, "NO CONOCEN AL DESTINATARIO": 211, "FUERA DE COBERTURA": 21, "USUARIO RECLAMO EN DROGUERIA": 26, "DESTINATARIO SE TRASLADO": 27, "CLIENTE SE NEGO A RECIBIR": 36, "NO LLEGO FISICO": 94}}, "2026-05": {"total": 21895, "entregados": 19564, "pct": 89.4, "by_nov": {"ENTREGADO": 19564, "NO HAY QUIEN RECIBA": 1123, "DIRECCION ERRADA": 722, "NO CONOCEN AL DESTINATARIO": 125, "USUARIO RECLAMO EN DROGUERIA": 9, "AVERIA": 2, "DESTINATARIO SE TRASLADO": 9, "CLIENTE SE NEGO A RECIBIR": 13, "DEVUELTO A CENTRAL": 316, "NO LLEGO FISICO": 3, "null": 9}}}, "ciudad": {"BOGOTA": {"total": 122375, "entregados": 101114, "pct": 82.6, "by_nov": {"ENTREGADO": 101114, "NO HAY QUIEN RECIBA": 7613, "DIRECCION ERRADA": 8194, "NO CONOCEN AL DESTINATARIO": 475, "FUERA DE COBERTURA": 309, "USUARIO RECLAMO EN DROGUERIA": 50, "DEVUELTO A CENTRAL": 4438, "CLIENTE SE NEGO A RECIBIR": 98, "AVERIA": 17, "DESTINATARIO SE TRASLADO": 60, "null": 7}}, "BUCARAMANGA": {"total": 10531, "entregados": 9510, "pct": 90.3, "by_nov": {"NO HAY QUIEN RECIBA": 390, "NO CONOCEN AL DESTINATARIO": 52, "ENTREGADO": 9510, "DIRECCION ERRADA": 349, "NO LLEGO FISICO": 16, "DEVUELTO A CENTRAL": 199, "CLIENTE SE NEGO A RECIBIR": 6, "USUARIO RECLAMO EN DROGUERIA": 4, "DESTINATARIO SE TRASLADO": 4, "FUERA DE COBERTURA": 1}}, "CALI": {"total": 33649, "entregados": 30176, "pct": 89.7, "by_nov": {"NO HAY QUIEN RECIBA": 1652, "ENTREGADO": 30176, "USUARIO RECLAMO EN DROGUERIA": 24, "DIRECCION ERRADA": 1063, "NO CONOCEN AL DESTINATARIO": 281, "DEVUELTO A CENTRAL": 304, "CLIENTE SE NEGO A RECIBIR": 32, "DESTINATARIO SE TRASLADO": 45, "NO LLEGO FISICO": 70, "FUERA DE COBERTURA": 1, "null": 1}}, "IBAGUE": {"total": 8739, "entregados": 8560, "pct": 98.0, "by_nov": {"ENTREGADO": 8560, "DIRECCION ERRADA": 56, "NO HAY QUIEN RECIBA": 26, "NO LLEGO FISICO": 33, "DEVUELTO A CENTRAL": 44, "CLIENTE SE NEGO A RECIBIR": 4, "DESTINATARIO SE TRASLADO": 1, "NO CONOCEN AL DESTINATARIO": 14, "FUERA DE COBERTURA": 1}}, "BARRANQUILLA": {"total": 21024, "entregados": 19809, "pct": 94.2, "by_nov": {"NO HAY QUIEN RECIBA": 519, "ENTREGADO": 19809, "DEVUELTO A CENTRAL": 232, "DIRECCION ERRADA": 316, "DESTINATARIO SE TRASLADO": 13, "NO CONOCEN AL DESTINATARIO": 96, "NO LLEGO FISICO": 31, "CLIENTE SE NEGO A RECIBIR": 7, "USUARIO RECLAMO EN DROGUERIA": 1}}, "SANTA MARTA": {"total": 6793, "entregados": 6085, "pct": 89.6, "by_nov": {"NO HAY QUIEN RECIBA": 423, "ENTREGADO": 6085, "DIRECCION ERRADA": 148, "CLIENTE SE NEGO A RECIBIR": 6, "NO CONOCEN AL DESTINATARIO": 18, "DEVUELTO A CENTRAL": 103, "NO LLEGO FISICO": 10}}, "SOLEDAD": {"total": 7606, "entregados": 7119, "pct": 93.6, "by_nov": {"ENTREGADO": 7119, "NO CONOCEN AL DESTINATARIO": 40, "NO HAY QUIEN RECIBA": 180, "DEVUELTO A CENTRAL": 92, "DIRECCION ERRADA": 158, "NO LLEGO FISICO": 8, "DESTINATARIO SE TRASLADO": 4, "CLIENTE SE NEGO A RECIBIR": 4, "USUARIO RECLAMO EN DROGUERIA": 1}}, "PALMIRA": {"total": 6139, "entregados": 5725, "pct": 93.3, "by_nov": {"ENTREGADO": 5725, "NO HAY QUIEN RECIBA": 211, "DIRECCION ERRADA": 135, "NO CONOCEN AL DESTINATARIO": 8, "DEVUELTO A CENTRAL": 40, "NO LLEGO FISICO": 8, "USUARIO RECLAMO EN DROGUERIA": 1, "FUERA DE COBERTURA": 1, "DESTINATARIO SE TRASLADO": 1, "AVERIA": 1, "CLIENTE SE NEGO A RECIBIR": 2, "null": 6}}}, "tipo": {"Entrega": {"total": 231898, "entregados": 200498, "pct": 86.5, "by_nov": {"ENTREGADO": 200498, "NO HAY QUIEN RECIBA": 11804, "DIRECCION ERRADA": 11569, "NO CONOCEN AL DESTINATARIO": 1023, "FUERA DE COBERTURA": 317, "USUARIO RECLAMO EN DROGUERIA": 111, "NO LLEGO FISICO": 191, "DEVUELTO A CENTRAL": 6039, "CLIENTE SE NEGO A RECIBIR": 178, "DESTINATARIO SE TRASLADO": 134, "AVERIA": 18, "null": 16}}, "Tutelas": {"total": 371, "entregados": 327, "pct": 88.1, "by_nov": {"ENTREGADO": 327, "NO HAY QUIEN RECIBA": 25, "DESTINATARIO SE TRASLADO": 2, "DEVUELTO A CENTRAL": 17}}}, "ciudad_mes": {"BOGOTA||2026-01": {"total": 44735, "entregados": 35769, "pct": 80.0}, "BUCARAMANGA||2026-01": {"total": 2647, "entregados": 2387, "pct": 90.2}, "CALI||2026-01": {"total": 8313, "entregados": 7424, "pct": 89.3}, "IBAGUE||2026-01": {"total": 2304, "entregados": 2250, "pct": 97.7}, "BARRANQUILLA||2026-01": {"total": 5034, "entregados": 4799, "pct": 95.3}, "SANTA MARTA||2026-01": {"total": 1591, "entregados": 1418, "pct": 89.1}, "SOLEDAD||2026-01": {"total": 2022, "entregados": 1902, "pct": 94.1}, "PALMIRA||2026-01": {"total": 1547, "entregados": 1449, "pct": 93.7}, "BOGOTA||2026-02": {"total": 3912, "entregados": 3230, "pct": 82.6}, "PALMIRA||2026-02": {"total": 168, "entregados": 162, "pct": 96.4}, "IBAGUE||2026-02": {"total": 251, "entregados": 247, "pct": 98.4}, "BARRANQUILLA||2026-02": {"total": 614, "entregados": 575, "pct": 93.6}, "BUCARAMANGA||2026-02": {"total": 369, "entregados": 333, "pct": 90.2}, "SANTA MARTA||2026-02": {"total": 169, "entregados": 161, "pct": 95.3}, "SOLEDAD||2026-02": {"total": 150, "entregados": 136, "pct": 90.7}, "CALI||2026-02": {"total": 955, "entregados": 838, "pct": 87.7}, "BOGOTA||2026-03": {"total": 37223, "entregados": 30565, "pct": 82.1}, "BARRANQUILLA||2026-03": {"total": 8095, "entregados": 7575, "pct": 93.6}, "SOLEDAD||2026-03": {"total": 2762, "entregados": 2583, "pct": 93.5}, "CALI||2026-03": {"total": 11590, "entregados": 10412, "pct": 89.8}, "PALMIRA||2026-03": {"total": 1824, "entregados": 1710, "pct": 93.8}, "SANTA MARTA||2026-03": {"total": 2415, "entregados": 2204, "pct": 91.3}, "IBAGUE||2026-03": {"total": 3035, "entregados": 2963, "pct": 97.6}, "BUCARAMANGA||2026-03": {"total": 3704, "entregados": 3335, "pct": 90.0}, "BARRANQUILLA||2026-04": {"total": 4912, "entregados": 4645, "pct": 94.6}, "CALI||2026-04": {"total": 8151, "entregados": 7324, "pct": 89.9}, "BOGOTA||2026-04": {"total": 27496, "entregados": 23670, "pct": 86.1}, "SOLEDAD||2026-04": {"total": 1829, "entregados": 1714, "pct": 93.7}, "SANTA MARTA||2026-04": {"total": 1948, "entregados": 1723, "pct": 88.4}, "BUCARAMANGA||2026-04": {"total": 2717, "entregados": 2476, "pct": 91.1}, "PALMIRA||2026-04": {"total": 1808, "entregados": 1698, "pct": 93.9}, "IBAGUE||2026-04": {"total": 2263, "entregados": 2226, "pct": 98.4}, "CALI||2026-05": {"total": 4640, "entregados": 4178, "pct": 90.0}, "BARRANQUILLA||2026-05": {"total": 2369, "entregados": 2215, "pct": 93.5}, "BOGOTA||2026-05": {"total": 9009, "entregados": 7880, "pct": 87.5}, "PALMIRA||2026-05": {"total": 792, "entregados": 706, "pct": 89.1}, "BUCARAMANGA||2026-05": {"total": 1094, "entregados": 979, "pct": 89.5}, "SOLEDAD||2026-05": {"total": 843, "entregados": 784, "pct": 93.0}, "SANTA MARTA||2026-05": {"total": 670, "entregados": 579, "pct": 86.4}, "IBAGUE||2026-05": {"total": 886, "entregados": 874, "pct": 98.6}}}, "tut": {"mes": {"2026-01": {"total": 131, "entregadas": 114, "pct": 87.0, "by_nov": {"ENTREGADO": 114, "NO HAY QUIEN RECIBA": 15, "DESTINATARIO SE TRASLADO": 2}}, "2026-02": {"total": 13, "entregadas": 11, "pct": 84.6, "by_nov": {"ENTREGADO": 11, "NO HAY QUIEN RECIBA": 2}}, "2026-03": {"total": 100, "entregadas": 96, "pct": 96.0, "by_nov": {"ENTREGADO": 96, "NO HAY QUIEN RECIBA": 4}}, "2026-04": {"total": 85, "entregadas": 65, "pct": 76.5, "by_nov": {"ENTREGADO": 65, "NO HAY QUIEN RECIBA": 3, "DEVUELTO A CENTRAL": 17}}, "2026-05": {"total": 42, "entregadas": 41, "pct": 97.6, "by_nov": {"ENTREGADO": 41, "NO HAY QUIEN RECIBA": 1}}}, "cedi": {"CRUZ VERDE PENDIENTES Depot": {"total": 193, "entregadas": 151, "pct": 78.2, "by_nov": {"ENTREGADO": 151, "NO HAY QUIEN RECIBA": 24, "DESTINATARIO SE TRASLADO": 1, "DEVUELTO A CENTRAL": 17}}, "CRUZ VERDE PENDIENTES BARRANQUILLA": {"total": 33, "entregadas": 32, "pct": 97.0, "by_nov": {"ENTREGADO": 32, "NO HAY QUIEN RECIBA": 1}}, "CRUZ VERDE CALI PENDIENTES": {"total": 118, "entregadas": 117, "pct": 99.2, "by_nov": {"ENTREGADO": 117, "DESTINATARIO SE TRASLADO": 1}}, "CRUZ VERDE BUCARAMANGA PENDIENTES": {"total": 5, "entregadas": 5, "pct": 100.0, "by_nov": {"ENTREGADO": 5}}, "CRUZ VERDE SANTA MARTA PENDIENTES": {"total": 4, "entregadas": 4, "pct": 100.0, "by_nov": {"ENTREGADO": 4}}, "CRUZ VERDE IBAGUE PENDIENTES": {"total": 18, "entregadas": 18, "pct": 100.0, "by_nov": {"ENTREGADO": 18}}}, "cedi_mes": {"CRUZ VERDE PENDIENTES Depot||2026-01": {"total": 74, "entregadas": 58, "pct": 78.4, "by_nov": {"ENTREGADO": 58, "NO HAY QUIEN RECIBA": 15, "DESTINATARIO SE TRASLADO": 1}}, "CRUZ VERDE PENDIENTES BARRANQUILLA||2026-01": {"total": 10, "entregadas": 10, "pct": 100.0, "by_nov": {"ENTREGADO": 10}}, "CRUZ VERDE CALI PENDIENTES||2026-01": {"total": 31, "entregadas": 30, "pct": 96.8, "by_nov": {"ENTREGADO": 30, "DESTINATARIO SE TRASLADO": 1}}, "CRUZ VERDE BUCARAMANGA PENDIENTES||2026-01": {"total": 5, "entregadas": 5, "pct": 100.0, "by_nov": {"ENTREGADO": 5}}, "CRUZ VERDE SANTA MARTA PENDIENTES||2026-01": {"total": 2, "entregadas": 2, "pct": 100.0, "by_nov": {"ENTREGADO": 2}}, "CRUZ VERDE IBAGUE PENDIENTES||2026-01": {"total": 9, "entregadas": 9, "pct": 100.0, "by_nov": {"ENTREGADO": 9}}, "CRUZ VERDE PENDIENTES Depot||2026-02": {"total": 7, "entregadas": 5, "pct": 71.4, "by_nov": {"ENTREGADO": 5, "NO HAY QUIEN RECIBA": 2}}, "CRUZ VERDE CALI PENDIENTES||2026-02": {"total": 6, "entregadas": 6, "pct": 100.0, "by_nov": {"ENTREGADO": 6}}, "CRUZ VERDE PENDIENTES Depot||2026-03": {"total": 39, "entregadas": 36, "pct": 92.3, "by_nov": {"ENTREGADO": 36, "NO HAY QUIEN RECIBA": 3}}, "CRUZ VERDE CALI PENDIENTES||2026-03": {"total": 38, "entregadas": 38, "pct": 100.0, "by_nov": {"ENTREGADO": 38}}, "CRUZ VERDE PENDIENTES BARRANQUILLA||2026-03": {"total": 19, "entregadas": 18, "pct": 94.7, "by_nov": {"ENTREGADO": 18, "NO HAY QUIEN RECIBA": 1}}, "CRUZ VERDE IBAGUE PENDIENTES||2026-03": {"total": 3, "entregadas": 3, "pct": 100.0, "by_nov": {"ENTREGADO": 3}}, "CRUZ VERDE SANTA MARTA PENDIENTES||2026-03": {"total": 1, "entregadas": 1, "pct": 100.0, "by_nov": {"ENTREGADO": 1}}, "CRUZ VERDE CALI PENDIENTES||2026-04": {"total": 30, "entregadas": 30, "pct": 100.0, "by_nov": {"ENTREGADO": 30}}, "CRUZ VERDE PENDIENTES Depot||2026-04": {"total": 47, "entregadas": 27, "pct": 57.4, "by_nov": {"NO HAY QUIEN RECIBA": 3, "ENTREGADO": 27, "DEVUELTO A CENTRAL": 17}}, "CRUZ VERDE IBAGUE PENDIENTES||2026-04": {"total": 4, "entregadas": 4, "pct": 100.0, "by_nov": {"ENTREGADO": 4}}, "CRUZ VERDE SANTA MARTA PENDIENTES||2026-04": {"total": 1, "entregadas": 1, "pct": 100.0, "by_nov": {"ENTREGADO": 1}}, "CRUZ VERDE PENDIENTES BARRANQUILLA||2026-04": {"total": 3, "entregadas": 3, "pct": 100.0, "by_nov": {"ENTREGADO": 3}}, "CRUZ VERDE IBAGUE PENDIENTES||2026-05": {"total": 2, "entregadas": 2, "pct": 100.0, "by_nov": {"ENTREGADO": 2}}, "CRUZ VERDE CALI PENDIENTES||2026-05": {"total": 13, "entregadas": 13, "pct": 100.0, "by_nov": {"ENTREGADO": 13}}, "CRUZ VERDE PENDIENTES Depot||2026-05": {"total": 26, "entregadas": 25, "pct": 96.2, "by_nov": {"ENTREGADO": 25, "NO HAY QUIEN RECIBA": 1}}, "CRUZ VERDE PENDIENTES BARRANQUILLA||2026-05": {"total": 1, "entregadas": 1, "pct": 100.0, "by_nov": {"ENTREGADO": 1}}}}, "land": {"mes": {"2025-02": {"total": 2, "cumple": 0, "nocumple": 2, "pct": 0.0}, "2025-09": {"total": 21, "cumple": 17, "nocumple": 4, "pct": 81.0}, "2025-10": {"total": 30, "cumple": 18, "nocumple": 12, "pct": 60.0}, "2025-11": {"total": 33, "cumple": 19, "nocumple": 14, "pct": 57.6}, "2025-12": {"total": 29, "cumple": 21, "nocumple": 8, "pct": 72.4}, "2026-01": {"total": 26, "cumple": 20, "nocumple": 6, "pct": 76.9}, "2026-02": {"total": 22, "cumple": 19, "nocumple": 3, "pct": 86.4}, "2026-03": {"total": 22, "cumple": 19, "nocumple": 3, "pct": 86.4}, "2026-04": {"total": 21, "cumple": 18, "nocumple": 3, "pct": 85.7}, "2026-05": {"total": 6, "cumple": 6, "nocumple": 0, "pct": 100.0}, "2026-10": {"total": 3, "cumple": 3, "nocumple": 0, "pct": 100.0}}, "ciudad": {"BARRANQUILLA": {"total": 65, "cumple": 47, "nocumple": 18, "pct": 72.3}, "BUCARAMANGA": {"total": 56, "cumple": 48, "nocumple": 8, "pct": 85.7}, "IBAGUE": {"total": 54, "cumple": 45, "nocumple": 9, "pct": 83.3}, "CALI": {"total": 41, "cumple": 21, "nocumple": 20, "pct": 51.2}}, "ciudad_mes": {"BARRANQUILLA||2025-09": {"total": 6, "cumple": 4, "nocumple": 2, "pct": 66.7}, "BARRANQUILLA||2025-10": {"total": 9, "cumple": 5, "nocumple": 4, "pct": 55.6}, "BARRANQUILLA||2025-11": {"total": 9, "cumple": 5, "nocumple": 4, "pct": 55.6}, "BARRANQUILLA||2025-12": {"total": 9, "cumple": 6, "nocumple": 3, "pct": 66.7}, "BARRANQUILLA||2026-01": {"total": 7, "cumple": 5, "nocumple": 2, "pct": 71.4}, "BARRANQUILLA||2026-02": {"total": 7, "cumple": 7, "nocumple": 0, "pct": 100.0}, "BARRANQUILLA||2026-03": {"total": 7, "cumple": 6, "nocumple": 1, "pct": 85.7}, "BARRANQUILLA||2026-04": {"total": 7, "cumple": 6, "nocumple": 1, "pct": 85.7}, "BUCARAMANGA||2025-09": {"total": 6, "cumple": 6, "nocumple": 0, "pct": 100.0}, "BUCARAMANGA||2025-10": {"total": 8, "cumple": 6, "nocumple": 2, "pct": 75.0}, "BUCARAMANGA||2025-11": {"total": 9, "cumple": 7, "nocumple": 2, "pct": 77.8}, "BUCARAMANGA||2025-12": {"total": 5, "cumple": 5, "nocumple": 0, "pct": 100.0}, "BUCARAMANGA||2026-01": {"total": 7, "cumple": 6, "nocumple": 1, "pct": 85.7}, "BUCARAMANGA||2026-02": {"total": 6, "cumple": 5, "nocumple": 1, "pct": 83.3}, "BUCARAMANGA||2026-03": {"total": 6, "cumple": 5, "nocumple": 1, "pct": 83.3}, "BUCARAMANGA||2026-04": {"total": 6, "cumple": 5, "nocumple": 1, "pct": 83.3}, "CALI||2025-09": {"total": 5, "cumple": 3, "nocumple": 2, "pct": 60.0}, "CALI||2025-10": {"total": 8, "cumple": 3, "nocumple": 5, "pct": 37.5}, "CALI||2025-11": {"total": 8, "cumple": 2, "nocumple": 6, "pct": 25.0}, "CALI||2025-12": {"total": 7, "cumple": 3, "nocumple": 4, "pct": 42.9}, "CALI||2026-01": {"total": 5, "cumple": 3, "nocumple": 2, "pct": 60.0}, "CALI||2026-02": {"total": 3, "cumple": 2, "nocumple": 1, "pct": 66.7}, "CALI||2026-03": {"total": 1, "cumple": 1, "nocumple": 0, "pct": 100.0}, "CALI||2026-04": {"total": 2, "cumple": 2, "nocumple": 0, "pct": 100.0}, "IBAGUE||2025-09": {"total": 4, "cumple": 4, "nocumple": 0, "pct": 100.0}, "IBAGUE||2025-10": {"total": 5, "cumple": 4, "nocumple": 1, "pct": 80.0}, "IBAGUE||2025-11": {"total": 7, "cumple": 5, "nocumple": 2, "pct": 71.4}, "IBAGUE||2025-12": {"total": 8, "cumple": 7, "nocumple": 1, "pct": 87.5}, "IBAGUE||2026-01": {"total": 7, "cumple": 6, "nocumple": 1, "pct": 85.7}, "IBAGUE||2026-02": {"total": 6, "cumple": 5, "nocumple": 1, "pct": 83.3}, "IBAGUE||2026-03": {"total": 8, "cumple": 7, "nocumple": 1, "pct": 87.5}, "IBAGUE||2026-04": {"total": 6, "cumple": 5, "nocumple": 1, "pct": 83.3}, "IBAGUE||2026-05": {"total": 2, "cumple": 2, "nocumple": 0, "pct": 100.0}}}};
+/* XDATA ahora se carga dinámicamente desde la fuente/base. */
 
 /* helpers */
 function setPct(id,val){
@@ -693,16 +729,25 @@ function renderOps(mesFilter,moduloFilter){
     document.getElementById('ops-kv-tasa').textContent=pm.pct?(pm.pct+'%'):'—';
     document.getElementById('ops-drog-mes-sub').textContent=mesFilter;
   } else {
-    document.getElementById('ops-kv-drog').textContent='73,419';
-    document.getElementById('ops-ks-drog').textContent='Ene–Dic 2026';
-    document.getElementById('ops-kv-pend').textContent='232,269';
-    document.getElementById('ops-ks-pend').textContent='Ene–May 2026 · 86.5%';
-    document.getElementById('ops-kv-tut').textContent='371';
-    document.getElementById('ops-ks-tut').textContent='88.1% entregado';
-    document.getElementById('ops-kv-land').textContent='216';
-    document.getElementById('ops-ks-land').textContent='74.5% en tiempo';
-    document.getElementById('ops-kv-tasa').textContent='86.5%';
-    document.getElementById('ops-drog-mes-sub').textContent='Ene–Dic 2026 · confirmados Ene–Abr';
+    const pendEntregado=D.pendientes?.por_novedad?.['ENTREGADO']||0;
+    const pendTotal=D.pendientes?.total||0;
+    const pendPct=pendTotal>0?Math.round(pendEntregado/pendTotal*1000)/10:0;
+    const tutEntregado=D.tutelas?.por_novedad?.['ENTREGADO']||0;
+    const tutTotal=D.tutelas?.total||0;
+    const tutPct=tutTotal>0?Math.round(tutEntregado/tutTotal*1000)/10:0;
+    const landCumple=D.landfast?.cumple?.['SI']||0;
+    const landTotal=D.landfast?.total||0;
+    const landPct=landTotal>0?Math.round(landCumple/landTotal*1000)/10:0;
+    document.getElementById('ops-kv-drog').textContent=fmt(D.droguerias?.total||0);
+    document.getElementById('ops-ks-drog').textContent='Total en base';
+    document.getElementById('ops-kv-pend').textContent=fmt(pendTotal);
+    document.getElementById('ops-ks-pend').textContent=pendPct+'% entregado';
+    document.getElementById('ops-kv-tut').textContent=fmt(tutTotal);
+    document.getElementById('ops-ks-tut').textContent=tutPct+'% entregado';
+    document.getElementById('ops-kv-land').textContent=fmt(landTotal);
+    document.getElementById('ops-ks-land').textContent=landPct+'% en tiempo';
+    document.getElementById('ops-kv-tasa').textContent=pendPct+'%';
+    document.getElementById('ops-drog-mes-sub').textContent='Datos cargados desde la base';
   }
   let dmKeys=Object.keys(D.droguerias.por_mes);
   let dmVals=Object.values(D.droguerias.por_mes);
@@ -744,9 +789,14 @@ function renderDrog(ciudadFilter,mesFilter,tipoFilter){
   hbar('c-tipo',tipos.map(x=>x[0]),tipos.map(x=>x[1]));
   const nd=Object.entries(D.por_novedad).filter(x=>x[0]!='SIN NOVEDAD');
   hbar('c-nov-drog',nd.map(x=>x[0]),nd.map(x=>x[1]),[O,R,Y,PU,B,T]);
-  const ce=Object.entries(D.por_cedi);
+  const ce=Object.entries(D.por_cedi||{}).sort((a,b)=>b[1]-a[1]);
   hbar('c-cedi',ce.map(x=>x[0].replace('CRUZ VERDE ','CV ').replace('MEDICARTE ','MC ')),ce.map(x=>x[1]));
-  const dp=Object.entries(D.por_depto);
+  const tb=document.getElementById('drog-table-body');
+  if(tb){
+    const max=ce.length?ce[0][1]:1;
+    tb.innerHTML=ce.slice(0,10).map(([name,val],i)=>`<tr><td>${i+1}</td><td><strong>${name.replace('CRUZ VERDE ','CV ').replace('MEDICARTE ','MC ')}</strong></td><td>${fmt(val)}</td><td>${D.total?Math.round(val/D.total*1000)/10:0}%</td><td><div class="pbw"><div class="pbf" style="width:${Math.max(2,Math.round(val/max*100))}%;background:var(--g)"></div></div></td></tr>`).join('');
+  }
+  const dp=Object.entries(D.por_depto||{}).sort((a,b)=>b[1]-a[1]);
   hbar('c-depto',dp.map(x=>x[0]),dp.map(x=>x[1]));
 }
 
@@ -767,7 +817,7 @@ function renderPend(ciudadFilter,mesFilter,tipoFilter){
   else if(mesFilter)    slice=XP.mes[mesFilter]||null;
   else if(tipoFilter)   slice=XP.tipo[tipoFilter]||null;
 
-  const base=slice||{total:D.total,entregados:D.por_novedad['ENTREGADO']||0,pct:86.5,by_nov:D.por_novedad};
+  const base=slice||{total:D.total,entregados:D.por_novedad['ENTREGADO']||0,pct:D.tasa_entrega||0,by_nov:D.por_novedad};
   const byNov=base.by_nov||D.por_novedad;
 
   // Donut: filter by selectedNov
@@ -815,7 +865,7 @@ function renderPend(ciudadFilter,mesFilter,tipoFilter){
   else if(ciudadFilter) document.getElementById('pend-ps').textContent=fmt(base.total)+' casos · '+ciudadFilter+' · ANS '+base.pct+'%';
   else if(mesFilter)    document.getElementById('pend-ps').textContent=fmt(base.total)+' casos · '+mesFilter+' · ANS '+base.pct+'%';
   else if(tipoFilter)   document.getElementById('pend-ps').textContent=fmt(base.total)+' casos · '+tipoFilter;
-  else                  document.getElementById('pend-ps').textContent='232,269 casos · Ene–May 2026 · ANS 86.5%';
+  else                  document.getElementById('pend-ps').textContent=fmt(base.total)+' casos · ANS '+base.pct+'%';
 
   const nSel=selectedNov.length,nAll=document.querySelectorAll('.pend-nov-chk').length;
   const btn=document.getElementById('pend-nov-btn');
@@ -832,7 +882,7 @@ function renderTut(cediFilter,mesFilter,resultadoFilter){
   else if(cediFilter) slice=XT.cedi[cediFilter]||null;
   else if(mesFilter)  slice=XT.mes[mesFilter]||null;
 
-  const base=slice||{total:D.total,entregadas:D.por_novedad['ENTREGADO']||0,pct:88.1,by_nov:D.por_novedad};
+  const base=slice||{total:D.total,entregadas:D.por_novedad['ENTREGADO']||0,pct:D.tasa_entrega||0,by_nov:D.por_novedad};
   const byNov=base.by_nov||D.por_novedad;
 
   // CEDI chart
@@ -865,7 +915,7 @@ function renderTut(cediFilter,mesFilter,resultadoFilter){
   }
 
   const tasa=total>0?Math.round(entregadas/total*1000)/10:0;
-  const tasaStr=(cediFilter||mesFilter||resultadoFilter)?(tasa+'%'):'88.1%';
+  const tasaStr=tasa+'%';
 
   document.getElementById('tut-entregadas').textContent=fmt(entregadas);
   document.getElementById('tut-sinquien').textContent=fmt(sinquien);
@@ -1037,21 +1087,28 @@ function refreshAllViews(){
   applyTutFilters();
   applyLandFilters();
 }
-function refreshData(){
+async function refreshData(){
   const btn=document.getElementById('refresh-btn');
   if(btn&&btn.disabled)return;
   if(btn){btn.disabled=true;btn.classList.add('loading');}
-  setRefreshStatus('Actualizando...');
-
-  window.setTimeout(()=>{
+  setRefreshStatus('Consultando base...');
+  try{
+    await loadDataFromBase();
+    populateFiltersFromData();
     Object.keys(CH).forEach(id=>{if(CH[id]){CH[id].destroy();delete CH[id];}});
     updateRecordsBadge();
     refreshAllViews();
     const now=new Date();
     updateHeaderDate(now);
-    setRefreshStatus('Actualizado '+now.toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'}));
+    const fuente=DATA_SOURCE?(' · '+DATA_SOURCE.replace(window.location.origin,'')):'';
+    setRefreshStatus('Actualizado '+now.toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'})+fuente);
+  }catch(err){
+    console.error(err);
+    setRefreshStatus('Error cargando base');
+    alert('No se pudo actualizar desde la base. Revisa que el endpoint BI_DATA_URL o /api/bi-data esté disponible y devuelva JSON válido.');
+  }finally{
     if(btn){btn.disabled=false;btn.classList.remove('loading');}
-  },350);
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1087,9 +1144,28 @@ function go(id){
   document.querySelector(`[onclick="go('${id}')"]`).classList.add('active');
 }
 
-updateHeaderDate();
-updateRecordsBadge();
-renderAll();
+async function initBI(){
+  updateHeaderDate();
+  clearDashboardValues();
+  const btn=document.getElementById('refresh-btn');
+  if(btn){btn.disabled=true;btn.classList.add('loading');}
+  setRefreshStatus('Conectando a base...');
+  try{
+    await loadDataFromBase();
+    populateFiltersFromData();
+    updateRecordsBadge();
+    renderAll();
+    const now=new Date();
+    const fuente=DATA_SOURCE?(' · '+DATA_SOURCE.replace(window.location.origin,'')):'';
+    setRefreshStatus('Datos desde base '+now.toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'})+fuente);
+  }catch(err){
+    console.error(err);
+    setRefreshStatus('Error: sin conexión a base');
+  }finally{
+    if(btn){btn.disabled=false;btn.classList.remove('loading');}
+  }
+}
+initBI();
 </script>
 </body>
 </html>
