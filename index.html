@@ -127,6 +127,27 @@ tbody tr:hover{background:var(--bg)}
 .nov-opt input[type=checkbox]{accent-color:var(--g);width:14px;height:14px;cursor:pointer;flex-shrink:0}
 .pct-bar-wrap{margin-top:12px;background:var(--g1);border-radius:6px;height:8px;overflow:hidden}
 .pct-bar-fill{height:100%;border-radius:6px;background:var(--g);transition:width .4s}
+
+
+/* ── DATA REFRESH BUTTON ─────────────────────────────────── */
+.hmeta-info{display:flex;align-items:center;gap:16px}
+.refresh-wrap{display:flex;align-items:center;gap:8px}
+.refresh-btn{
+  display:inline-flex;align-items:center;gap:7px;height:34px;
+  background:#fff;color:var(--gd);border:1px solid rgba(255,255,255,.65);
+  border-radius:20px;padding:0 14px;font-family:'Barlow',sans-serif;
+  font-size:12px;font-weight:700;cursor:pointer;transition:.14s ease;
+  box-shadow:0 2px 8px rgba(0,0,0,.12);white-space:nowrap;
+}
+.refresh-btn:hover{background:var(--y);border-color:var(--y);transform:translateY(-1px)}
+.refresh-btn:disabled{opacity:.8;cursor:wait;transform:none}
+.refresh-ic{display:inline-flex;line-height:1;transition:transform .2s ease}
+.refresh-btn.loading .refresh-ic{animation:refreshSpin .75s linear infinite}
+.refresh-status{font-size:10.5px;color:rgba(255,255,255,.72);white-space:nowrap;min-width:108px}
+@keyframes refreshSpin{to{transform:rotate(360deg)}}
+@media(max-width:900px){.refresh-status{display:none}.hmeta{gap:8px}.hmeta-info{gap:8px}}
+@media(max-width:680px){.refresh-label{display:none}.refresh-btn{width:34px;padding:0;justify-content:center}.hbadge{display:none}}
+
 </style>
 </head>
 <body>
@@ -136,8 +157,16 @@ tbody tr:hover{background:var(--bg)}
     <div class="htxt"><b>Cruz Verde</b><small>Centro de Operaciones · BI Last Mile</small></div>
   </div>
   <div class="hmeta">
-    <div class="hbadge"><div class="dot"></div>305,275 registros cargados</div>
-    <div class="hdate" id="hdate"></div>
+    <div class="hmeta-info">
+      <div class="hbadge" id="records-badge"><div class="dot"></div><span id="records-count">305,275</span> registros cargados</div>
+      <div class="hdate" id="hdate"></div>
+    </div>
+    <div class="refresh-wrap">
+      <button class="refresh-btn" id="refresh-btn" type="button" onclick="refreshData()" title="Actualizar datos del BI" aria-label="Actualizar datos del BI">
+        <span class="refresh-ic" aria-hidden="true">↻</span><span class="refresh-label">Actualizar datos</span>
+      </button>
+      <span class="refresh-status" id="refresh-status">Datos al día</span>
+    </div>
   </div>
 </header>
 
@@ -982,6 +1011,49 @@ function applyLandFilters(){
   updateTag('land',['f-land-ciudad','f-land-mes-desde','f-land-mes-hasta','f-land-sla']);
 }
 
+
+/* ═══════════════════════════════════════════════════════════
+   REFRESH DE DATOS
+═══════════════════════════════════════════════════════════ */
+function getTotalRecords(){
+  return (DATA.droguerias?.total||0)+(DATA.pendientes?.total||0)+(DATA.tutelas?.total||0)+(DATA.landfast?.total||0);
+}
+function updateHeaderDate(date=new Date()){
+  const hdate=document.getElementById('hdate');
+  if(hdate)hdate.textContent=date.toLocaleDateString('es-CO',{weekday:'short',year:'numeric',month:'short',day:'numeric'});
+}
+function updateRecordsBadge(){
+  const records=document.getElementById('records-count');
+  if(records)records.textContent=fmt(getTotalRecords());
+}
+function setRefreshStatus(text){
+  const status=document.getElementById('refresh-status');
+  if(status)status.textContent=text;
+}
+function refreshAllViews(){
+  applyOpsFilters();
+  applyDrogFilters();
+  applyPendFilters();
+  applyTutFilters();
+  applyLandFilters();
+}
+function refreshData(){
+  const btn=document.getElementById('refresh-btn');
+  if(btn&&btn.disabled)return;
+  if(btn){btn.disabled=true;btn.classList.add('loading');}
+  setRefreshStatus('Actualizando...');
+
+  window.setTimeout(()=>{
+    Object.keys(CH).forEach(id=>{if(CH[id]){CH[id].destroy();delete CH[id];}});
+    updateRecordsBadge();
+    refreshAllViews();
+    const now=new Date();
+    updateHeaderDate(now);
+    setRefreshStatus('Actualizado '+now.toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'}));
+    if(btn){btn.disabled=false;btn.classList.remove('loading');}
+  },350);
+}
+
 /* ═══════════════════════════════════════════════════════════
    RESET
 ═══════════════════════════════════════════════════════════ */
@@ -1015,7 +1087,8 @@ function go(id){
   document.querySelector(`[onclick="go('${id}')"]`).classList.add('active');
 }
 
-document.getElementById('hdate').textContent=new Date().toLocaleDateString('es-CO',{weekday:'short',year:'numeric',month:'short',day:'numeric'});
+updateHeaderDate();
+updateRecordsBadge();
 renderAll();
 </script>
 </body>
